@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Peb-jt-ZfH">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="N6X-tQ-hWI">
+            <objects>
+                <viewController id="Peb-jt-ZfH" customClass="ViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fxf-Ua-l7j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_0" translatesAutoresizingMaskIntoConstraints="NO" id="9iR-L3-YES">
+                                <rect key="frame" x="57" y="203" width="300" height="500"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="vtZ-Qq-oFM"/>
+                                    <constraint firstAttribute="height" constant="500" id="yBV-6X-IPu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9iR-L3-YES" firstAttribute="centerY" secondItem="Mqh-uF-cIi" secondAttribute="centerY" id="Ek4-Ng-hdL"/>
+                            <constraint firstItem="9iR-L3-YES" firstAttribute="centerX" secondItem="Mqh-uF-cIi" secondAttribute="centerX" id="SiL-7B-2xO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mqh-uF-cIi"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="9iR-L3-YES" id="ux3-Kw-4lP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XaZ-Uj-j5m" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="test_0" width="2482" height="3510"/>
+    </resources>
+</document>

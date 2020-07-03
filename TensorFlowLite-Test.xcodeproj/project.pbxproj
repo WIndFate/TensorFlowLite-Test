@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117B24AB4143006F0C19 /* AppDelegate.swift */; };
+		394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117D24AB4143006F0C19 /* SceneDelegate.swift */; };
+		394E118024AB4143006F0C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117F24AB4143006F0C19 /* ViewController.swift */; };
+		394E118324AB4143006F0C19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394E118124AB4143006F0C19 /* Main.storyboard */; };
+		394E118524AB4143006F0C19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 394E118424AB4143006F0C19 /* Assets.xcassets */; };
+		394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394E118624AB4143006F0C19 /* LaunchScreen.storyboard */; };
+		39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */; };
+		39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451724AB428D00E425F5 /* ModelDataHandler.swift */; };
+		39D6451A24AC3CE800E425F5 /* rental_model_sized_small .tflite in Resources */ = {isa = PBXBuildFile; fileRef = 39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */; };
+		39D6451C24ADB63600E425F5 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6451B24ADB63600E425F5 /* opencv2.framework */; };
+		39D6452024ADB6B400E425F5 /* OpenCVManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */; };
+		39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452124ADB94700E425F5 /* AVFoundation.framework */; };
+		39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452324ADB95F00E425F5 /* CoreMedia.framework */; };
+		F47283BCED35946151196A3A /* Pods_TensorFlowLite_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		394E117824AB4143006F0C19 /* TensorFlowLite-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TensorFlowLite-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		394E117B24AB4143006F0C19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		394E117D24AB4143006F0C19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		394E117F24AB4143006F0C19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		394E118224AB4143006F0C19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		394E118424AB4143006F0C19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		394E118724AB4143006F0C19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		394E118924AB4143006F0C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPixelBufferExtension.swift; sourceTree = "<group>"; };
+		39D6451724AB428D00E425F5 /* ModelDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDataHandler.swift; sourceTree = "<group>"; };
+		39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rental_model_sized_small .tflite"; sourceTree = "<group>"; };
+		39D6451B24ADB63600E425F5 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		39D6451D24ADB6B300E425F5 /* TensorFlowLite-Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TensorFlowLite-Test-Bridging-Header.h"; sourceTree = "<group>"; };
+		39D6451E24ADB6B400E425F5 /* OpenCVManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVManager.h; sourceTree = "<group>"; };
+		39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVManager.mm; sourceTree = "<group>"; };
+		39D6452124ADB94700E425F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		39D6452324ADB95F00E425F5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TensorFlowLite_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E917A2DB3F03AE4575D8E819 /* Pods-TensorFlowLite-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.debug.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.debug.xcconfig"; sourceTree = "<group>"; };
+		F794F9AEA5C12F15924BACC9 /* Pods-TensorFlowLite-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.release.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		394E117524AB4143006F0C19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */,
+				39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */,
+				39D6451C24ADB63600E425F5 /* opencv2.framework in Frameworks */,
+				F47283BCED35946151196A3A /* Pods_TensorFlowLite_Test.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E96D9C502252E46A3A0B726 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E917A2DB3F03AE4575D8E819 /* Pods-TensorFlowLite-Test.debug.xcconfig */,
+				F794F9AEA5C12F15924BACC9 /* Pods-TensorFlowLite-Test.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		394E116F24AB4143006F0C19 = {
+			isa = PBXGroup;
+			children = (
+				39D6451B24ADB63600E425F5 /* opencv2.framework */,
+				394E117A24AB4143006F0C19 /* TensorFlowLite-Test */,
+				394E117924AB4143006F0C19 /* Products */,
+				2E96D9C502252E46A3A0B726 /* Pods */,
+				A06BC9147200E8681E0D9FAE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		394E117924AB4143006F0C19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				394E117824AB4143006F0C19 /* TensorFlowLite-Test.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		394E117A24AB4143006F0C19 /* TensorFlowLite-Test */ = {
+			isa = PBXGroup;
+			children = (
+				39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */,
+				39D6451624AB428D00E425F5 /* ModelDataHandler */,
+				39D6451324AB428600E425F5 /* Extensions */,
+				394E117B24AB4143006F0C19 /* AppDelegate.swift */,
+				394E117D24AB4143006F0C19 /* SceneDelegate.swift */,
+				394E117F24AB4143006F0C19 /* ViewController.swift */,
+				39D6451E24ADB6B400E425F5 /* OpenCVManager.h */,
+				39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */,
+				394E118124AB4143006F0C19 /* Main.storyboard */,
+				394E118424AB4143006F0C19 /* Assets.xcassets */,
+				394E118624AB4143006F0C19 /* LaunchScreen.storyboard */,
+				394E118924AB4143006F0C19 /* Info.plist */,
+				39D6451D24ADB6B300E425F5 /* TensorFlowLite-Test-Bridging-Header.h */,
+			);
+			path = "TensorFlowLite-Test";
+			sourceTree = "<group>";
+		};
+		39D6451324AB428600E425F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		39D6451624AB428D00E425F5 /* ModelDataHandler */ = {
+			isa = PBXGroup;
+			children = (
+				39D6451724AB428D00E425F5 /* ModelDataHandler.swift */,
+			);
+			path = ModelDataHandler;
+			sourceTree = "<group>";
+		};
+		A06BC9147200E8681E0D9FAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39D6452324ADB95F00E425F5 /* CoreMedia.framework */,
+				39D6452124ADB94700E425F5 /* AVFoundation.framework */,
+				B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		394E117724AB4143006F0C19 /* TensorFlowLite-Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 394E118C24AB4143006F0C19 /* Build configuration list for PBXNativeTarget "TensorFlowLite-Test" */;
+			buildPhases = (
+				710F9883086612E753D1E766 /* [CP] Check Pods Manifest.lock */,
+				394E117424AB4143006F0C19 /* Sources */,
+				394E117524AB4143006F0C19 /* Frameworks */,
+				394E117624AB4143006F0C19 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TensorFlowLite-Test";
+			productName = "TensorFlowLite-Test";
+			productReference = 394E117824AB4143006F0C19 /* TensorFlowLite-Test.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		394E117024AB4143006F0C19 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = WIndFate;
+				TargetAttributes = {
+					394E117724AB4143006F0C19 = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
+				};
+			};
+			buildConfigurationList = 394E117324AB4143006F0C19 /* Build configuration list for PBXProject "TensorFlowLite-Test" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 394E116F24AB4143006F0C19;
+			productRefGroup = 394E117924AB4143006F0C19 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				394E117724AB4143006F0C19 /* TensorFlowLite-Test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		394E117624AB4143006F0C19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39D6451A24AC3CE800E425F5 /* rental_model_sized_small .tflite in Resources */,
+				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
+				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
+				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		710F9883086612E753D1E766 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TensorFlowLite-Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		394E117424AB4143006F0C19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				394E118024AB4143006F0C19 /* ViewController.swift in Sources */,
+				39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */,
+				39D6452024ADB6B400E425F5 /* OpenCVManager.mm in Sources */,
+				394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */,
+				39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */,
+				394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		394E118124AB4143006F0C19 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				394E118224AB4143006F0C19 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		394E118624AB4143006F0C19 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				394E118724AB4143006F0C19 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		394E118A24AB4143006F0C19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		394E118B24AB4143006F0C19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		394E118D24AB4143006F0C19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E917A2DB3F03AE4575D8E819 /* Pods-TensorFlowLite-Test.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5L9V6FRKP5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "TensorFlowLite-Test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "windfate.TensorFlowLite-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TensorFlowLite-Test/TensorFlowLite-Test-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		394E118E24AB4143006F0C19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F794F9AEA5C12F15924BACC9 /* Pods-TensorFlowLite-Test.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5L9V6FRKP5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "TensorFlowLite-Test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "windfate.TensorFlowLite-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TensorFlowLite-Test/TensorFlowLite-Test-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		394E117324AB4143006F0C19 /* Build configuration list for PBXProject "TensorFlowLite-Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				394E118A24AB4143006F0C19 /* Debug */,
+				394E118B24AB4143006F0C19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		394E118C24AB4143006F0C19 /* Build configuration list for PBXNativeTarget "TensorFlowLite-Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				394E118D24AB4143006F0C19 /* Debug */,
+				394E118E24AB4143006F0C19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 394E117024AB4143006F0C19 /* Project object */;
+}
