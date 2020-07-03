@@ -16,7 +16,6 @@
 		39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */; };
 		39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451724AB428D00E425F5 /* ModelDataHandler.swift */; };
 		39D6451A24AC3CE800E425F5 /* rental_model_sized_small .tflite in Resources */ = {isa = PBXBuildFile; fileRef = 39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */; };
-		39D6451C24ADB63600E425F5 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6451B24ADB63600E425F5 /* opencv2.framework */; };
 		39D6452024ADB6B400E425F5 /* OpenCVManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */; };
 		39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452124ADB94700E425F5 /* AVFoundation.framework */; };
 		39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452324ADB95F00E425F5 /* CoreMedia.framework */; };
@@ -35,7 +34,6 @@
 		39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPixelBufferExtension.swift; sourceTree = "<group>"; };
 		39D6451724AB428D00E425F5 /* ModelDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDataHandler.swift; sourceTree = "<group>"; };
 		39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rental_model_sized_small .tflite"; sourceTree = "<group>"; };
-		39D6451B24ADB63600E425F5 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		39D6451D24ADB6B300E425F5 /* TensorFlowLite-Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TensorFlowLite-Test-Bridging-Header.h"; sourceTree = "<group>"; };
 		39D6451E24ADB6B400E425F5 /* OpenCVManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVManager.h; sourceTree = "<group>"; };
 		39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVManager.mm; sourceTree = "<group>"; };
@@ -53,7 +51,6 @@
 			files = (
 				39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */,
 				39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */,
-				39D6451C24ADB63600E425F5 /* opencv2.framework in Frameworks */,
 				F47283BCED35946151196A3A /* Pods_TensorFlowLite_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,7 +70,6 @@
 		394E116F24AB4143006F0C19 = {
 			isa = PBXGroup;
 			children = (
-				39D6451B24ADB63600E425F5 /* opencv2.framework */,
 				394E117A24AB4143006F0C19 /* TensorFlowLite-Test */,
 				394E117924AB4143006F0C19 /* Products */,
 				2E96D9C502252E46A3A0B726 /* Pods */,

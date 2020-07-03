@@ -6,9 +6,9 @@
 //  Copyright © 2020 WIndFate. All rights reserved.
 //
 
-#import <opencv2/opencv.hpp>
-#import <opencv2/imgproc/imgproc.hpp>
-#import <opencv2/highgui/highgui.hpp>
+//#import <opencv2/opencv.hpp>
+//#import <opencv2/imgproc/imgproc.hpp>
+//#import <opencv2/highgui/highgui.hpp>
 #import "OpenCVManager.h"
 
 @implementation OpenCVManager
