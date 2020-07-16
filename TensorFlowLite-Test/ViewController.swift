@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    var image: UIImage?
+    
+    var array: [Float]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +25,17 @@ class ViewController: UIViewController {
           fatalError("Model set up failed")
         }
         
-        let result = modelDataHandler?.runModel(onFrame: buffer(from: UIImage(named: "test_0")!)!)
+        let result = modelDataHandler!.runModel(onFrame: buffer(from: UIImage(named: "test_5")!)!)
         
         print("result == \(String(describing: result?.tensor.shape.dimensions)))")
+        
+        let cgImage = self.imageFromSRGBColorArray(pixels: result!.dataResult, width: 320, height: 448)
+        
+        self.image = UIImage(cgImage: cgImage!)
+        self.array = result!.dataResult
+        
+//        self.imageView.image = self.image
+        
         
         
 //        let image = UIImage(named: "testImage")!
@@ -39,7 +51,45 @@ class ViewController: UIViewController {
 //
 //        imageView.image = drawImage.imageRotatedByDegrees(degrees: 90)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard segue.identifier == "CVViewController" else {
+            return
+        }
+        
+        let cls = segue.destination as! CVViewController
+        
+        cls.image = self.image!
+        cls.array = self.array!
+    }
+    
+    func imageFromSRGBColorArray(pixels: [Float32], width: Int, height: Int) -> CGImage?
+    {
+        guard width > 0 && height > 0 else { return nil }
+        guard pixels.count == width * height else { return nil }
 
+        // Make a mutable copy
+        var data = pixels
+
+        // Convert array of pixels to a CGImage instance.
+        let cgImage = data.withUnsafeMutableBytes { (ptr) -> CGImage in
+          let ctx = CGContext(
+            data: ptr.baseAddress,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: MemoryLayout<UInt32>.size * width,
+            space: CGColorSpace(name: CGColorSpace.sRGB)!,
+            bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue
+              + CGImageAlphaInfo.premultipliedFirst.rawValue
+          )!
+          return ctx.makeImage()!
+        }
+
+        // Convert the CGImage instance to an UIImage instance.
+        return cgImage
+      }
 
     func buffer(from image: UIImage) -> CVPixelBuffer? {
       let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
@@ -95,4 +145,9 @@ extension UIImage {
 }
 
 
+// MARK: - Constants
+private enum Constants {
 
+  static let inputImageSize = CGSize(width: 80, height: 40)
+
+}

@@ -28,7 +28,7 @@ typealias FileInfo = (name: String, extension: String)
 
 /// Information about the MobileNet model.
 enum MobileNet {
-  static let modelInfo: FileInfo = (name: "rental_model_sized_small ", extension: "tflite")
+  static let modelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
 }
 
 /// This class handles all data preprocessing and makes calls to run inference on a given frame
@@ -46,10 +46,15 @@ class ModelDataHandler {
 
   // MARK: - Model Parameters
 
+//  let batchSize = 1
+//  let inputChannels = 3
+//  let inputWidth = 512
+//  let inputHeight = 256
+    
   let batchSize = 1
   let inputChannels = 3
-  let inputWidth = 512
-  let inputHeight = 256
+  let inputWidth = 1280
+  let inputHeight = 1792
 
   // MARK: - Private Properties
 
@@ -137,7 +142,7 @@ class ModelDataHandler {
       return nil
     }
     
-    let results: [Float]
+    var results: [Float]
     switch outputTensor.dataType {
     case .uInt8:
       guard let quantization = outputTensor.quantizationParameters else {
@@ -154,6 +159,10 @@ class ModelDataHandler {
       print("Output tensor data type \(outputTensor.dataType) is unsupported for this example app.")
       return nil
     }
+    
+//    for num in 0..<results.count {
+//        results[num] = results[num] * 255
+//    }
 
     // Return the inference time and inference results.
     return Result(tensor: outputTensor, dataResult: results)
@@ -232,7 +241,7 @@ class ModelDataHandler {
     let bytes = Array<UInt8>(unsafeData: byteData)!
     var floats = [Float]()
     for i in 0..<bytes.count {
-        floats.append(Float(bytes[i]) / 255.0)
+        floats.append(Float(bytes[i]) / 1.0)
     }
     return Data(copyingBufferOf: floats)
   }

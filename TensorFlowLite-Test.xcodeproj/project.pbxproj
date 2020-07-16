@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AF752324BC344700C646E1 /* UIKitExtension.swift */; };
+		16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF753624BC58F000C646E1 /* CVViewController.mm */; };
+		16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */; };
+		16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */; };
+		16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754724BDCEF200C646E1 /* OpenCVManager.mm */; };
 		394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117B24AB4143006F0C19 /* AppDelegate.swift */; };
 		394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117D24AB4143006F0C19 /* SceneDelegate.swift */; };
 		394E118024AB4143006F0C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117F24AB4143006F0C19 /* ViewController.swift */; };
@@ -16,13 +21,20 @@
 		39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */; };
 		39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451724AB428D00E425F5 /* ModelDataHandler.swift */; };
 		39D6451A24AC3CE800E425F5 /* rental_model_sized_small .tflite in Resources */ = {isa = PBXBuildFile; fileRef = 39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */; };
-		39D6452024ADB6B400E425F5 /* OpenCVManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */; };
 		39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452124ADB94700E425F5 /* AVFoundation.framework */; };
 		39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452324ADB95F00E425F5 /* CoreMedia.framework */; };
 		F47283BCED35946151196A3A /* Pods_TensorFlowLite_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16AF752324BC344700C646E1 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
+		16AF753524BC58F000C646E1 /* CVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVViewController.h; sourceTree = "<group>"; };
+		16AF753624BC58F000C646E1 /* CVViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
+		16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = rental_model_sized_big.tflite; sourceTree = "<group>"; };
+		16AF754424BDCEF200C646E1 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
+		16AF754624BDCEF200C646E1 /* OpenCVManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVManager.h; sourceTree = "<group>"; };
+		16AF754724BDCEF200C646E1 /* OpenCVManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVManager.mm; sourceTree = "<group>"; };
 		394E117824AB4143006F0C19 /* TensorFlowLite-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TensorFlowLite-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		394E117B24AB4143006F0C19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		394E117D24AB4143006F0C19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,8 +47,6 @@
 		39D6451724AB428D00E425F5 /* ModelDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDataHandler.swift; sourceTree = "<group>"; };
 		39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rental_model_sized_small .tflite"; sourceTree = "<group>"; };
 		39D6451D24ADB6B300E425F5 /* TensorFlowLite-Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TensorFlowLite-Test-Bridging-Header.h"; sourceTree = "<group>"; };
-		39D6451E24ADB6B400E425F5 /* OpenCVManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVManager.h; sourceTree = "<group>"; };
-		39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVManager.mm; sourceTree = "<group>"; };
 		39D6452124ADB94700E425F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		39D6452324ADB95F00E425F5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TensorFlowLite_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +68,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16AF753824BC5C4700C646E1 /* OpenCV */ = {
+			isa = PBXGroup;
+			children = (
+				16AF754624BDCEF200C646E1 /* OpenCVManager.h */,
+				16AF754724BDCEF200C646E1 /* OpenCVManager.mm */,
+				16AF754424BDCEF200C646E1 /* UIImage+OpenCV.h */,
+				16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */,
+			);
+			path = OpenCV;
+			sourceTree = "<group>";
+		};
 		2E96D9C502252E46A3A0B726 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,14 +109,16 @@
 		394E117A24AB4143006F0C19 /* TensorFlowLite-Test */ = {
 			isa = PBXGroup;
 			children = (
+				16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */,
 				39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */,
+				16AF753824BC5C4700C646E1 /* OpenCV */,
 				39D6451624AB428D00E425F5 /* ModelDataHandler */,
 				39D6451324AB428600E425F5 /* Extensions */,
 				394E117B24AB4143006F0C19 /* AppDelegate.swift */,
 				394E117D24AB4143006F0C19 /* SceneDelegate.swift */,
 				394E117F24AB4143006F0C19 /* ViewController.swift */,
-				39D6451E24ADB6B400E425F5 /* OpenCVManager.h */,
-				39D6451F24ADB6B400E425F5 /* OpenCVManager.mm */,
+				16AF753524BC58F000C646E1 /* CVViewController.h */,
+				16AF753624BC58F000C646E1 /* CVViewController.mm */,
 				394E118124AB4143006F0C19 /* Main.storyboard */,
 				394E118424AB4143006F0C19 /* Assets.xcassets */,
 				394E118624AB4143006F0C19 /* LaunchScreen.storyboard */,
@@ -108,6 +131,7 @@
 		39D6451324AB428600E425F5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				16AF752324BC344700C646E1 /* UIKitExtension.swift */,
 				39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */,
 			);
 			path = Extensions;
@@ -195,6 +219,7 @@
 				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
 				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
 				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,
+				16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,11 +256,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				394E118024AB4143006F0C19 /* ViewController.swift in Sources */,
+				16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */,
 				39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */,
-				39D6452024ADB6B400E425F5 /* OpenCVManager.mm in Sources */,
 				394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */,
+				16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */,
+				16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */,
 				39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */,
 				394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */,
+				16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +414,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TensorFlowLite-Test",
 				);
 				INFOPLIST_FILE = "TensorFlowLite-Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -412,6 +441,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TensorFlowLite-Test",
 				);
 				INFOPLIST_FILE = "TensorFlowLite-Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
