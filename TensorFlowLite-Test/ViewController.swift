@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         
         let result = modelDataHandler!.runModel(onFrame: buffer(from: UIImage(named: "test_5")!)!)
         
+//        let result = modelDataHandler!.runModel(onFrame: buffer(from: UIImage(named: "test_5")!.resizeImage(1280, 1792))!)
+        
         print("result == \(String(describing: result?.tensor.shape.dimensions)))")
         
         let cgImage = self.imageFromSRGBColorArray(pixels: result!.dataResult, width: 320, height: 448)
@@ -71,6 +73,11 @@ class ViewController: UIViewController {
 
         // Make a mutable copy
         var data = pixels
+        
+//        for i in 0..<data.count {
+//
+//            data[i] = data[i] * 255
+//        }
 
         // Convert array of pixels to a CGImage instance.
         let cgImage = data.withUnsafeMutableBytes { (ptr) -> CGImage in
@@ -141,6 +148,22 @@ extension UIImage {
 
         UIGraphicsEndImageContext()
         return newImage
+    }
+    
+    func resizeImage(_ width: CGFloat, _ height: CGFloat) -> UIImage {
+
+        let renderFormat = UIGraphicsImageRendererFormat.default()
+
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height), format: renderFormat)
+
+        return renderer.image {
+
+            (context) in
+
+            self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+
+        }
+
     }
 }
 

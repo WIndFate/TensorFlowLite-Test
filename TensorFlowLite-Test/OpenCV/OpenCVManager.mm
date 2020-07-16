@@ -18,8 +18,7 @@
     cv::Mat tmp;
     cv::Mat orig_img;
     int min_grid_size = 3;
-    int scaleDown = 2;
-    int grid_size = pow(2, scaleDown);
+
     double scaling = 0.7;
     double extend_multiplier = 1.1;
     double threshold = 0.8;
@@ -27,12 +26,17 @@
     
     inputMat = [image cvMatImage];
     
+//    UIImage *blackImage = [UIImage imageNamed:@"test_5_bit_img"];
+//    inputMat = [blackImage cvMatImage];
+    
     UIImage *origImage = [UIImage imageNamed:@"test_5"];
-    orig_img = [origImage CVGrayscaleMat];
+    orig_img = [origImage cvMatImage];
+    
+    double grid_size = origImage.size.height / inputMat.rows;
     
 //    for (auto it = inputMat.begin<cv::Vec3b>(); it != inputMat.end<cv::Vec3b>(); ++it)
 //    {
-//        std::cout << int((*it)[0]) << " " << int((*it)[1]) << " " << int((*it)[2]) << std::endl;
+////        std::cout << int((*it)[0]) << " " << int((*it)[1]) << " " << int((*it)[2]) << std::endl;
 //        (*it)[0] = (*it)[0] * 255;
 //        (*it)[1] = (*it)[1] * 255;
 //        (*it)[2] = (*it)[2] * 255;
@@ -60,6 +64,10 @@
     
     cv::threshold(grayMat, tmp, threshold_level, 255, CV_THRESH_BINARY);
     outputMat = tmp;
+    
+    // 边缘检测
+    cv::Canny(outputMat, tmp, 30, 220);
+    outputMat = tmp;
 
     // 边角检测  填充边界内空白色值
     std::vector<std::vector<cv::Point>> contours;
@@ -70,6 +78,12 @@
     for (int i = 0; i < contours.size(); i++) {
 
         cv::Rect rect = cv::boundingRect(contours[i]);
+        
+        rect.x = rect.x * grid_size;
+        rect.width = rect.width * grid_size;
+        rect.y = rect.y * grid_size;
+        rect.height = rect.height * grid_size;
+        
         int min_wh;
         if (rect.width <= rect.height) {
             min_wh = rect.width;

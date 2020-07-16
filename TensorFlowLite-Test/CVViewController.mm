@@ -23,6 +23,7 @@
     
     self.imageView.image = [OpenCVManager correctWithUIImage:self.image];
 
+//    [self writeToCsv];
 }
 
 -(void)writeToCsv {
@@ -33,10 +34,10 @@
     NSMutableString *csvString = [NSMutableString string];
     for (int i = 0; i< self.array.count; i ++) {
         
-         [csvString appendFormat:@"%@,",self.array[i]];
         if ((i%320) == 0 && i != 0) {
             [csvString appendString:@"\n"];
         }
+        [csvString appendFormat:@"%@,",self.array[i]];
     };
     
     NSData *data = [csvString dataUsingEncoding:NSUTF8StringEncoding];
