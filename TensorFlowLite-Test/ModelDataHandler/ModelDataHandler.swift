@@ -28,7 +28,8 @@ typealias FileInfo = (name: String, extension: String)
 
 /// Information about the MobileNet model.
 enum MobileNet {
-  static let modelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
+    static let modelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
+//    static let modelInfo: FileInfo = (name: "barcode_model_30", extension: "tflite")
 }
 
 /// This class handles all data preprocessing and makes calls to run inference on a given frame
@@ -45,11 +46,6 @@ class ModelDataHandler {
   let threadCountLimit = 10
 
   // MARK: - Model Parameters
-
-//  let batchSize = 1
-//  let inputChannels = 3
-//  let inputWidth = 512
-//  let inputHeight = 256
     
   let batchSize = 1
   let inputChannels = 3
@@ -159,10 +155,6 @@ class ModelDataHandler {
       print("Output tensor data type \(outputTensor.dataType) is unsupported for this example app.")
       return nil
     }
-    
-//    for num in 0..<results.count {
-//        results[num] = results[num] * 255
-//    }
 
     // Return the inference time and inference results.
     return Result(tensor: outputTensor, dataResult: results)
@@ -284,3 +276,4 @@ extension Array {
     #endif  // swift(>=5.0)
   }
 }
+

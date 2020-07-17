@@ -21,7 +21,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.imageView.image = [OpenCVManager correctWithUIImage:self.image];
+    self.imageView.image = [OpenCVManager correctWithUIImage:self.image withData:self.array];
+    
+//    self.imageView.image = [OpenCVManager barCodeWithUIImage:self.image withData:self.array];
 
 //    [self writeToCsv];
 }

@@ -12,7 +12,7 @@
 
 @implementation OpenCVManager
 
-+ (UIImage *)correctWithUIImage:(UIImage *)image {
++ (UIImage *)correctWithUIImage:(UIImage *)image withData:(NSArray *)inputData {
     cv::Mat inputMat;
     cv::Mat outputMat;
     cv::Mat tmp;
@@ -24,45 +24,21 @@
     double threshold = 0.8;
     double threshold_level = int(255*threshold);
     
-    inputMat = [image cvMatImage];
+    inputMat = ProcessOutputWithFloatModel(inputData);
     
-//    UIImage *blackImage = [UIImage imageNamed:@"test_5_bit_img"];
-//    inputMat = [blackImage cvMatImage];
+    orig_img = [image cvMatImage];
     
-    UIImage *origImage = [UIImage imageNamed:@"test_5"];
-    orig_img = [origImage cvMatImage];
-    
-    double grid_size = origImage.size.height / inputMat.rows;
-    
-//    for (auto it = inputMat.begin<cv::Vec3b>(); it != inputMat.end<cv::Vec3b>(); ++it)
-//    {
-////        std::cout << int((*it)[0]) << " " << int((*it)[1]) << " " << int((*it)[2]) << std::endl;
-//        (*it)[0] = (*it)[0] * 255;
-//        (*it)[1] = (*it)[1] * 255;
-//        (*it)[2] = (*it)[2] * 255;
+    double grid_size = image.size.height / inputMat.rows;
+//    cv::Mat grayMat;
+//    if ( inputMat.channels() == 1 ) {
+//        grayMat = inputMat;
+//    }
+//    else {
+//        grayMat = cv :: Mat( inputMat.rows,inputMat.cols, CV_8UC1 );
+//        cv::cvtColor(inputMat, grayMat, CV_BGR2GRAY);
 //    }
     
-//    uchar * pxvec = inputMat.ptr<uchar>(0);
-//
-//
-//     for(int i = 0 ;i < inputMat.rows ; i++) {
-//         pxvec = inputMat.ptr<uchar>(i);
-//        // const int * Mnewi = newSourceMatImage.ptr<int>(i);
-//         for(int j = 0; j< inputMat.cols; j ++) {
-//             //const int  Mnewj =  Mi[j] * 255;
-//             pxvec[j] = pxvec[j] * 255;
-//         }
-//     }
-    cv::Mat grayMat;
-    if ( inputMat.channels() == 1 ) {
-        grayMat = inputMat;
-    }
-    else {
-        grayMat = cv :: Mat( inputMat.rows,inputMat.cols, CV_8UC1 );
-        cv::cvtColor(inputMat, grayMat, CV_BGR2GRAY);
-    }
-    
-    cv::threshold(grayMat, tmp, threshold_level, 255, CV_THRESH_BINARY);
+    cv::threshold(inputMat, tmp, threshold_level, 255, CV_THRESH_BINARY);
     outputMat = tmp;
     
     // 边缘检测
@@ -108,4 +84,62 @@
 }
 
 
++ (UIImage *)barCodeWithUIImage:(UIImage *)image withData:(NSArray *)inputData {
+    cv::Mat inputMat;
+    cv::Mat outputMat;
+    cv::Mat tmp;
+    cv::Mat orig_img;
+    cv::Mat box;
+    int min_grid_size = 3;
+
+    double scaling = 0.7;
+    double extend_multiplier = 1.1;
+    double threshold = 0.8;
+    double threshold_level = int(255*threshold);
+    
+    inputMat = ProcessOutputWithFloatModel(inputData);
+    
+    orig_img = [image cvMatImage];
+    
+    double grid_size = image.size.height / inputMat.rows;
+    
+    cv::threshold(inputMat, tmp, threshold_level, 255, CV_THRESH_BINARY);
+    outputMat = tmp;
+    
+    // 边缘检测
+    cv::Canny(outputMat, tmp, 30, 220);
+    outputMat = tmp;
+
+    // 边角检测  填充边界内空白色值
+    std::vector<std::vector<cv::Point>> contours;
+    cv::findContours(outputMat, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+
+    int min_box_area = grid_size*grid_size*min_grid_size;
+
+    for (int i = 0; i < contours.size(); i++) {
+
+        cv::RotatedRect rect = cv::minAreaRect(contours[i]);
+
+        cv::boxPoints(rect, box);
+        rect.angle = rect.angle * grid_size;
+        rect.size.width = rect.size.width * grid_size;
+        rect.size.height = rect.size.height * grid_size;
+    }
+    
+    return [UIImage imageWithCVMat:orig_img];
+}
+
+cv::Mat ProcessOutputWithFloatModel(NSArray* input) {
+  cv::Mat image = cv::Mat::zeros(448, 320, CV_8UC3);
+  for (int y = 0; y < 448; ++y) {
+    for (int x = 0; x < 320; ++x) {
+      float input_pixel = [input[(y * 320 * 1) + (x * 1)] floatValue];
+      cv::Vec3b & color = image.at<cv::Vec3b>(cv::Point(x, y));
+      color[0] = (uchar) floor(input_pixel * 255.0f);
+      color[1] = (uchar) floor(input_pixel * 255.0f);
+      color[2] = (uchar) floor(input_pixel * 255.0f);
+    }
+  }
+  return image;
+}
 @end

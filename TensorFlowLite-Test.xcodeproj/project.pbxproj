@@ -20,7 +20,6 @@
 		394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394E118624AB4143006F0C19 /* LaunchScreen.storyboard */; };
 		39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */; };
 		39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451724AB428D00E425F5 /* ModelDataHandler.swift */; };
-		39D6451A24AC3CE800E425F5 /* rental_model_sized_small .tflite in Resources */ = {isa = PBXBuildFile; fileRef = 39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */; };
 		39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452124ADB94700E425F5 /* AVFoundation.framework */; };
 		39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452324ADB95F00E425F5 /* CoreMedia.framework */; };
 		F47283BCED35946151196A3A /* Pods_TensorFlowLite_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */; };
@@ -45,7 +44,6 @@
 		394E118924AB4143006F0C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPixelBufferExtension.swift; sourceTree = "<group>"; };
 		39D6451724AB428D00E425F5 /* ModelDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDataHandler.swift; sourceTree = "<group>"; };
-		39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rental_model_sized_small .tflite"; sourceTree = "<group>"; };
 		39D6451D24ADB6B300E425F5 /* TensorFlowLite-Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TensorFlowLite-Test-Bridging-Header.h"; sourceTree = "<group>"; };
 		39D6452124ADB94700E425F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		39D6452324ADB95F00E425F5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -110,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */,
-				39D6451924AC3CE800E425F5 /* rental_model_sized_small .tflite */,
 				16AF753824BC5C4700C646E1 /* OpenCV */,
 				39D6451624AB428D00E425F5 /* ModelDataHandler */,
 				39D6451324AB428600E425F5 /* Extensions */,
@@ -215,7 +212,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39D6451A24AC3CE800E425F5 /* rental_model_sized_small .tflite in Resources */,
 				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
 				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
 				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,

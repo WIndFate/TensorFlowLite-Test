@@ -12,6 +12,7 @@
 
 @interface OpenCVManager : NSObject
 
-+ (UIImage *)correctWithUIImage:(UIImage *)image; // 图像纠偏
++ (UIImage *)correctWithUIImage:(UIImage *)image withData:(NSArray *)inputData; // 图像纠偏
++ (UIImage *)barCodeWithUIImage:(UIImage *)image withData:(NSArray *)inputData;
 
 @end
