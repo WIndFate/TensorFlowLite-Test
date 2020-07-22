@@ -24,12 +24,13 @@ struct Result {
 }
 
 /// Information about a model file or labels file.
-typealias FileInfo = (barCodeName: String, testName: String, extension: String)
+typealias FileInfo = (name: String, extension: String)
 
 /// Information about the MobileNet model.
 enum MobileNet {
-    static let modelInfo: FileInfo = (barCodeName: "barcode_model_30", testName: "rental_model_sized_big", extension: "tflite")
-//    static let modelInfo: FileInfo = (name: "barcode_model_30", extension: "tflite")
+    static let testModelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
+    static let barCodeModelInfo: FileInfo = (name: "barcode_model_30", extension: "tflite")
+    static let ocrModelInfo: FileInfo = (name: "ocr_keras_model", extension: "tflite")
 }
 
 /// This class handles all data preprocessing and makes calls to run inference on a given frame
@@ -68,20 +69,28 @@ class ModelDataHandler {
     
     var modelFilename : String
     
-    if BarCodeModel {
+    modelFilename = modelFileInfo.name
+    
+    if modelFilename == "barcode_model_30" {
+        
         self.batchSize = 1
         self.inputChannels = 3
         self.inputWidth = 1792
         self.inputHeight = 1280
         
-        modelFilename = modelFileInfo.barCodeName
+    }else if modelFilename == "ocr_keras_model" {
+        
+        self.batchSize = 1
+        self.inputChannels = 3
+        self.inputWidth = 256
+        self.inputHeight = 32
+        
     }else {
+        
         self.batchSize = 1
         self.inputChannels = 3
         self.inputWidth = 1280
         self.inputHeight = 1792
-        
-        modelFilename = modelFileInfo.testName
     }
 
     // Construct the path to the model file.

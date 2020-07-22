@@ -14,5 +14,6 @@
 
 + (UIImage *)correctWithUIImage:(UIImage *)image withData:(NSArray *)inputData; // 图像纠偏
 + (UIImage *)barCodeWithUIImage:(UIImage *)image withData:(NSArray *)inputData;
++ (UIImage *)perspectiveWithUIImage:(UIImage *)image;
 
 @end

@@ -84,10 +84,33 @@
                                     <constraint firstAttribute="height" constant="500" id="erL-zg-FqA"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0u4-0T-DOJ">
+                                <rect key="frame" x="191" y="735" width="32" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="yXS-Fu-2gD"/>
+                                </constraints>
+                                <state key="normal" title="OCR"/>
+                                <connections>
+                                    <segue destination="H4k-sv-4dR" kind="show" identifier="OCRViewController" id="HrF-ZU-5ff"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmc-zJ-Oxq">
+                                <rect key="frame" x="74" y="752" width="68" height="31"/>
+                                <state key="normal" title="cut Image"/>
+                                <connections>
+                                    <action selector="cutImageClick:" destination="6BJ-gP-Tfv" eventType="touchUpInside" id="ULo-K5-TRr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="0u4-0T-DOJ" firstAttribute="top" secondItem="Tcr-HC-r5t" secondAttribute="bottom" constant="10" id="RyV-QD-MRp"/>
+                            <constraint firstItem="0u4-0T-DOJ" firstAttribute="centerX" secondItem="lI9-wT-rR3" secondAttribute="centerX" id="ZJC-XP-aTt"/>
                             <constraint firstItem="Tcr-HC-r5t" firstAttribute="centerX" secondItem="lI9-wT-rR3" secondAttribute="centerX" id="aHa-Vf-vvU"/>
+                            <constraint firstItem="Nmc-zJ-Oxq" firstAttribute="centerY" secondItem="0u4-0T-DOJ" secondAttribute="centerY" id="ehC-ab-SFe"/>
+                            <constraint firstItem="Nmc-zJ-Oxq" firstAttribute="top" secondItem="Tcr-HC-r5t" secondAttribute="bottom" constant="27" id="i4E-uI-R2D"/>
+                            <constraint firstItem="0u4-0T-DOJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Nmc-zJ-Oxq" secondAttribute="trailing" constant="8" symbolic="YES" id="kMx-EE-buh"/>
+                            <constraint firstItem="Nmc-zJ-Oxq" firstAttribute="leading" secondItem="lI9-wT-rR3" secondAttribute="leading" constant="74" id="tj4-EK-cRi"/>
                             <constraint firstItem="Tcr-HC-r5t" firstAttribute="centerY" secondItem="lI9-wT-rR3" secondAttribute="centerY" id="vI4-DT-yLV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lI9-wT-rR3"/>
@@ -100,6 +123,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4G-dP-b1l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1320" y="130"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2xz-oQ-59G">
+            <objects>
+                <viewController id="H4k-sv-4dR" customClass="OCRViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jdf-TA-sfH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1V5-2h-FGk">
+                                <rect key="frame" x="164.5" y="449.5" width="85" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="K9Q-9z-HKx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1V5-2h-FGk" firstAttribute="centerY" secondItem="FUM-49-mdV" secondAttribute="centerY" id="DRd-3E-KeH"/>
+                            <constraint firstItem="1V5-2h-FGk" firstAttribute="centerX" secondItem="FUM-49-mdV" secondAttribute="centerX" id="lkq-HP-2Fh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FUM-49-mdV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Z0U-tO-n8u"/>
+                    <connections>
+                        <outlet property="Label" destination="1V5-2h-FGk" id="NPW-Ll-NpZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iQv-je-heb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2402.898550724638" y="129.91071428571428"/>
         </scene>
     </scenes>
     <resources>

@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNet.modelInfo)
+    private var modelDataHandler: ModelDataHandler?
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -21,13 +21,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard modelDataHandler != nil else {
-          fatalError("Model set up failed")
-        }
-        
         if BarCodeModel {
+            
+            modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.barCodeModelInfo)
+            
+            guard modelDataHandler != nil else {
+              fatalError("Model set up failed")
+            }
+            
             self.image = UIImage(named: "barcode_test_1_orig")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
         }else {
+            
+            modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.testModelInfo)
+            
+            guard modelDataHandler != nil else {
+              fatalError("Model set up failed")
+            }
+            
             self.image = UIImage(named: "test_5")?.scaledImage(with: CGSize(width: 1280, height: 1792.0))
         }
         self.imageView.image = self.image

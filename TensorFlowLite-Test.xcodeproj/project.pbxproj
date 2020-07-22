@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		165D56FA24C586C400A2A66D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D56F924C586C400A2A66D /* Define.swift */; };
+		165D570024C82AE500A2A66D /* ocr_keras_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 165D56FF24C82AE500A2A66D /* ocr_keras_model.tflite */; };
+		165D570224C82C2100A2A66D /* OCRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D570124C82C2100A2A66D /* OCRViewController.swift */; };
 		16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AF752324BC344700C646E1 /* UIKitExtension.swift */; };
 		16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF753624BC58F000C646E1 /* CVViewController.mm */; };
 		16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */; };
@@ -30,6 +32,8 @@
 /* Begin PBXFileReference section */
 		165D56F924C586C400A2A66D /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		165D56FC24C58D3B00A2A66D /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		165D56FF24C82AE500A2A66D /* ocr_keras_model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocr_keras_model.tflite; sourceTree = "<group>"; };
+		165D570124C82C2100A2A66D /* OCRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRViewController.swift; sourceTree = "<group>"; };
 		16AF752324BC344700C646E1 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		16AF753524BC58F000C646E1 /* CVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVViewController.h; sourceTree = "<group>"; };
 		16AF753624BC58F000C646E1 /* CVViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			children = (
 				16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */,
 				16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */,
+				165D56FF24C82AE500A2A66D /* ocr_keras_model.tflite */,
 				16AF753824BC5C4700C646E1 /* OpenCV */,
 				39D6451624AB428D00E425F5 /* ModelDataHandler */,
 				39D6451324AB428600E425F5 /* Extensions */,
@@ -122,6 +127,7 @@
 				394E117F24AB4143006F0C19 /* ViewController.swift */,
 				16AF753524BC58F000C646E1 /* CVViewController.h */,
 				16AF753624BC58F000C646E1 /* CVViewController.mm */,
+				165D570124C82C2100A2A66D /* OCRViewController.swift */,
 				394E118124AB4143006F0C19 /* Main.storyboard */,
 				394E118424AB4143006F0C19 /* Assets.xcassets */,
 				394E118624AB4143006F0C19 /* LaunchScreen.storyboard */,
@@ -223,6 +229,7 @@
 				16B6C71F24C53A87005DFF1B /* barcode_model_30.tflite in Resources */,
 				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
 				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
+				165D570024C82AE500A2A66D /* ocr_keras_model.tflite in Resources */,
 				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,
 				16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */,
 			);
@@ -265,6 +272,7 @@
 				39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */,
 				394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */,
 				16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */,
+				165D570224C82C2100A2A66D /* OCRViewController.swift in Sources */,
 				16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */,
 				39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */,
 				394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */,

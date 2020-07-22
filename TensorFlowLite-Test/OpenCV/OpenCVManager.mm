@@ -135,15 +135,86 @@
         float height = box.row(0).col(1).at<float>(0,0) - y;
         cutRect = CGRectMake(x, y, width, height);
         
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setFloat:x forKey:@"cutRect_x"];
+        [defaults setFloat:y forKey:@"cutRect_y"];
+        [defaults setFloat:width forKey:@"cutRect_width"];
+        [defaults setFloat:height forKey:@"cutRect_height"];
+        
         std::cout << box.size() << std::endl;
         std::cout << "boxPts " << std::endl << " " << box << std::endl;
         
     }
-    cv::drawContours(orig_img, contours, 0, cv::Scalar(0,0,255), 2);
+    
+    cv::Point2f src[4], dst[4];
+    src[0].x = cutRect.origin.x;
+    src[0].y = cutRect.origin.y;
+    src[1].x = cutRect.origin.x + cutRect.size.width;
+    src[1].y = cutRect.origin.y;
+    src[2].x = cutRect.origin.x + cutRect.size.width;
+    src[2].y = cutRect.origin.y + cutRect.size.height;
+    src[3].x = cutRect.origin.x;
+    src[3].y = cutRect.origin.y + cutRect.size.height;
 
+    dst[0].x = 0;
+    dst[0].y = 0;
+    dst[1].x = 32;
+    dst[1].y = 0;
+    dst[2].x = 32;
+    dst[2].y = 256;
+    dst[3].x = 0;
+    dst[3].y = 256;
+
+//    cv::Mat transform = cv::getPerspectiveTransform(src, dst);
+//    cv::warpPerspective(orig_img, outputMat, transform, cvSize(32, 256));
+    
+    cv::drawContours(orig_img, contours, 0, cv::Scalar(0,0,255), 2);
+//
     return [UIImage imageWithCVMat:orig_img];
     
 //    return [self imageRotatedByDegrees:90 withImage:[self tailoringImage:image Area:cutRect]];
+}
+
++ (UIImage *)perspectiveWithUIImage:(UIImage *)image {
+    
+    cv::Mat inputMat;
+    cv::Mat outputMat;
+    cv::Mat tmp;
+    
+    inputMat = [image cvMatImage];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    float x = [[defaults objectForKey:@"cutRect_x"] floatValue];
+    float y = [[defaults objectForKey:@"cutRect_y"] floatValue];
+    float width = [[defaults objectForKey:@"cutRect_width"] floatValue];
+    float height = [[defaults objectForKey:@"cutRect_height"] floatValue];
+    CGRect cutRect = CGRectMake(x, y, width, height);
+    
+    cv::Point2f src[4], dst[4];
+    src[0].x = cutRect.origin.x;
+    src[0].y = cutRect.origin.y;
+    src[1].x = cutRect.origin.x + cutRect.size.width;
+    src[1].y = cutRect.origin.y;
+    src[2].x = cutRect.origin.x + cutRect.size.width;
+    src[2].y = cutRect.origin.y + cutRect.size.height;
+    src[3].x = cutRect.origin.x;
+    src[3].y = cutRect.origin.y + cutRect.size.height;
+
+    dst[0].x = 0;
+    dst[0].y = 0;
+    dst[1].x = 32;
+    dst[1].y = 0;
+    dst[2].x = 32;
+    dst[2].y = 256;
+    dst[3].x = 0;
+    dst[3].y = 256;
+
+    cv::Mat transform = cv::getPerspectiveTransform(src, dst);
+    cv::warpPerspective(inputMat, outputMat, transform, cvSize(32, 256));
+    
+    return [self imageRotatedByDegrees:90 withImage:[UIImage imageWithCVMat:outputMat]];
+    
 }
 
 /**
