@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		165D56FA24C586C400A2A66D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D56F924C586C400A2A66D /* Define.swift */; };
 		16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AF752324BC344700C646E1 /* UIKitExtension.swift */; };
 		16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF753624BC58F000C646E1 /* CVViewController.mm */; };
 		16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */; };
 		16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */; };
 		16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754724BDCEF200C646E1 /* OpenCVManager.mm */; };
+		16B6C71F24C53A87005DFF1B /* barcode_model_30.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */; };
 		394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117B24AB4143006F0C19 /* AppDelegate.swift */; };
 		394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117D24AB4143006F0C19 /* SceneDelegate.swift */; };
 		394E118024AB4143006F0C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117F24AB4143006F0C19 /* ViewController.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		165D56F924C586C400A2A66D /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		165D56FC24C58D3B00A2A66D /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		16AF752324BC344700C646E1 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		16AF753524BC58F000C646E1 /* CVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVViewController.h; sourceTree = "<group>"; };
 		16AF753624BC58F000C646E1 /* CVViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
@@ -34,6 +38,7 @@
 		16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		16AF754624BDCEF200C646E1 /* OpenCVManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVManager.h; sourceTree = "<group>"; };
 		16AF754724BDCEF200C646E1 /* OpenCVManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVManager.mm; sourceTree = "<group>"; };
+		16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = barcode_model_30.tflite; sourceTree = "<group>"; };
 		394E117824AB4143006F0C19 /* TensorFlowLite-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TensorFlowLite-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		394E117B24AB4143006F0C19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		394E117D24AB4143006F0C19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */,
+				16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */,
 				16AF753824BC5C4700C646E1 /* OpenCV */,
 				39D6451624AB428D00E425F5 /* ModelDataHandler */,
 				39D6451324AB428600E425F5 /* Extensions */,
@@ -121,6 +127,8 @@
 				394E118624AB4143006F0C19 /* LaunchScreen.storyboard */,
 				394E118924AB4143006F0C19 /* Info.plist */,
 				39D6451D24ADB6B300E425F5 /* TensorFlowLite-Test-Bridging-Header.h */,
+				165D56F924C586C400A2A66D /* Define.swift */,
+				165D56FC24C58D3B00A2A66D /* PrefixHeader.pch */,
 			);
 			path = "TensorFlowLite-Test";
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B6C71F24C53A87005DFF1B /* barcode_model_30.tflite in Resources */,
 				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
 				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
 				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,
@@ -259,6 +268,7 @@
 				16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */,
 				39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */,
 				394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */,
+				165D56FA24C586C400A2A66D /* Define.swift in Sources */,
 				16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,12 +416,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5L9V6FRKP5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/TensorFlowLite-Test",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/TensorFlowLite-Test/PrefixHeader.pch";
 				INFOPLIST_FILE = "TensorFlowLite-Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -433,12 +445,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5L9V6FRKP5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/TensorFlowLite-Test",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/TensorFlowLite-Test/PrefixHeader.pch";
 				INFOPLIST_FILE = "TensorFlowLite-Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

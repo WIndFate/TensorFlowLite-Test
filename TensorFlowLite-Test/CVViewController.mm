@@ -20,17 +20,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.imageView.image = [OpenCVManager correctWithUIImage:self.image withData:self.array];
-    
-//    self.imageView.image = [OpenCVManager barCodeWithUIImage:self.image withData:self.array];
+
+    if (BarCodeModel) {
+        self.imageView.image = [OpenCVManager barCodeWithUIImage:self.image withData:self.array];
+    } else {
+        self.imageView.image = [OpenCVManager correctWithUIImage:self.image withData:self.array];
+    }
 
 //    [self writeToCsv];
 }
 
 -(void)writeToCsv {
     
-    NSString *fileNameStr = @"iOS_test_5.csv";
+    NSString *fileNameStr = @"iOS_barCode.csv";
     NSString *DocPath = [NSString stringWithFormat:@"/Users/windfate/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];

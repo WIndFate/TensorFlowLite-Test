@@ -24,11 +24,11 @@ struct Result {
 }
 
 /// Information about a model file or labels file.
-typealias FileInfo = (name: String, extension: String)
+typealias FileInfo = (barCodeName: String, testName: String, extension: String)
 
 /// Information about the MobileNet model.
 enum MobileNet {
-    static let modelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
+    static let modelInfo: FileInfo = (barCodeName: "barcode_model_30", testName: "rental_model_sized_big", extension: "tflite")
 //    static let modelInfo: FileInfo = (name: "barcode_model_30", extension: "tflite")
 }
 
@@ -47,10 +47,10 @@ class ModelDataHandler {
 
   // MARK: - Model Parameters
     
-  let batchSize = 1
-  let inputChannels = 3
-  let inputWidth = 1280
-  let inputHeight = 1792
+  var batchSize : Int
+  var inputChannels : Int
+  var inputWidth : Int
+  var inputHeight : Int
 
   // MARK: - Private Properties
 
@@ -65,7 +65,24 @@ class ModelDataHandler {
   /// A failable initializer for `ModelDataHandler`. A new instance is created if the model and
   /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
   init?(modelFileInfo: FileInfo, threadCount: Int = 1) {
-    let modelFilename = modelFileInfo.name
+    
+    var modelFilename : String
+    
+    if BarCodeModel {
+        self.batchSize = 1
+        self.inputChannels = 3
+        self.inputWidth = 1792
+        self.inputHeight = 1280
+        
+        modelFilename = modelFileInfo.barCodeName
+    }else {
+        self.batchSize = 1
+        self.inputChannels = 3
+        self.inputWidth = 1280
+        self.inputHeight = 1792
+        
+        modelFilename = modelFileInfo.testName
+    }
 
     // Construct the path to the model file.
     guard let modelPath = Bundle.main.path(
