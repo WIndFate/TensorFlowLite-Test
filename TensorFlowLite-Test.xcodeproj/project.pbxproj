@@ -11,29 +11,6 @@
 		165D570024C82AE500A2A66D /* ocr_keras_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 165D56FF24C82AE500A2A66D /* ocr_keras_model.tflite */; };
 		165D570224C82C2100A2A66D /* OCRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D570124C82C2100A2A66D /* OCRViewController.swift */; };
 		165D570624D0FF0000A2A66D /* ocr_keras_model (1).tflite in Resources */ = {isa = PBXBuildFile; fileRef = 165D570524D0FEFF00A2A66D /* ocr_keras_model (1).tflite */; };
-		165D571F24D1530500A2A66D /* ocr_keras_model (1).tflite in Resources */ = {isa = PBXBuildFile; fileRef = 165D570824D1530400A2A66D /* ocr_keras_model (1).tflite */; };
-		165D572024D1530500A2A66D /* 37895 (1).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D570924D1530400A2A66D /* 37895 (1).jpg */; };
-		165D572124D1530500A2A66D /* 37895.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D570A24D1530400A2A66D /* 37895.jpg */; };
-		165D572224D1530500A2A66D /* barcode_model_30.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 165D570B24D1530400A2A66D /* barcode_model_30.tflite */; };
-		165D572324D1530500A2A66D /* barcode_data_test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D570C24D1530400A2A66D /* barcode_data_test.jpg */; };
-		165D572424D1530500A2A66D /* 39886.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D570D24D1530400A2A66D /* 39886.jpg */; };
-		165D572524D1530500A2A66D /* correction_and_crop.py in Resources */ = {isa = PBXBuildFile; fileRef = 165D570E24D1530400A2A66D /* correction_and_crop.py */; };
-		165D572624D1530500A2A66D /* perspective_correction.py in Resources */ = {isa = PBXBuildFile; fileRef = 165D570F24D1530400A2A66D /* perspective_correction.py */; };
-		165D572724D1530500A2A66D /* 38759.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571024D1530400A2A66D /* 38759.jpg */; };
-		165D572824D1530500A2A66D /* image (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 165D571124D1530400A2A66D /* image (1).png */; };
-		165D572924D1530500A2A66D /* barcode_test_1_processed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571224D1530400A2A66D /* barcode_test_1_processed.jpg */; };
-		165D572A24D1530500A2A66D /* preprocess_for_model_prediction.py in Resources */ = {isa = PBXBuildFile; fileRef = 165D571324D1530400A2A66D /* preprocess_for_model_prediction.py */; };
-		165D572B24D1530500A2A66D /* barcode_test_1_orig.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571424D1530400A2A66D /* barcode_test_1_orig.jpg */; };
-		165D572C24D1530500A2A66D /* post_processing.py in Resources */ = {isa = PBXBuildFile; fileRef = 165D571524D1530400A2A66D /* post_processing.py */; };
-		165D572D24D1530500A2A66D /* test_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571624D1530400A2A66D /* test_3.jpg */; };
-		165D572E24D1530500A2A66D /* test_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571724D1530400A2A66D /* test_2.jpg */; };
-		165D572F24D1530500A2A66D /* test_0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571824D1530400A2A66D /* test_0.jpg */; };
-		165D573024D1530500A2A66D /* test_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571924D1530400A2A66D /* test_1.jpg */; };
-		165D573124D1530500A2A66D /* test_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571A24D1530400A2A66D /* test_5.jpg */; };
-		165D573224D1530500A2A66D /* ocr_keras_model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 165D571B24D1530400A2A66D /* ocr_keras_model.tflite */; };
-		165D573324D1530500A2A66D /* test_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571C24D1530400A2A66D /* test_4.jpg */; };
-		165D573424D1530500A2A66D /* test_5_bit_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 165D571D24D1530400A2A66D /* test_5_bit_img.jpg */; };
-		165D573524D1530500A2A66D /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 165D571E24D1530400A2A66D /* image.png */; };
 		16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AF752324BC344700C646E1 /* UIKitExtension.swift */; };
 		16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF753624BC58F000C646E1 /* CVViewController.mm */; };
 		16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */; };
@@ -59,29 +36,6 @@
 		165D56FF24C82AE500A2A66D /* ocr_keras_model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocr_keras_model.tflite; sourceTree = "<group>"; };
 		165D570124C82C2100A2A66D /* OCRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRViewController.swift; sourceTree = "<group>"; };
 		165D570524D0FEFF00A2A66D /* ocr_keras_model (1).tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ocr_keras_model (1).tflite"; sourceTree = "<group>"; };
-		165D570824D1530400A2A66D /* ocr_keras_model (1).tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ocr_keras_model (1).tflite"; sourceTree = "<group>"; };
-		165D570924D1530400A2A66D /* 37895 (1).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "37895 (1).jpg"; sourceTree = "<group>"; };
-		165D570A24D1530400A2A66D /* 37895.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 37895.jpg; sourceTree = "<group>"; };
-		165D570B24D1530400A2A66D /* barcode_model_30.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = barcode_model_30.tflite; sourceTree = "<group>"; };
-		165D570C24D1530400A2A66D /* barcode_data_test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barcode_data_test.jpg; sourceTree = "<group>"; };
-		165D570D24D1530400A2A66D /* 39886.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 39886.jpg; sourceTree = "<group>"; };
-		165D570E24D1530400A2A66D /* correction_and_crop.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = correction_and_crop.py; sourceTree = "<group>"; };
-		165D570F24D1530400A2A66D /* perspective_correction.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = perspective_correction.py; sourceTree = "<group>"; };
-		165D571024D1530400A2A66D /* 38759.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 38759.jpg; sourceTree = "<group>"; };
-		165D571124D1530400A2A66D /* image (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image (1).png"; sourceTree = "<group>"; };
-		165D571224D1530400A2A66D /* barcode_test_1_processed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barcode_test_1_processed.jpg; sourceTree = "<group>"; };
-		165D571324D1530400A2A66D /* preprocess_for_model_prediction.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = preprocess_for_model_prediction.py; sourceTree = "<group>"; };
-		165D571424D1530400A2A66D /* barcode_test_1_orig.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barcode_test_1_orig.jpg; sourceTree = "<group>"; };
-		165D571524D1530400A2A66D /* post_processing.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = post_processing.py; sourceTree = "<group>"; };
-		165D571624D1530400A2A66D /* test_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_3.jpg; sourceTree = "<group>"; };
-		165D571724D1530400A2A66D /* test_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_2.jpg; sourceTree = "<group>"; };
-		165D571824D1530400A2A66D /* test_0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_0.jpg; sourceTree = "<group>"; };
-		165D571924D1530400A2A66D /* test_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_1.jpg; sourceTree = "<group>"; };
-		165D571A24D1530400A2A66D /* test_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_5.jpg; sourceTree = "<group>"; };
-		165D571B24D1530400A2A66D /* ocr_keras_model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocr_keras_model.tflite; sourceTree = "<group>"; };
-		165D571C24D1530400A2A66D /* test_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_4.jpg; sourceTree = "<group>"; };
-		165D571D24D1530400A2A66D /* test_5_bit_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_5_bit_img.jpg; sourceTree = "<group>"; };
-		165D571E24D1530400A2A66D /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		16AF752324BC344700C646E1 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		16AF753524BC58F000C646E1 /* CVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVViewController.h; sourceTree = "<group>"; };
 		16AF753624BC58F000C646E1 /* CVViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
@@ -123,36 +77,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		165D570724D1530400A2A66D /* 黄 */ = {
-			isa = PBXGroup;
-			children = (
-				165D570824D1530400A2A66D /* ocr_keras_model (1).tflite */,
-				165D570924D1530400A2A66D /* 37895 (1).jpg */,
-				165D570A24D1530400A2A66D /* 37895.jpg */,
-				165D570B24D1530400A2A66D /* barcode_model_30.tflite */,
-				165D570C24D1530400A2A66D /* barcode_data_test.jpg */,
-				165D570D24D1530400A2A66D /* 39886.jpg */,
-				165D570E24D1530400A2A66D /* correction_and_crop.py */,
-				165D570F24D1530400A2A66D /* perspective_correction.py */,
-				165D571024D1530400A2A66D /* 38759.jpg */,
-				165D571124D1530400A2A66D /* image (1).png */,
-				165D571224D1530400A2A66D /* barcode_test_1_processed.jpg */,
-				165D571324D1530400A2A66D /* preprocess_for_model_prediction.py */,
-				165D571424D1530400A2A66D /* barcode_test_1_orig.jpg */,
-				165D571524D1530400A2A66D /* post_processing.py */,
-				165D571624D1530400A2A66D /* test_3.jpg */,
-				165D571724D1530400A2A66D /* test_2.jpg */,
-				165D571824D1530400A2A66D /* test_0.jpg */,
-				165D571924D1530400A2A66D /* test_1.jpg */,
-				165D571A24D1530400A2A66D /* test_5.jpg */,
-				165D571B24D1530400A2A66D /* ocr_keras_model.tflite */,
-				165D571C24D1530400A2A66D /* test_4.jpg */,
-				165D571D24D1530400A2A66D /* test_5_bit_img.jpg */,
-				165D571E24D1530400A2A66D /* image.png */,
-			);
-			path = "黄";
-			sourceTree = "<group>";
-		};
 		16AF753824BC5C4700C646E1 /* OpenCV */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,7 +100,6 @@
 		394E116F24AB4143006F0C19 = {
 			isa = PBXGroup;
 			children = (
-				165D570724D1530400A2A66D /* 黄 */,
 				394E117A24AB4143006F0C19 /* TensorFlowLite-Test */,
 				394E117924AB4143006F0C19 /* Products */,
 				2E96D9C502252E46A3A0B726 /* Pods */,
@@ -306,36 +229,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				165D572F24D1530500A2A66D /* test_0.jpg in Resources */,
-				165D572324D1530500A2A66D /* barcode_data_test.jpg in Resources */,
-				165D572E24D1530500A2A66D /* test_2.jpg in Resources */,
-				165D572424D1530500A2A66D /* 39886.jpg in Resources */,
 				16B6C71F24C53A87005DFF1B /* barcode_model_30.tflite in Resources */,
-				165D572D24D1530500A2A66D /* test_3.jpg in Resources */,
-				165D572824D1530500A2A66D /* image (1).png in Resources */,
 				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
-				165D572C24D1530500A2A66D /* post_processing.py in Resources */,
-				165D573124D1530500A2A66D /* test_5.jpg in Resources */,
-				165D572B24D1530500A2A66D /* barcode_test_1_orig.jpg in Resources */,
-				165D572624D1530500A2A66D /* perspective_correction.py in Resources */,
-				165D573324D1530500A2A66D /* test_4.jpg in Resources */,
-				165D572024D1530500A2A66D /* 37895 (1).jpg in Resources */,
-				165D572A24D1530500A2A66D /* preprocess_for_model_prediction.py in Resources */,
 				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
-				165D573224D1530500A2A66D /* ocr_keras_model.tflite in Resources */,
-				165D572124D1530500A2A66D /* 37895.jpg in Resources */,
-				165D573424D1530500A2A66D /* test_5_bit_img.jpg in Resources */,
-				165D572724D1530500A2A66D /* 38759.jpg in Resources */,
-				165D571F24D1530500A2A66D /* ocr_keras_model (1).tflite in Resources */,
 				165D570024C82AE500A2A66D /* ocr_keras_model.tflite in Resources */,
-				165D573024D1530500A2A66D /* test_1.jpg in Resources */,
 				165D570624D0FF0000A2A66D /* ocr_keras_model (1).tflite in Resources */,
-				165D572924D1530500A2A66D /* barcode_test_1_processed.jpg in Resources */,
-				165D572224D1530500A2A66D /* barcode_model_30.tflite in Resources */,
 				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,
-				165D572524D1530500A2A66D /* correction_and_crop.py in Resources */,
 				16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */,
-				165D573524D1530500A2A66D /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

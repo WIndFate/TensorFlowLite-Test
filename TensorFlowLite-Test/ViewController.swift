@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     private var modelDataHandler: ModelDataHandler?
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var oriImageView: UIImageView!
+    @IBOutlet weak var bufferImageBtn: UIButton!
+    @IBOutlet weak var opencvBtn: UIButton!
     
     var image: UIImage?
     
@@ -41,12 +44,7 @@ class ViewController: UIViewController {
             self.image = UIImage(named: "test_5")?.scaledImage(with: CGSize(width: 1280, height: 1792.0))
         }
         self.imageView.image = self.image
-        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
-        
-        print("result == \(String(describing: result?.tensor.shape.dimensions)))")
-        
-        self.array = result!.dataResult
-        
+        self.oriImageView.image = self.image
         
 //        let image = UIImage(named: "testImage")!
 //
@@ -74,6 +72,60 @@ class ViewController: UIViewController {
         cls.array = self.array!
     }
 
+    func pixelBufferToImage(pixelBuffer: CVPixelBuffer) -> UIImage? {
+    //        let type = CVPixelBufferGetPixelFormatType(pixelBuffer)
+            
+            let width = CVPixelBufferGetWidth(pixelBuffer)
+            let height = CVPixelBufferGetHeight(pixelBuffer)
+            let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+            
+            CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
+            guard let context = CGContext(data: CVPixelBufferGetBaseAddress(pixelBuffer),
+                                          width: width,
+                                          height: height,
+                                          bitsPerComponent: 8,
+                                          bytesPerRow: bytesPerRow,
+                                          space: CGColorSpaceCreateDeviceRGB(),
+                                          bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipFirst.rawValue),
+                let imageRef = context.makeImage() else
+            {
+                    return nil
+            }
+            
+            let newImage = UIImage(cgImage: imageRef)
+            CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
+            
+            return newImage
+        }
+    
+    @IBAction func runModel(_ sender: Any) {
+        
+        let start = CFAbsoluteTimeGetCurrent()
+        
+        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
+        
+        let end = CFAbsoluteTimeGetCurrent()
+        
+        print("检测耗时  == \(end - start)")
+        
+        self.array = result!.dataResult
+        self.opencvBtn.isEnabled = true
+        
+    }
+    
+    @IBAction func ImageToBufferAndBufferToImage(_ sender: Any) {
+        
+        if bufferImageBtn.isSelected {
+            self.imageView.image = self.image
+        }else {
+
+            let buffer = CVPixelBuffer.buffer(from: self.image!)
+            let image = self.pixelBufferToImage(pixelBuffer: buffer!)
+            self.imageView.image = image;
+        }
+        bufferImageBtn.isSelected = !bufferImageBtn.isSelected
+        
+    }
 }
 
 extension UIImage {

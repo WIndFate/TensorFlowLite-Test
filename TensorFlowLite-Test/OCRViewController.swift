@@ -23,8 +23,13 @@ class OCRViewController: UIViewController {
           fatalError("Model set up failed")
         }
         
+        let start = CFAbsoluteTimeGetCurrent()
+        
         let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
-        print("result == \(String(describing: result?.dataResult))")
+        
+        let end = CFAbsoluteTimeGetCurrent()
+        
+        print("检测耗时  == \(end - start)")
         
 //        CVViewController.write(toCsv: result!.dataResult)
         
