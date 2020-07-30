@@ -83,7 +83,7 @@ class ModelDataHandler {
         self.batchSize = 1
         self.inputChannels = 3
         self.inputWidth = 256
-        self.inputHeight = 32
+        self.inputHeight = 24
         
     }else {
         

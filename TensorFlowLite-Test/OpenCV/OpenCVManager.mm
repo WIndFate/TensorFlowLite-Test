@@ -94,9 +94,17 @@
     cv::Mat tmp;
     cv::Mat orig_img;
     cv::Mat box;
-    CGRect cutRect;
     double threshold = 0.8;
     double threshold_level = int(255*threshold);
+    
+    float tl_x = 0.0;
+    float tl_y = 0.0;
+    float bl_x = 0.0;
+    float bl_y = 0.0;
+    float tr_x = 0.0;
+    float tr_y = 0.0;
+    float br_x = 0.0;
+    float br_y = 0.0;
     
     inputMat = ProcessOutputWithFloatModel(inputData);
     
@@ -120,7 +128,7 @@
         for (int i = 0; i < contours.size(); i++) {
             for (int j = 0; j < contours[i].size(); j++) {
                 
-                contours[i][j].x = contours[i][j].x * grid_size - 150;
+                contours[i][j].x = contours[i][j].x * grid_size;
                 contours[i][j].y = contours[i][j].y * grid_size;
             }
         }
@@ -129,47 +137,40 @@
         
         cv::boxPoints(rect, box);
         
-        float x = box.row(0).col(0).at<float>(0,0);
-        float y = box.row(1).col(1).at<float>(0,0);
-        float width = box.row(2).col(0).at<float>(0,0) - x;
-        float height = box.row(0).col(1).at<float>(0,0) - y;
-        cutRect = CGRectMake(x, y, width, height);
+        tl_x = box.row(1).col(0).at<float>(0,0);
+        tl_y = box.row(1).col(1).at<float>(0,0);
+        bl_x = box.row(0).col(0).at<float>(0,0);
+        bl_y = box.row(0).col(1).at<float>(0,0);
+        tr_x = box.row(2).col(0).at<float>(0,0);
+        tr_y = box.row(2).col(1).at<float>(0,0);
+        br_x = box.row(3).col(0).at<float>(0,0);
+        br_y = box.row(3).col(1).at<float>(0,0);
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setFloat:x forKey:@"cutRect_x"];
-        [defaults setFloat:y forKey:@"cutRect_y"];
-        [defaults setFloat:width forKey:@"cutRect_width"];
-        [defaults setFloat:height forKey:@"cutRect_height"];
+        [defaults setFloat:tl_x forKey:@"tl_x"];
+        [defaults setFloat:tl_y forKey:@"tl_y"];
+        [defaults setFloat:bl_x forKey:@"bl_x"];
+        [defaults setFloat:bl_y forKey:@"bl_y"];
+        [defaults setFloat:tr_x forKey:@"tr_x"];
+        [defaults setFloat:tr_y forKey:@"tr_y"];
+        [defaults setFloat:br_x forKey:@"br_x"];
+        [defaults setFloat:br_y forKey:@"br_y"];
         
         std::cout << box.size() << std::endl;
         std::cout << "boxPts " << std::endl << " " << box << std::endl;
         
     }
     
-    cv::Point2f src[4], dst[4];
-    src[0].x = cutRect.origin.x;
-    src[0].y = cutRect.origin.y;
-    src[1].x = cutRect.origin.x + cutRect.size.width;
-    src[1].y = cutRect.origin.y;
-    src[2].x = cutRect.origin.x + cutRect.size.width;
-    src[2].y = cutRect.origin.y + cutRect.size.height;
-    src[3].x = cutRect.origin.x;
-    src[3].y = cutRect.origin.y + cutRect.size.height;
-
-    dst[0].x = 0;
-    dst[0].y = 0;
-    dst[1].x = 32;
-    dst[1].y = 0;
-    dst[2].x = 32;
-    dst[2].y = 256;
-    dst[3].x = 0;
-    dst[3].y = 256;
-
-//    cv::Mat transform = cv::getPerspectiveTransform(src, dst);
-//    cv::warpPerspective(orig_img, outputMat, transform, cvSize(32, 256));
+//    cv::rectangle(orig_img,cvPoint(cutRect.origin.x,cutRect.origin.y),cvPoint(cutRect.origin.x + cutRect.size.width , cutRect.origin.y + cutRect.size.height),cv::Scalar(0,0,255), 2);
+//    cv::drawContours(orig_img, contours, 0, cv::Scalar(0,0,255), 2);
     
-    cv::drawContours(orig_img, contours, 0, cv::Scalar(0,0,255), 2);
-//
+    std::vector<cv::Point> vList;
+    vList.push_back(cv::Point(tl_x, tl_y));// 点0
+    vList.push_back(cv::Point(tr_x, tr_y));// 点1
+    vList.push_back(cv::Point(br_x, br_y));// 点2
+    vList.push_back(cv::Point(bl_x, bl_y));// 点3
+    
+    cv::polylines(orig_img, vList, true, cv::Scalar(0,0,255), 2);
     return [UIImage imageWithCVMat:orig_img];
     
 //    return [self imageRotatedByDegrees:90 withImage:[self tailoringImage:image Area:cutRect]];
@@ -185,35 +186,57 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    float x = [[defaults objectForKey:@"cutRect_x"] floatValue];
-    float y = [[defaults objectForKey:@"cutRect_y"] floatValue];
-    float width = [[defaults objectForKey:@"cutRect_width"] floatValue];
-    float height = [[defaults objectForKey:@"cutRect_height"] floatValue];
-    CGRect cutRect = CGRectMake(x, y, width, height);
+    float tl_x = [[defaults objectForKey:@"tl_x"] floatValue];
+    float tl_y = [[defaults objectForKey:@"tl_y"] floatValue];
+    float bl_x = [[defaults objectForKey:@"bl_x"] floatValue];
+    float bl_y = [[defaults objectForKey:@"bl_y"] floatValue];
+    float tr_x = [[defaults objectForKey:@"tr_x"] floatValue];
+    float tr_y = [[defaults objectForKey:@"tr_y"] floatValue];
+    float br_x = [[defaults objectForKey:@"br_x"] floatValue];
+    float br_y = [[defaults objectForKey:@"br_y"] floatValue];
     
     cv::Point2f src[4], dst[4];
-    src[0].x = cutRect.origin.x;
-    src[0].y = cutRect.origin.y;
-    src[1].x = cutRect.origin.x + cutRect.size.width;
-    src[1].y = cutRect.origin.y;
-    src[2].x = cutRect.origin.x + cutRect.size.width;
-    src[2].y = cutRect.origin.y + cutRect.size.height;
-    src[3].x = cutRect.origin.x;
-    src[3].y = cutRect.origin.y + cutRect.size.height;
+    src[0].x = tl_x;
+    src[0].y = tl_y;
+    src[1].x = tr_x;
+    src[1].y = tr_y;
+    src[2].x = br_x;
+    src[2].y = br_y;
+    src[3].x = bl_x;
+    src[3].y = bl_y;
 
-    dst[0].x = 0;
-    dst[0].y = 0;
-    dst[1].x = 32;
-    dst[1].y = 0;
-    dst[2].x = 32;
-    dst[2].y = 256;
-    dst[3].x = 0;
-    dst[3].y = 256;
-
-    cv::Mat transform = cv::getPerspectiveTransform(src, dst);
-    cv::warpPerspective(inputMat, outputMat, transform, cvSize(32, 256));
-    
-    return [self imageRotatedByDegrees:90 withImage:[UIImage imageWithCVMat:outputMat]];
+    if ((tr_x - tl_x) > (bl_y - tl_y)) {
+        
+        dst[0].x = 0;
+        dst[0].y = 0;
+        dst[1].x = OCR_OUTPUT_LONG;
+        dst[1].y = 0;
+        dst[2].x = OCR_OUTPUT_LONG;
+        dst[2].y = OCR_OUTPUT_SHORT;
+        dst[3].x = 0;
+        dst[3].y = OCR_OUTPUT_SHORT;
+        
+        cv::Mat transform = cv::getPerspectiveTransform(src, dst);
+        cv::warpPerspective(inputMat, outputMat, transform, cvSize(OCR_OUTPUT_LONG, OCR_OUTPUT_SHORT));
+        
+        return [UIImage imageWithCVMat:outputMat];
+        
+    } else {
+        
+        dst[0].x = 0;
+        dst[0].y = 0;
+        dst[1].x = OCR_OUTPUT_SHORT;
+        dst[1].y = 0;
+        dst[2].x = OCR_OUTPUT_SHORT;
+        dst[2].y = OCR_OUTPUT_LONG;
+        dst[3].x = 0;
+        dst[3].y = OCR_OUTPUT_LONG;
+        
+        cv::Mat transform = cv::getPerspectiveTransform(src, dst);
+        cv::warpPerspective(inputMat, outputMat, transform, cvSize(OCR_OUTPUT_SHORT, OCR_OUTPUT_LONG));
+        
+        return [self imageRotatedByDegrees:90 withImage:[UIImage imageWithCVMat:outputMat]];
+    }
     
 }
 

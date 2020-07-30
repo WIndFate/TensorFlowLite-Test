@@ -34,13 +34,13 @@
 
 - (IBAction)cutImageClick:(id)sender {
     
-    self.imageView.image = [OpenCVManager perspectiveWithUIImage:self.imageView.image];
+    self.imageView.image = [OpenCVManager perspectiveWithUIImage:self.oriImage];
 }
 
 -(void)writeToCsv:(NSArray *)array {
     
-    NSString *fileNameStr = @"iOS_OCR.csv";
-    NSString *DocPath = [NSString stringWithFormat:@"/Users/windfate/Desktop/%@",fileNameStr];
+    NSString *fileNameStr = @"iOS_OCR_38443.csv";
+    NSString *DocPath = [NSString stringWithFormat:@"/Users/shijiachen/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];
     for (int i = 0; i< array.count; i ++) {

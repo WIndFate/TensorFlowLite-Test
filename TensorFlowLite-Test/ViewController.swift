@@ -32,7 +32,7 @@ class ViewController: UIViewController {
               fatalError("Model set up failed")
             }
             
-            self.image = UIImage(named: "barcode_test_1_orig")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
+            self.image = UIImage(named: "38759")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
         }else {
             
             modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.testModelInfo)
@@ -69,6 +69,7 @@ class ViewController: UIViewController {
         let cls = segue.destination as! CVViewController
         
         cls.image = self.image!
+        cls.oriImage = self.image!
         cls.array = self.array!
     }
 

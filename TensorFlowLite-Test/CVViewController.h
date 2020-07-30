@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) UIImage *image;
 
+@property(nonatomic, strong) UIImage *oriImage;
+
 @property(nonatomic, strong) NSArray *array;
 
 -(void)writeToCsv:(NSArray *)array;
