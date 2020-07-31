@@ -17,6 +17,50 @@ import UIKit
 /// Helper functions for the UIImage class that is useful for this sample app.
 extension UIImage {
 
+    /// Returns the data representation of the image after scaling to the given `size` and removing
+    /// the alpha component.
+    ///
+    /// - Parameters
+    ///   - size: Size to scale the image to (i.e. image size used while training the model).
+    ///   - byteCount: The expected byte count for the scaled image data calculated using the values
+    ///       that the model was trained on: `imageWidth * imageHeight * componentsCount * batchSize`.
+    ///   - isQuantized: Whether the model is quantized (i.e. fixed point values rather than floating
+    ///       point values).
+    /// - Returns: The scaled image as data or `nil` if the image could not be scaled.
+    func scaledData(with size: CGSize, byteCount: Int, isQuantized: Bool) -> Data? {
+      guard let cgImage = self.cgImage, cgImage.width > 0, cgImage.height > 0 else { return nil }
+      guard let imageData = imageData(from: cgImage, with: size) else { return nil }
+      var scaledBytes = [UInt8](repeating: 0, count: byteCount)
+      var index = 0
+      for component in imageData.enumerated() {
+        let offset = component.offset
+        let isAlphaComponent = (offset % Constant.alphaComponent.baseOffset)
+          == Constant.alphaComponent.moduloRemainder
+        guard !isAlphaComponent else { continue }
+        scaledBytes[index] = component.element
+        index += 1
+      }
+      if isQuantized { return Data(scaledBytes) }
+        
+      var scaledFloats = [Float]()
+        
+        if size.width == 256 {
+            
+            for i in 0..<scaledBytes.count {
+                scaledFloats.append(Float(scaledBytes[i]) / 255.0)
+            }
+            
+        }else {
+            for i in 0..<scaledBytes.count {
+                scaledFloats.append(Float(scaledBytes[i]) / 1.0)
+            }
+        }
+        
+//        let cls = CVViewController()
+//        cls.write(toCsv: scaledFloats)
+      return Data(copyingBufferOf: scaledFloats)
+    }
+    
   /// Helper function to center-crop image.
   /// - Returns: Center-cropped copy of this image
   func cropCenter() -> UIImage? {
@@ -77,6 +121,29 @@ extension UIImage {
         ?? UIImageJPEGRepresentation(self, Constant.jpegCompressionQuality)
     #endif  // swift(>=4.2)
   }
+    
+  /// Returns the image data for the given CGImage based on the given `size`.
+  private func imageData(from cgImage: CGImage, with size: CGSize) -> Data? {
+    let bitmapInfo = CGBitmapInfo(
+      rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
+    )
+    let width = Int(size.width)
+    let scaledBytesPerRow = (cgImage.bytesPerRow / cgImage.width) * width
+    guard
+      let context = CGContext(
+        data: nil,
+        width: width,
+        height: Int(size.height),
+        bitsPerComponent: cgImage.bitsPerComponent,
+        bytesPerRow: scaledBytesPerRow,
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: bitmapInfo.rawValue)
+    else {
+      return nil
+    }
+    context.draw(cgImage, in: CGRect(origin: .zero, size: size))
+    return context.makeImage()?.dataProvider?.data as Data?
+  }
 }
 
 /// Helper functions for the UIKit class that is useful for this sample app.
@@ -102,4 +169,10 @@ extension UIColor {
 
     return (brightness > threshold)
   }
+}
+
+// MARK: - Constants
+
+private enum Constant {
+  static let alphaComponent = (baseOffset: 4, moduloRemainder: 3)
 }

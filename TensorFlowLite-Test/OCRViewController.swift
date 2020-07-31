@@ -25,11 +25,12 @@ class OCRViewController: UIViewController {
         
         let start = CFAbsoluteTimeGetCurrent()
         
-        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
+//        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
+        let result = modelDataHandler!.runModel(withImage: self.image!)
         
         let end = CFAbsoluteTimeGetCurrent()
         
-        print("检测耗时  == \(end - start)")
+        print("OCR time  == \(end - start)")
         
 //        CVViewController.write(toCsv: result!.dataResult)
         

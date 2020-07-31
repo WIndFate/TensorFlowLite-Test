@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     private var modelDataHandler: ModelDataHandler?
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var oriImageView: UIImageView!
     @IBOutlet weak var bufferImageBtn: UIButton!
     @IBOutlet weak var opencvBtn: UIButton!
     
@@ -33,6 +32,7 @@ class ViewController: UIViewController {
             }
             
             self.image = UIImage(named: "38759")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
+//            self.image = UIImage(named: "barcode_test_1_orig_cropped")
         }else {
             
             modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.testModelInfo)
@@ -44,7 +44,6 @@ class ViewController: UIViewController {
             self.image = UIImage(named: "test_5")?.scaledImage(with: CGSize(width: 1280, height: 1792.0))
         }
         self.imageView.image = self.image
-        self.oriImageView.image = self.image
         
 //        let image = UIImage(named: "testImage")!
 //
@@ -103,30 +102,22 @@ class ViewController: UIViewController {
         
         let start = CFAbsoluteTimeGetCurrent()
         
-        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
+//        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
+        let result = modelDataHandler!.runModel(withImage: self.image!)
         
         let end = CFAbsoluteTimeGetCurrent()
         
-        print("检测耗时  == \(end - start)")
+        print("barCode time  == \(end - start)")
+        
+        let cls = CVViewController()
+        cls.write(toCsv: result!.dataResult)
+        
         
         self.array = result!.dataResult
         self.opencvBtn.isEnabled = true
         
     }
     
-    @IBAction func ImageToBufferAndBufferToImage(_ sender: Any) {
-        
-        if bufferImageBtn.isSelected {
-            self.imageView.image = self.image
-        }else {
-
-            let buffer = CVPixelBuffer.buffer(from: self.image!)
-            let image = self.pixelBufferToImage(pixelBuffer: buffer!)
-            self.imageView.image = image;
-        }
-        bufferImageBtn.isSelected = !bufferImageBtn.isSelected
-        
-    }
 }
 
 extension UIImage {

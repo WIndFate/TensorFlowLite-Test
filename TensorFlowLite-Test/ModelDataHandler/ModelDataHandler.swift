@@ -120,8 +120,59 @@ class ModelDataHandler {
   // MARK: - Internal Methods
 
   /// Performs image preprocessing, invokes the `Interpreter`, and processes the inference results.
-  func runModel(onFrame pixelBuffer: CVPixelBuffer) -> Result? {
+    func runModel(withImage image: UIImage) -> Result? {
+        
+        let outputTensor: Tensor
+        do {
+          let inputTensor = try interpreter.input(at: 0)
+
+          // Remove the alpha component from the image buffer to get the RGB data.
+            guard let rgbData = image.scaledData(
+              with: CGSize(width: inputWidth, height: inputHeight),
+              byteCount: batchSize * inputWidth * inputHeight * inputChannels,
+              isQuantized: inputTensor.dataType == .uInt8
+            ) else {
+              print("Failed to convert the image buffer to RGB data.")
+              return nil
+            }
+
+          // Copy the RGB data to the input `Tensor`.
+          try interpreter.copy(rgbData, toInputAt: 0)
+
+          // Run inference by invoking the `Interpreter`.
+          try interpreter.invoke()
+
+          // Get the output `Tensor` to process the inference results.
+          outputTensor = try interpreter.output(at: 0)
+        } catch let error {
+          print("Failed to invoke the interpreter with error: \(error.localizedDescription)")
+          return nil
+        }
+        
+        var results: [Float]
+        switch outputTensor.dataType {
+        case .uInt8:
+          guard let quantization = outputTensor.quantizationParameters else {
+            print("No results returned because the quantization values for the output tensor are nil.")
+            return nil
+          }
+          let quantizedResults = [UInt8](outputTensor.data)
+          results = quantizedResults.map {
+            quantization.scale * Float(Int($0) - quantization.zeroPoint)
+          }
+        case .float32:
+          results = [Float32](unsafeData: outputTensor.data) ?? []
+        default:
+          print("Output tensor data type \(outputTensor.dataType) is unsupported for this example app.")
+          return nil
+        }
+
+        // Return the inference time and inference results.
+        return Result(tensor: outputTensor, dataResult: results)
+      }
     
+  func runModel(withBuffer pixelBuffer: CVPixelBuffer) -> Result? {
+
     let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
     assert(sourcePixelFormat == kCVPixelFormatType_32ARGB ||
              sourcePixelFormat == kCVPixelFormatType_32BGRA ||
@@ -136,7 +187,7 @@ class ModelDataHandler {
     guard let thumbnailPixelBuffer = pixelBuffer.centerThumbnail(ofSize: scaledSize) else {
       return nil
     }
-    
+
     let outputTensor: Tensor
     do {
       let inputTensor = try interpreter.input(at: 0)
@@ -163,7 +214,7 @@ class ModelDataHandler {
       print("Failed to invoke the interpreter with error: \(error.localizedDescription)")
       return nil
     }
-    
+
     var results: [Float]
     switch outputTensor.dataType {
     case .uInt8:
@@ -259,8 +310,11 @@ class ModelDataHandler {
     let bytes = Array<UInt8>(unsafeData: byteData)!
     var floats = [Float]()
     for i in 0..<bytes.count {
-        floats.append(Float(bytes[i]) / 1.0)
+        floats.append(Float(bytes[i]) / 255.0)
     }
+    
+//    let cls = CVViewController()
+//    cls.write(toCsv: floats)
     return Data(copyingBufferOf: floats)
   }
 }
