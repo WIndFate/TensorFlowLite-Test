@@ -146,6 +146,56 @@
         br_x = box.row(3).col(0).at<float>(0,0);
         br_y = box.row(3).col(1).at<float>(0,0);
         
+        NSValue *tl = [NSValue valueWithCGPoint:CGPointMake(tl_x, tl_y)];
+        NSValue *bl = [NSValue valueWithCGPoint:CGPointMake(bl_x, bl_y)];
+        NSValue *tr = [NSValue valueWithCGPoint:CGPointMake(tr_x, tr_y)];
+        NSValue *br = [NSValue valueWithCGPoint:CGPointMake(br_x, br_y)];
+        
+        NSArray *arr = [NSArray arrayWithObjects:tl,bl,tr,br, nil];
+        
+        //排序四个顶点位置 左上-右上-右下-左下
+        NSArray *sortArr = [arr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            
+            CGPoint value1 = [obj1 CGPointValue];
+            CGPoint value2 = [obj2 CGPointValue];
+            
+            if (value1.x < value2.x) {
+                return NSOrderedAscending;
+            }else{
+                return NSOrderedDescending;
+            }
+        }];
+        
+        CGPoint left1 = [sortArr[0] CGPointValue];
+        CGPoint left2 = [sortArr[1] CGPointValue];
+        if (left1.y < left2.y) {
+            tl_x = left1.x;
+            tl_y = left1.y;
+            bl_x = left2.x;
+            bl_y = left2.y;
+        }else {
+            
+            tl_x = left2.x;
+            tl_y = left2.y;
+            bl_x = left1.x;
+            bl_y = left1.y;
+        }
+        
+        CGPoint right1 = [sortArr[2] CGPointValue];
+        CGPoint right2 = [sortArr[3] CGPointValue];
+        if (right1.y < right2.y) {
+            tr_x = right1.x;
+            tr_y = right1.y;
+            br_x = right2.x;
+            br_y = right2.y;
+        }else {
+            
+            tr_x = right2.x;
+            tr_y = right2.y;
+            br_x = right1.x;
+            br_y = right1.y;
+        }
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setFloat:tl_x forKey:@"tl_x"];
         [defaults setFloat:tl_y forKey:@"tl_y"];
@@ -215,9 +265,38 @@
         dst[2].y = OCR_OUTPUT_SHORT;
         dst[3].x = 0;
         dst[3].y = OCR_OUTPUT_SHORT;
-        
+
         cv::Mat transform = cv::getPerspectiveTransform(src, dst);
         cv::warpPerspective(inputMat, outputMat, transform, cvSize(OCR_OUTPUT_LONG, OCR_OUTPUT_SHORT));
+        
+//        float leftHeight = sqrtf((tl_x - bl_x) * (tl_x - bl_x) + (tl_y - bl_y) * (tl_y - bl_y));
+//        float rightHeight = sqrtf((tr_x - br_x) * (tr_x - br_x) + (tr_y - br_y) * (tr_y - br_y));
+//        float outputHeight = 0.0;
+//        float outputWidth = 0.0;
+//        float scale = 0.0;
+//        if (leftHeight < rightHeight) {
+//            scale = leftHeight / OCR_OUTPUT_SHORT;
+//            outputHeight = leftHeight;
+//        }else {
+//            scale = rightHeight / OCR_OUTPUT_SHORT;
+//            outputHeight = rightHeight;
+//        }
+//        outputWidth = scale * OCR_OUTPUT_LONG;
+//
+//        dst[0].x = 0;
+//        dst[0].y = 0;
+//        dst[1].x = outputWidth;
+//        dst[1].y = 0;
+//        dst[2].x = outputWidth;
+//        dst[2].y = outputHeight;
+//        dst[3].x = 0;
+//        dst[3].y = outputHeight;
+//
+//        cv::Mat transform = cv::getPerspectiveTransform(src, dst);
+//        cv::warpPerspective(inputMat, outputMat, transform, cvSize(outputWidth, outputHeight));
+        
+        cv::cvtColor(outputMat, tmp, CV_BGR2RGB);
+        outputMat = tmp;
         
         return [UIImage imageWithCVMat:outputMat];
         
@@ -231,9 +310,38 @@
         dst[2].y = OCR_OUTPUT_LONG;
         dst[3].x = 0;
         dst[3].y = OCR_OUTPUT_LONG;
-        
+
         cv::Mat transform = cv::getPerspectiveTransform(src, dst);
         cv::warpPerspective(inputMat, outputMat, transform, cvSize(OCR_OUTPUT_SHORT, OCR_OUTPUT_LONG));
+        
+//        float topWidth = sqrtf((tl_x - tr_x) * (tl_x - tr_x) + (tl_y - tr_y) * (tl_y - tr_y));
+//        float bottomWidth = sqrtf((bl_x - br_x) * (bl_x - br_x) + (bl_y - br_y) * (bl_y - br_y));
+//        float outputHeight = 0.0;
+//        float outputWidth = 0.0;
+//        float scale = 0.0;
+//        if (topWidth < bottomWidth) {
+//            scale = topWidth / OCR_OUTPUT_SHORT;
+//            outputWidth = topWidth;
+//        }else {
+//            scale = bottomWidth / OCR_OUTPUT_SHORT;
+//            outputWidth = bottomWidth;
+//        }
+//        outputHeight = scale * OCR_OUTPUT_LONG;
+//
+//        dst[0].x = 0;
+//        dst[0].y = 0;
+//        dst[1].x = outputWidth;
+//        dst[1].y = 0;
+//        dst[2].x = outputWidth;
+//        dst[2].y = outputHeight;
+//        dst[3].x = 0;
+//        dst[3].y = outputHeight;
+//
+//        cv::Mat transform = cv::getPerspectiveTransform(src, dst);
+//        cv::warpPerspective(inputMat, outputMat, transform, cvSize(outputWidth, outputHeight));
+        
+        cv::cvtColor(outputMat, tmp, CV_BGR2RGB);
+        outputMat = tmp;
         
         return [self imageRotatedByDegrees:90 withImage:[UIImage imageWithCVMat:outputMat]];
     }

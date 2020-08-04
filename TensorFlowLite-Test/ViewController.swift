@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     private var modelDataHandler: ModelDataHandler?
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var bufferImageBtn: UIButton!
     @IBOutlet weak var opencvBtn: UIButton!
     
     var image: UIImage?
@@ -31,7 +30,7 @@ class ViewController: UIViewController {
               fatalError("Model set up failed")
             }
             
-            self.image = UIImage(named: "38759")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
+            self.image = UIImage(named: "barcode_test_1_orig")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
 //            self.image = UIImage(named: "barcode_test_1_orig_cropped")
         }else {
             
@@ -109,8 +108,8 @@ class ViewController: UIViewController {
         
         print("barCode time  == \(end - start)")
         
-        let cls = CVViewController()
-        cls.write(toCsv: result!.dataResult)
+//        let cls = CVViewController()
+//        cls.write(toCsv: result!.dataResult)
         
         
         self.array = result!.dataResult

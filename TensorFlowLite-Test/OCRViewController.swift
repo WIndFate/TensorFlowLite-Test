@@ -23,16 +23,25 @@ class OCRViewController: UIViewController {
           fatalError("Model set up failed")
         }
         
+        guard let img = self.image?.scaledImage(with: CGSize(width: 32.0, height: 256.0))?.scaledImage(with: CGSize(width: 32.0, height: 256.0)) else {
+            return
+        }
+
+        let imgData = img.pngData()
+        let imgPath = "/Users/shijiachen/Desktop/local.png"
+        NSData(data: imgData!).write(toFile: imgPath, atomically: true)
+        
         let start = CFAbsoluteTimeGetCurrent()
         
 //        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
-        let result = modelDataHandler!.runModel(withImage: self.image!)
+        let result = modelDataHandler!.runModel(withImage: img)
         
         let end = CFAbsoluteTimeGetCurrent()
         
         print("OCR time  == \(end - start)")
         
-//        CVViewController.write(toCsv: result!.dataResult)
+        let cls = CVViewController()
+        cls.write(toCsv: result!.dataResult)
         
     }
     

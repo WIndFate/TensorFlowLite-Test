@@ -34,12 +34,32 @@
 
 - (IBAction)cutImageClick:(id)sender {
     
-    self.imageView.image = [OpenCVManager perspectiveWithUIImage:self.oriImage];
+    UIImage *image = [OpenCVManager perspectiveWithUIImage:self.oriImage];
+    
+    UIImage *bgImg = [UIImage imageNamed:@"ocr_bgImg"];
+    UIImage * finalImage = [self AddWaterImage:bgImg waterImage:image loactionRect:CGRectMake((bgImg.size.width - image.size.width) / 2, 0, image.size.width, image.size.height)];
+    self.imageView.image = [UIImage imageWithCGImage:finalImage.CGImage scale:finalImage.scale orientation:UIImageOrientationLeftMirrored];
+    
 }
+
+- (UIImage *)AddWaterImage:(UIImage *)originImage waterImage:(UIImage *)waterImage loactionRect:(CGRect)waterRect{
+    //开启图形上下文
+    UIGraphicsBeginImageContextWithOptions(originImage.size, NO, 0);
+    //将原图加在画布上
+    [originImage drawInRect:CGRectMake(0, 0, originImage.size.width, originImage.size.height)];
+    //将水印图片加在画布上
+    [waterImage drawInRect:waterRect];
+    //合成图片
+    UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
+    //关闭画布
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 
 -(void)writeToCsv:(NSArray *)array {
     
-    NSString *fileNameStr = @"iOS_result.csv";
+    NSString *fileNameStr = @"iOS_99_accu.csv";
     NSString *DocPath = [NSString stringWithFormat:@"/Users/shijiachen/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];
@@ -54,6 +74,35 @@
     NSData *data = [csvString dataUsingEncoding:NSUTF8StringEncoding];
     [data writeToFile:DocPath atomically:YES];
 }
+
+//-(void)stretchableImage:(UIImage *)image {
+//
+//    image = [image stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+//
+//    CGFloat finalWidth = 1280;
+//    CGFloat imageWidth = image.size.width;
+//    CGFloat imageHeight = image.size.height;
+//
+//    CGFloat tempWidth = (finalWidth + imageWidth) / 2.0f;
+//
+//    UIGraphicsBeginImageContextWithOptions(CGSizeMake(tempWidth,imageHeight),NO, [UIScreen mainScreen].scale);
+//
+//    [image drawInRect:CGRectMake(0,0, tempWidth,imageHeight)];
+//
+//    UIImage * leftImage =UIGraphicsGetImageFromCurrentImageContext();
+//
+//    UIGraphicsEndImageContext();
+//
+//    UIImage *rightImage = [leftImage stretchableImageWithLeftCapWidth:(leftImage.size.width - 1) topCapHeight:0];
+//
+//    UIGraphicsBeginImageContextWithOptions(CGSizeMake(finalWidth,imageHeight),NO, [UIScreen mainScreen].scale);
+//
+//    [rightImage drawInRect:CGRectMake(0,0, finalWidth,imageHeight)];
+//
+//    UIImage * finalImage =UIGraphicsGetImageFromCurrentImageContext();
+//
+//    UIGraphicsEndImageContext();
+//}
 
 #pragma mark - Navigation
 

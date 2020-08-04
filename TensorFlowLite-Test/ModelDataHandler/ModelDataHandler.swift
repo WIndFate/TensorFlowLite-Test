@@ -30,7 +30,7 @@ typealias FileInfo = (name: String, extension: String)
 enum MobileNet {
     static let testModelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
     static let barCodeModelInfo: FileInfo = (name: "barcode_model_30", extension: "tflite")
-    static let ocrModelInfo: FileInfo = (name: "ocr_keras_model", extension: "tflite")
+    static let ocrModelInfo: FileInfo = (name: "ocr_barcode_model_99_accu", extension: "tflite")
 }
 
 /// This class handles all data preprocessing and makes calls to run inference on a given frame
@@ -78,12 +78,12 @@ class ModelDataHandler {
         self.inputWidth = 1792
         self.inputHeight = 1280
         
-    }else if modelFilename == "ocr_keras_model" {
+    }else if modelFilename == "ocr_barcode_model_99_accu" {
         
         self.batchSize = 1
         self.inputChannels = 3
-        self.inputWidth = 256
-        self.inputHeight = 24
+        self.inputWidth = 32
+        self.inputHeight = 256
         
     }else {
         

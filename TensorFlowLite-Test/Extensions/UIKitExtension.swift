@@ -44,7 +44,7 @@ extension UIImage {
         
       var scaledFloats = [Float]()
         
-        if size.width == 256 {
+        if size.width == 32 {
             
             for i in 0..<scaledBytes.count {
                 scaledFloats.append(Float(scaledBytes[i]) / 255.0)
