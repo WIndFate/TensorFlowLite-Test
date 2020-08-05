@@ -295,8 +295,8 @@
 //        cv::Mat transform = cv::getPerspectiveTransform(src, dst);
 //        cv::warpPerspective(inputMat, outputMat, transform, cvSize(outputWidth, outputHeight));
         
-        cv::cvtColor(outputMat, tmp, CV_BGR2RGB);
-        outputMat = tmp;
+//        cv::cvtColor(outputMat, tmp, CV_BGR2RGB);
+//        outputMat = tmp;
         
         return [UIImage imageWithCVMat:outputMat];
         
@@ -340,8 +340,8 @@
 //        cv::Mat transform = cv::getPerspectiveTransform(src, dst);
 //        cv::warpPerspective(inputMat, outputMat, transform, cvSize(outputWidth, outputHeight));
         
-        cv::cvtColor(outputMat, tmp, CV_BGR2RGB);
-        outputMat = tmp;
+//        cv::cvtColor(outputMat, tmp, CV_BGR2RGB);
+//        outputMat = tmp;
         
         return [self imageRotatedByDegrees:90 withImage:[UIImage imageWithCVMat:outputMat]];
     }

@@ -21,6 +21,12 @@ import Accelerate
 struct Result {
   let tensor: Tensor
   let dataResult: [Float]
+  let inferences: [Inference]?
+}
+
+struct Inference {
+  let confidence: Float
+  let label: String
 }
 
 /// Information about a model file or labels file.
@@ -31,6 +37,7 @@ enum MobileNet {
     static let testModelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
     static let barCodeModelInfo: FileInfo = (name: "barcode_model_30", extension: "tflite")
     static let ocrModelInfo: FileInfo = (name: "ocr_barcode_model_99_accu", extension: "tflite")
+    static let labelsInfo: FileInfo = (name: "labelsMap", extension: "txt")
 }
 
 /// This class handles all data preprocessing and makes calls to run inference on a given frame
@@ -43,7 +50,7 @@ class ModelDataHandler {
   /// The current thread count used by the TensorFlow Lite Interpreter.
   let threadCount: Int
 
-  let resultCount = 3
+  let resultCount = 1
   let threadCountLimit = 10
 
   // MARK: - Model Parameters
@@ -55,6 +62,9 @@ class ModelDataHandler {
 
   // MARK: - Private Properties
 
+  /// List of labels from the given labels file.
+  private var labels: [String] = []
+    
   /// TensorFlow Lite `Interpreter` object for performing inference on a given model.
   private var interpreter: Interpreter
 
@@ -65,7 +75,7 @@ class ModelDataHandler {
 
   /// A failable initializer for `ModelDataHandler`. A new instance is created if the model and
   /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
-  init?(modelFileInfo: FileInfo, threadCount: Int = 1) {
+  init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1) {
     
     var modelFilename : String
     
@@ -115,14 +125,22 @@ class ModelDataHandler {
       print("Failed to create the interpreter with error: \(error.localizedDescription)")
       return nil
     }
+    
+    if modelFilename == "ocr_barcode_model_99_accu" {
+        
+        // Load the classes listed in the labels file.
+        loadLabels(fileInfo: labelsFileInfo)
+        
+    }
   }
 
   // MARK: - Internal Methods
 
   /// Performs image preprocessing, invokes the `Interpreter`, and processes the inference results.
-    func runModel(withImage image: UIImage) -> Result? {
+    func runModel(withImage image: UIImage, isOcrModel: Bool = false) -> Result? {
         
         let outputTensor: Tensor
+        var topNInferences = [Inference]()
         do {
           let inputTensor = try interpreter.input(at: 0)
 
@@ -166,19 +184,24 @@ class ModelDataHandler {
           print("Output tensor data type \(outputTensor.dataType) is unsupported for this example app.")
           return nil
         }
-
+        
+        // Process the results.
+        if isOcrModel {
+            topNInferences = getTopN(results: results)
+        }
+        
         // Return the inference time and inference results.
-        return Result(tensor: outputTensor, dataResult: results)
+        return Result(tensor: outputTensor, dataResult: results, inferences: topNInferences)
       }
     
-  func runModel(withBuffer pixelBuffer: CVPixelBuffer) -> Result? {
+  func runModel(withBuffer pixelBuffer: CVPixelBuffer, isOcrModel: Bool = false) -> Result? {
 
     let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
     assert(sourcePixelFormat == kCVPixelFormatType_32ARGB ||
              sourcePixelFormat == kCVPixelFormatType_32BGRA ||
                sourcePixelFormat == kCVPixelFormatType_32RGBA)
 
-
+    var topNInferences = [Inference]()
     let imageChannels = 4
     assert(imageChannels >= inputChannels)
 
@@ -233,10 +256,75 @@ class ModelDataHandler {
       return nil
     }
 
+    // Process the results.
+    if isOcrModel {
+        topNInferences = getTopN(results: results)
+    }
+    
     // Return the inference time and inference results.
-    return Result(tensor: outputTensor, dataResult: results)
+    return Result(tensor: outputTensor, dataResult: results, inferences: topNInferences)
   }
 
+  /// Returns the top N inference results sorted in descending order.
+  private func getTopN(results: [Float]) -> [Inference] {
+    
+    var confidenceArr = [Inference]()
+    var resultArr = [Inference]()
+    var tempArr = [Float]()
+    
+    //拆分成每组包含37个元素的小数组
+    for (index,_) in results.enumerated() {
+        
+        tempArr.append(results[index])
+        if (index + 1) % 37 == 0 {
+            
+            let zippedResults = zip(labels.indices, tempArr)
+            
+            let sortedResults = zippedResults.sorted { $0.1 > $1.1 }.prefix(resultCount)
+            
+            confidenceArr.append(contentsOf: sortedResults.map { result in Inference(confidence: result.1, label: labels[result.0]) })
+            tempArr.removeAll()
+        }
+    }
+    
+    //去除每个小数组相邻重复元素
+    for (index,value) in confidenceArr.enumerated() {
+        
+        if index > 0 {
+            
+            if value.label != resultArr.last?.label {
+
+                resultArr.append(value)
+                
+                }
+        }
+        else{
+            resultArr.append(value)
+        }
+    }
+
+    // Return the `Inference` results.
+    return resultArr.filter { $0.label != "" }
+  }
+    
+  /// Loads the labels from the labels file and stores them in the `labels` property.
+  private func loadLabels(fileInfo: FileInfo) {
+    let filename = fileInfo.name
+    let fileExtension = fileInfo.extension
+    guard let fileURL = Bundle.main.url(forResource: filename, withExtension: fileExtension) else {
+      fatalError("Labels file not found in bundle. Please add a labels file with name " +
+                   "\(filename).\(fileExtension) and try again.")
+    }
+    do {
+      let contents = try String(contentsOf: fileURL, encoding: .utf8)
+      labels = contents.components(separatedBy: .newlines)
+    } catch {
+      fatalError("Labels file named \(filename).\(fileExtension) cannot be read. Please add a " +
+                   "valid labels file and try again.")
+    }
+  }
+    
+    
   // MARK: - Private Methods
 
   /// Returns the RGB data representation of the given image buffer with the specified `byteCount`.

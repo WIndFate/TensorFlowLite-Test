@@ -10,7 +10,7 @@ import UIKit
 
 class OCRViewController: UIViewController {
 
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNet.ocrModelInfo)
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNet.ocrModelInfo, labelsFileInfo: MobileNet.labelsInfo)
     
     @IBOutlet weak var Label: UILabel!
     
@@ -23,25 +23,32 @@ class OCRViewController: UIViewController {
           fatalError("Model set up failed")
         }
         
-        guard let img = self.image?.scaledImage(with: CGSize(width: 32.0, height: 256.0))?.scaledImage(with: CGSize(width: 32.0, height: 256.0)) else {
+        guard let img = self.image?.scaledImage(with: CGSize(width: 32.0, height: 256.0)) else {
             return
         }
-
-        let imgData = img.pngData()
-        let imgPath = "/Users/shijiachen/Desktop/local.png"
-        NSData(data: imgData!).write(toFile: imgPath, atomically: true)
+//
+//        let imgData = img.pngData()
+//        let imgPath = "/Users/shijiachen/Desktop/local.png"
+//        NSData(data: imgData!).write(toFile: imgPath, atomically: true)
         
         let start = CFAbsoluteTimeGetCurrent()
         
 //        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
-        let result = modelDataHandler!.runModel(withImage: img)
+        let result = modelDataHandler!.runModel(withImage: img, isOcrModel: true)
         
         let end = CFAbsoluteTimeGetCurrent()
         
+        guard let inferencesArr = result?.inferences else {
+            print("inferences == nil")
+            return
+        }
+        let stringArr = inferencesArr.map({$0.label})
+        Label.text = stringArr.joined()
+        
         print("OCR time  == \(end - start)")
         
-        let cls = CVViewController()
-        cls.write(toCsv: result!.dataResult)
+//        let cls = CVViewController()
+//        cls.write(toCsv: result!.dataResult)
         
     }
     

@@ -24,17 +24,17 @@ class ViewController: UIViewController {
         
         if BarCodeModel {
             
-            modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.barCodeModelInfo)
+            modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.barCodeModelInfo, labelsFileInfo: MobileNet.labelsInfo)
             
             guard modelDataHandler != nil else {
               fatalError("Model set up failed")
             }
             
-            self.image = UIImage(named: "barcode_test_1_orig")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
+            self.image = UIImage(named: "38759")?.scaledImage(with: CGSize(width: 1792.0, height: 1280.0))
 //            self.image = UIImage(named: "barcode_test_1_orig_cropped")
         }else {
             
-            modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.testModelInfo)
+            modelDataHandler = ModelDataHandler(modelFileInfo: MobileNet.testModelInfo, labelsFileInfo: MobileNet.labelsInfo)
             
             guard modelDataHandler != nil else {
               fatalError("Model set up failed")
@@ -159,12 +159,4 @@ extension UIImage {
         }
 
     }
-}
-
-
-// MARK: - Constants
-private enum Constants {
-
-  static let inputImageSize = CGSize(width: 80, height: 40)
-
 }

@@ -26,6 +26,7 @@
 		39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D6451724AB428D00E425F5 /* ModelDataHandler.swift */; };
 		39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452124ADB94700E425F5 /* AVFoundation.framework */; };
 		39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452324ADB95F00E425F5 /* CoreMedia.framework */; };
+		CB4234FD24DA54C200030AA5 /* labelsMap.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB4234FC24DA54C200030AA5 /* labelsMap.txt */; };
 		CBD176AF24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */; };
 		F47283BCED35946151196A3A /* Pods_TensorFlowLite_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		39D6452124ADB94700E425F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		39D6452324ADB95F00E425F5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B65AD16A1CDC3EBFC28AD6C6 /* Pods_TensorFlowLite_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TensorFlowLite_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB4234FC24DA54C200030AA5 /* labelsMap.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labelsMap.txt; sourceTree = "<group>"; };
 		CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocr_barcode_model_99_accu.tflite; sourceTree = "<group>"; };
 		E917A2DB3F03AE4575D8E819 /* Pods-TensorFlowLite-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.debug.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.debug.xcconfig"; sourceTree = "<group>"; };
 		F794F9AEA5C12F15924BACC9 /* Pods-TensorFlowLite-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.release.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */,
 				165D570524D0FEFF00A2A66D /* ocr_keras_model.tflite */,
 				CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */,
+				CB4234FC24DA54C200030AA5 /* labelsMap.txt */,
 				16AF753824BC5C4700C646E1 /* OpenCV */,
 				39D6451624AB428D00E425F5 /* ModelDataHandler */,
 				39D6451324AB428600E425F5 /* Extensions */,
@@ -233,6 +236,7 @@
 				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
 				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
 				CBD176AF24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite in Resources */,
+				CB4234FD24DA54C200030AA5 /* labelsMap.txt in Resources */,
 				165D570624D0FF0000A2A66D /* ocr_keras_model.tflite in Resources */,
 				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,
 				16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */,

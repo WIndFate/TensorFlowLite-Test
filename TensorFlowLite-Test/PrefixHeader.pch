@@ -12,7 +12,10 @@
 #define BarCodeModel  YES
 //#define BarCodeModel  NO
 
-#define OCR_OUTPUT_LONG  564
-#define OCR_OUTPUT_SHORT  175
+//#define OCR_OUTPUT_SHORT  160
+//#define OCR_OUTPUT_LONG  752
+
+#define OCR_OUTPUT_SHORT  32
+#define OCR_OUTPUT_LONG  OCR_OUTPUT_SHORT * 4.7
 
 #endif /* PrefixHeader_pch */

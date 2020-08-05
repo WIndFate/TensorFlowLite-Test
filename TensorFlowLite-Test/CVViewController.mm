@@ -36,7 +36,7 @@
     
     UIImage *image = [OpenCVManager perspectiveWithUIImage:self.oriImage];
     
-    UIImage *bgImg = [UIImage imageNamed:@"ocr_bgImg"];
+    UIImage *bgImg = [UIImage imageNamed:@"ocr_bgImg_256x32"];
     UIImage * finalImage = [self AddWaterImage:bgImg waterImage:image loactionRect:CGRectMake((bgImg.size.width - image.size.width) / 2, 0, image.size.width, image.size.height)];
     self.imageView.image = [UIImage imageWithCGImage:finalImage.CGImage scale:finalImage.scale orientation:UIImageOrientationLeftMirrored];
     
