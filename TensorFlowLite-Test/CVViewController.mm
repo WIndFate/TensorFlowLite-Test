@@ -59,13 +59,13 @@
 
 -(void)writeToCsv:(NSArray *)array {
     
-    NSString *fileNameStr = @"iOS_99_accu.csv";
+    NSString *fileNameStr = @"iOS_OAAK8645.csv";
     NSString *DocPath = [NSString stringWithFormat:@"/Users/shijiachen/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];
     for (int i = 0; i< array.count; i ++) {
         
-        if ((i%37) == 0 && i != 0) {
+        if ((i%128) == 0 && i != 0) {
             [csvString appendString:@"\n"];
         }
         [csvString appendFormat:@"%@,",array[i]];

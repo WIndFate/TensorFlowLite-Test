@@ -35,7 +35,7 @@ typealias FileInfo = (name: String, extension: String)
 /// Information about the MobileNet model.
 enum MobileNet {
     static let testModelInfo: FileInfo = (name: "rental_model_sized_big", extension: "tflite")
-    static let barCodeModelInfo: FileInfo = (name: "barcode_model_30", extension: "tflite")
+    static let barCodeModelInfo: FileInfo = (name: "barcode_model_768_512_even_shallower", extension: "tflite")
     static let ocrModelInfo: FileInfo = (name: "ocr_barcode_model_99_accu", extension: "tflite")
     static let labelsInfo: FileInfo = (name: "labelsMap", extension: "txt")
 }
@@ -81,12 +81,14 @@ class ModelDataHandler {
     
     modelFilename = modelFileInfo.name
     
-    if modelFilename == "barcode_model_30" {
+    if modelFilename == "barcode_model_768_512_even_shallower" {
         
         self.batchSize = 1
         self.inputChannels = 3
-        self.inputWidth = 1792
-        self.inputHeight = 1280
+//        self.inputWidth = 1792
+//        self.inputHeight = 1280
+        self.inputWidth = 512
+        self.inputHeight = 768
         
     }else if modelFilename == "ocr_barcode_model_99_accu" {
         
@@ -158,7 +160,13 @@ class ModelDataHandler {
           try interpreter.copy(rgbData, toInputAt: 0)
 
           // Run inference by invoking the `Interpreter`.
+          let start = CFAbsoluteTimeGetCurrent()
+
           try interpreter.invoke()
+            
+          let end = CFAbsoluteTimeGetCurrent()
+
+          print("invoke time  == \(end - start)")
 
           // Get the output `Tensor` to process the inference results.
           outputTensor = try interpreter.output(at: 0)

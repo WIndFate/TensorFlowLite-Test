@@ -3,4 +3,5 @@
 //
 
 #import "CVViewController.h"
+#import "TZImagePickerController.h"
 

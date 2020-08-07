@@ -2,19 +2,23 @@ PODS:
   - TensorFlowLiteC (2.2.0)
   - TensorFlowLiteSwift (2.2.0):
     - TensorFlowLiteC (= 2.2.0)
+  - TZImagePickerController (3.4.1)
 
 DEPENDENCIES:
   - TensorFlowLiteSwift
+  - TZImagePickerController
 
 SPEC REPOS:
   trunk:
     - TensorFlowLiteC
     - TensorFlowLiteSwift
+    - TZImagePickerController
 
 SPEC CHECKSUMS:
   TensorFlowLiteC: b3ab9e867b0b71052ca102a32a786555b330b02e
   TensorFlowLiteSwift: 2dd5e9c895e1819501f0fba3d8b69a536bda6c65
+  TZImagePickerController: 4e7a7b3d314f8a75f11042931dfd9d34c270c7db
 
-PODFILE CHECKSUM: 1a79f59449a462fc1eb1b7a9920340f86d03e13b
+PODFILE CHECKSUM: c8712f1bb2c0b1cc1507259abd1840e9f7a5bc82
 
 COCOAPODS: 1.9.3

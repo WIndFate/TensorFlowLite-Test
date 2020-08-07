@@ -124,14 +124,14 @@
     cv::findContours(outputMat, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
     
     for (int i = 0; i < contours.size(); i++) {
-
-        for (int i = 0; i < contours.size(); i++) {
-            for (int j = 0; j < contours[i].size(); j++) {
-                
-                contours[i][j].x = contours[i][j].x * grid_size;
-                contours[i][j].y = contours[i][j].y * grid_size;
-            }
+        for (int j = 0; j < contours[i].size(); j++) {
+            
+            contours[i][j].x = contours[i][j].x * grid_size;
+            contours[i][j].y = contours[i][j].y * grid_size;
         }
+    }
+    
+    for (int i = 0; i < contours.size(); i++) {
         
         cv::RotatedRect rect = cv::minAreaRect(contours[i]);
         
@@ -209,18 +209,19 @@
         std::cout << box.size() << std::endl;
         std::cout << "boxPts " << std::endl << " " << box << std::endl;
         
+        std::vector<cv::Point> vList;
+        vList.push_back(cv::Point(tl_x, tl_y));// 点0
+        vList.push_back(cv::Point(tr_x, tr_y));// 点1
+        vList.push_back(cv::Point(br_x, br_y));// 点2
+        vList.push_back(cv::Point(bl_x, bl_y));// 点3
+        
+        cv::polylines(orig_img, vList, true, cv::Scalar(0,0,255), 2);
     }
     
 //    cv::rectangle(orig_img,cvPoint(cutRect.origin.x,cutRect.origin.y),cvPoint(cutRect.origin.x + cutRect.size.width , cutRect.origin.y + cutRect.size.height),cv::Scalar(0,0,255), 2);
 //    cv::drawContours(orig_img, contours, 0, cv::Scalar(0,0,255), 2);
     
-    std::vector<cv::Point> vList;
-    vList.push_back(cv::Point(tl_x, tl_y));// 点0
-    vList.push_back(cv::Point(tr_x, tr_y));// 点1
-    vList.push_back(cv::Point(br_x, br_y));// 点2
-    vList.push_back(cv::Point(bl_x, bl_y));// 点3
     
-    cv::polylines(orig_img, vList, true, cv::Scalar(0,0,255), 2);
     return [UIImage imageWithCVMat:orig_img];
     
 //    return [self imageRotatedByDegrees:90 withImage:[self tailoringImage:image Area:cutRect]];
@@ -398,8 +399,10 @@ cv::Mat ProcessOutputWithFloatModel(NSArray* input) {
     int _outputHeight;
     int _outputChannels;
   if (BarCodeModel) {
-      _outputWidth = 448;
-      _outputHeight = 320;
+//      _outputWidth = 448;
+//      _outputHeight = 320;
+      _outputWidth = 128;
+      _outputHeight = 192;
       _outputChannels = 1;
   } else {
       

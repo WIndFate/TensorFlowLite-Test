@@ -23,6 +23,53 @@
             </objects>
             <point key="canvasLocation" x="-829" y="138"/>
         </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="Qh1-kp-wbj">
+            <objects>
+                <viewController storyboardIdentifier="ScanViewController" id="WTL-pq-lW4" customClass="ScanViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rk3-Zx-WPx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXm-Oq-Ae7" customClass="PreviewView" customModule="TensorFlowLite_Test" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVZ-UJ-W44">
+                                        <rect key="frame" x="40" y="80" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="4m9-NZ-LHc"/>
+                                            <constraint firstAttribute="height" constant="44" id="Knb-RW-sSW"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="closeButton"/>
+                                        <connections>
+                                            <action selector="closeAction:" destination="WTL-pq-lW4" eventType="touchUpInside" id="4NA-Xm-0KL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="eVZ-UJ-W44" firstAttribute="top" secondItem="HXm-Oq-Ae7" secondAttribute="top" constant="80" id="cHU-RK-zbL"/>
+                                    <constraint firstItem="eVZ-UJ-W44" firstAttribute="leading" secondItem="HXm-Oq-Ae7" secondAttribute="leading" constant="40" id="sZb-LV-8yj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="HXm-Oq-Ae7" firstAttribute="top" secondItem="Rk3-Zx-WPx" secondAttribute="top" id="AYP-iY-klo"/>
+                            <constraint firstItem="HXm-Oq-Ae7" firstAttribute="leading" secondItem="WGh-8A-J1r" secondAttribute="leading" id="FaZ-WG-dQ4"/>
+                            <constraint firstItem="HXm-Oq-Ae7" firstAttribute="trailing" secondItem="WGh-8A-J1r" secondAttribute="trailing" id="SWV-aQ-fZM"/>
+                            <constraint firstAttribute="bottom" secondItem="HXm-Oq-Ae7" secondAttribute="bottom" id="kgL-rI-766"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WGh-8A-J1r"/>
+                    </view>
+                    <connections>
+                        <outlet property="previewView" destination="HXm-Oq-Ae7" id="lq9-A4-BwV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bLP-Mr-0gY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144.92753623188406" y="-569.19642857142856"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="N6X-tQ-hWI">
             <objects>
@@ -45,20 +92,20 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="zFp-Bc-qZE"/>
                                 </constraints>
-                                <state key="normal" title="Run Model"/>
+                                <state key="normal" title="add image"/>
                                 <connections>
-                                    <action selector="runModel:" destination="Peb-jt-ZfH" eventType="touchUpInside" id="pkn-7p-j5x"/>
+                                    <action selector="alertSheet:" destination="Peb-jt-ZfH" eventType="touchUpInside" id="4E3-8T-xmL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIk-nU-UDN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIk-nU-UDN">
                                 <rect key="frame" x="108.5" y="728" width="198" height="52"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="U5U-cP-ckR"/>
                                 </constraints>
-                                <state key="normal" title="OpenCv"/>
+                                <state key="normal" title="Run"/>
                                 <connections>
-                                    <segue destination="6BJ-gP-Tfv" kind="show" identifier="CVViewController" id="8cp-6b-xCp"/>
+                                    <action selector="runModel:" destination="Peb-jt-ZfH" eventType="touchUpInside" id="mbh-Zw-sUg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -88,13 +135,13 @@
         <!--View Controller-->
         <scene sceneID="llO-lq-bm0">
             <objects>
-                <viewController id="6BJ-gP-Tfv" customClass="CVViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CVViewController" id="6BJ-gP-Tfv" customClass="CVViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NT2-Q4-KbU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_5" translatesAutoresizingMaskIntoConstraints="NO" id="Tcr-HC-r5t">
-                                <rect key="frame" x="57" y="108" width="300" height="500"/>
+                                <rect key="frame" x="57" y="64" width="300" height="500"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="E3J-gc-2AN"/>
@@ -102,7 +149,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0u4-0T-DOJ">
-                                <rect key="frame" x="191" y="618" width="32" height="65"/>
+                                <rect key="frame" x="191" y="574" width="32" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="yXS-Fu-2gD"/>
                                 </constraints>
@@ -112,7 +159,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmc-zJ-Oxq">
-                                <rect key="frame" x="74" y="635" width="68" height="31"/>
+                                <rect key="frame" x="74" y="591" width="68" height="31"/>
                                 <state key="normal" title="cut Image"/>
                                 <connections>
                                     <action selector="cutImageClick:" destination="6BJ-gP-Tfv" eventType="touchUpInside" id="ULo-K5-TRr"/>
@@ -146,11 +193,11 @@
             <objects>
                 <viewController id="H4k-sv-4dR" customClass="OCRViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jdf-TA-sfH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1V5-2h-FGk">
-                                <rect key="frame" x="164.5" y="449.5" width="85" height="51"/>
+                                <rect key="frame" x="164.5" y="378.5" width="85" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="K9Q-9z-HKx"/>
                                 </constraints>
@@ -178,6 +225,7 @@
     </scenes>
     <resources>
         <image name="barcode_test_1_orig" width="1920" height="1080"/>
+        <image name="closeButton" width="44" height="44"/>
         <image name="test_5" width="2482" height="3510"/>
     </resources>
 </document>
