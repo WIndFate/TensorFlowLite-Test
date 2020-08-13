@@ -171,6 +171,18 @@ extension UIColor {
   }
 }
 
+extension UIView {
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        // also  set(newValue)
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+}
+
 // MARK: - Constants
 
 private enum Constant {

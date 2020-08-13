@@ -4,4 +4,5 @@
 
 #import "CVViewController.h"
 #import "TZImagePickerController.h"
+#import "KOFinderView.h"
 

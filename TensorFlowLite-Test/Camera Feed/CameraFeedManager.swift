@@ -148,6 +148,34 @@ class CameraFeedManager: NSObject {
     self.isSessionRunning = self.session.isRunning
   }
 
+  func turnOnLight() {
+    
+    guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
+        return
+    }
+    if device.hasTorch && device.isTorchAvailable{
+        
+        try? device.lockForConfiguration()
+        device.torchMode = .on
+        device.unlockForConfiguration()
+
+    }
+  }
+    
+  func turnOffLight() {
+    
+    guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
+        return
+    }
+    if device.hasTorch && device.isTorchAvailable{
+        
+        try? device.lockForConfiguration()
+        device.torchMode = .off
+        device.unlockForConfiguration()
+
+    }
+  }
+
   // MARK: Session Configuration Methods.
   /**
    This method requests for camera permissions and handles the configuration of the session and stores the result of configuration.

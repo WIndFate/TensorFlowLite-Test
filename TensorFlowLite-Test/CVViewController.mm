@@ -32,6 +32,18 @@
 //    [self writeToCsv];
 }
 
++ (NSArray *)findBarCode:(UIImage *)originImage withData:(NSArray *)inputData {
+    
+    UIImage *newImage = [OpenCVManager barCodeWithUIImage:originImage withData:inputData];
+    
+    if (newImage != nil) {
+        NSArray *arr = [NSArray arrayWithObjects:newImage, originImage, nil];
+        return arr;
+    }
+    
+    return nil;
+}
+
 - (IBAction)cutImageClick:(id)sender {
     
     UIImage *image = [OpenCVManager perspectiveWithUIImage:self.oriImage];
@@ -40,6 +52,16 @@
     UIImage * finalImage = [self AddWaterImage:bgImg waterImage:image loactionRect:CGRectMake((bgImg.size.width - image.size.width) / 2, 0, image.size.width, image.size.height)];
     self.imageView.image = [UIImage imageWithCGImage:finalImage.CGImage scale:finalImage.scale orientation:UIImageOrientationLeftMirrored];
     
+}
+
+- (UIImage *)clipImage:(UIImage *)oriImage {
+    
+    UIImage *image = [OpenCVManager perspectiveWithUIImage:oriImage];
+    
+    UIImage *bgImg = [UIImage imageNamed:@"ocr_bgImg_256x32"];
+    UIImage * finalImage = [self AddWaterImage:bgImg waterImage:image loactionRect:CGRectMake((bgImg.size.width - image.size.width) / 2, 0, image.size.width, image.size.height)];
+    
+    return [UIImage imageWithCGImage:finalImage.CGImage scale:finalImage.scale orientation:UIImageOrientationLeftMirrored];
 }
 
 - (UIImage *)AddWaterImage:(UIImage *)originImage waterImage:(UIImage *)waterImage loactionRect:(CGRect)waterRect{
@@ -59,7 +81,7 @@
 
 -(void)writeToCsv:(NSArray *)array {
     
-    NSString *fileNameStr = @"iOS_OAAK8645.csv";
+    NSString *fileNameStr = @"iOS_barcode.csv";
     NSString *DocPath = [NSString stringWithFormat:@"/Users/shijiachen/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];

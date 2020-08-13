@@ -214,10 +214,10 @@ class ModelDataHandler {
     assert(imageChannels >= inputChannels)
 
     // Crops the image to the biggest square in the center and scales it down to model dimensions.
-    let scaledSize = CGSize(width: inputWidth, height: inputHeight)
-    guard let thumbnailPixelBuffer = pixelBuffer.centerThumbnail(ofSize: scaledSize) else {
-      return nil
-    }
+//    let scaledSize = CGSize(width: inputWidth, height: inputHeight)
+//    guard let thumbnailPixelBuffer = pixelBuffer.centerThumbnail(ofSize: scaledSize) else {
+//      return nil
+//    }
 
     let outputTensor: Tensor
     do {
@@ -225,7 +225,7 @@ class ModelDataHandler {
 
       // Remove the alpha component from the image buffer to get the RGB data.
       guard let rgbData = rgbDataFromBuffer(
-        thumbnailPixelBuffer,
+        pixelBuffer,
         byteCount: batchSize * inputWidth * inputHeight * inputChannels,
         isModelQuantized: inputTensor.dataType == .uInt8
       ) else {
@@ -406,7 +406,7 @@ class ModelDataHandler {
     let bytes = Array<UInt8>(unsafeData: byteData)!
     var floats = [Float]()
     for i in 0..<bytes.count {
-        floats.append(Float(bytes[i]) / 255.0)
+        floats.append(Float(bytes[i]) / 1.0)
     }
     
 //    let cls = CVViewController()

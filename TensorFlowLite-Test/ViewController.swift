@@ -46,7 +46,7 @@ class ViewController: UIViewController, TZImagePickerControllerDelegate, UIImage
               fatalError("Model set up failed")
             }
             
-//            self.image = UIImage(named: "48938")?.scaledImage(with: CGSize(width: 512.0, height: 768.0))
+//            self.image = UIImage(named: "37477")?.scaledImage(with: CGSize(width: 512.0, height: 768.0))
             
         }else {
             
@@ -86,32 +86,6 @@ class ViewController: UIViewController, TZImagePickerControllerDelegate, UIImage
         cls.oriImage = self.image!
         cls.array = self.array!
     }
-
-    func pixelBufferToImage(pixelBuffer: CVPixelBuffer) -> UIImage? {
-    //        let type = CVPixelBufferGetPixelFormatType(pixelBuffer)
-            
-            let width = CVPixelBufferGetWidth(pixelBuffer)
-            let height = CVPixelBufferGetHeight(pixelBuffer)
-            let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
-            
-            CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
-            guard let context = CGContext(data: CVPixelBufferGetBaseAddress(pixelBuffer),
-                                          width: width,
-                                          height: height,
-                                          bitsPerComponent: 8,
-                                          bytesPerRow: bytesPerRow,
-                                          space: CGColorSpaceCreateDeviceRGB(),
-                                          bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipFirst.rawValue),
-                let imageRef = context.makeImage() else
-            {
-                    return nil
-            }
-            
-            let newImage = UIImage(cgImage: imageRef)
-            CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
-            
-            return newImage
-        }
     
     func takePhoto() {
     
@@ -265,7 +239,7 @@ class ViewController: UIViewController, TZImagePickerControllerDelegate, UIImage
         let start = CFAbsoluteTimeGetCurrent()
 
 //        let result = modelDataHandler!.runModel(onFrame:CVPixelBuffer.buffer(from: self.image!)!)
-        let result = modelDataHandler!.runModel(withImage: self.image!)
+        let result = modelDataHandler!.runModel(withImage: self.image!.scaledImage(with: CGSize(width: 512.0, height: 768.0))!)
 
         let end = CFAbsoluteTimeGetCurrent()
 

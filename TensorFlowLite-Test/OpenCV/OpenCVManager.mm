@@ -123,6 +123,15 @@
     std::vector<std::vector<cv::Point>> contours;
     cv::findContours(outputMat, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
     
+    if (contours.size() != 1) {
+        return nil;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"tl_x"] != nil) {
+        return nil;
+    }
+    
     for (int i = 0; i < contours.size(); i++) {
         for (int j = 0; j < contours[i].size(); j++) {
             
@@ -196,7 +205,6 @@
             br_y = right1.y;
         }
         
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setFloat:tl_x forKey:@"tl_x"];
         [defaults setFloat:tl_y forKey:@"tl_y"];
         [defaults setFloat:bl_x forKey:@"bl_x"];

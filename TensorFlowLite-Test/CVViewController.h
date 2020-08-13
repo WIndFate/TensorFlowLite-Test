@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface CVViewController : UIViewController
 
 @property(nonatomic, strong) UIImage *image;
@@ -18,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSArray *array;
 
--(void)writeToCsv:(NSArray *)array;
+- (void)writeToCsv:(NSArray *)array;
+
+- (UIImage *)clipImage:(UIImage *)oriImage;
+
++ (NSArray *)findBarCode:(UIImage *)originImage withData:(NSArray *)inputData;
 
 @end
-
-NS_ASSUME_NONNULL_END

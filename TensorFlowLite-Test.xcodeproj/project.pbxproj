@@ -11,10 +11,8 @@
 		165D570224C82C2100A2A66D /* OCRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D570124C82C2100A2A66D /* OCRViewController.swift */; };
 		16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AF752324BC344700C646E1 /* UIKitExtension.swift */; };
 		16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF753624BC58F000C646E1 /* CVViewController.mm */; };
-		16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */; };
 		16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */; };
 		16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754724BDCEF200C646E1 /* OpenCVManager.mm */; };
-		16B6C71F24C53A87005DFF1B /* barcode_model_30.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */; };
 		394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117B24AB4143006F0C19 /* AppDelegate.swift */; };
 		394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117D24AB4143006F0C19 /* SceneDelegate.swift */; };
 		394E118024AB4143006F0C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117F24AB4143006F0C19 /* ViewController.swift */; };
@@ -27,12 +25,12 @@
 		39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452324ADB95F00E425F5 /* CoreMedia.framework */; };
 		B73CD31E7CE9E554A6116E74 /* libPods-TensorFlowLite-Test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 540731C951F2ADCB1533FC28 /* libPods-TensorFlowLite-Test.a */; };
 		CB4234FD24DA54C200030AA5 /* labelsMap.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB4234FC24DA54C200030AA5 /* labelsMap.txt */; };
-		CB42350124DB8CA900030AA5 /* barcode_model_768_512.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB42350024DB8CA900030AA5 /* barcode_model_768_512.tflite */; };
-		CB42350324DBF91000030AA5 /* barcode_model_768_512_shallower.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB42350224DBF91000030AA5 /* barcode_model_768_512_shallower.tflite */; };
 		CB42350724DD23B300030AA5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350524DD23B300030AA5 /* PreviewView.swift */; };
 		CB42350824DD23B300030AA5 /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350624DD23B300030AA5 /* CameraFeedManager.swift */; };
 		CB42350A24DD29C100030AA5 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350924DD29C100030AA5 /* ScanViewController.swift */; };
 		CB42350C24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB42350B24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite */; };
+		CB42351024E386CD00030AA5 /* lite.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB42350F24E386CD00030AA5 /* lite.tflite */; };
+		CB42351624E3D99A00030AA5 /* KOFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB42351424E3D99A00030AA5 /* KOFinderView.m */; };
 		CBD176AF24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */; };
 /* End PBXBuildFile section */
 
@@ -43,12 +41,10 @@
 		16AF752324BC344700C646E1 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		16AF753524BC58F000C646E1 /* CVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVViewController.h; sourceTree = "<group>"; };
 		16AF753624BC58F000C646E1 /* CVViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
-		16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = rental_model_sized_big.tflite; sourceTree = "<group>"; };
 		16AF754424BDCEF200C646E1 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		16AF754624BDCEF200C646E1 /* OpenCVManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVManager.h; sourceTree = "<group>"; };
 		16AF754724BDCEF200C646E1 /* OpenCVManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVManager.mm; sourceTree = "<group>"; };
-		16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = barcode_model_30.tflite; sourceTree = "<group>"; };
 		394E117824AB4143006F0C19 /* TensorFlowLite-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TensorFlowLite-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		394E117B24AB4143006F0C19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		394E117D24AB4143006F0C19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,12 +60,13 @@
 		39D6452324ADB95F00E425F5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		540731C951F2ADCB1533FC28 /* libPods-TensorFlowLite-Test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TensorFlowLite-Test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB4234FC24DA54C200030AA5 /* labelsMap.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labelsMap.txt; sourceTree = "<group>"; };
-		CB42350024DB8CA900030AA5 /* barcode_model_768_512.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = barcode_model_768_512.tflite; sourceTree = "<group>"; };
-		CB42350224DBF91000030AA5 /* barcode_model_768_512_shallower.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = barcode_model_768_512_shallower.tflite; sourceTree = "<group>"; };
 		CB42350524DD23B300030AA5 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		CB42350624DD23B300030AA5 /* CameraFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
 		CB42350924DD29C100030AA5 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		CB42350B24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = barcode_model_768_512_even_shallower.tflite; sourceTree = "<group>"; };
+		CB42350F24E386CD00030AA5 /* lite.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = lite.tflite; sourceTree = "<group>"; };
+		CB42351424E3D99A00030AA5 /* KOFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOFinderView.m; sourceTree = "<group>"; };
+		CB42351524E3D99A00030AA5 /* KOFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOFinderView.h; sourceTree = "<group>"; };
 		CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocr_barcode_model_99_accu.tflite; sourceTree = "<group>"; };
 		E917A2DB3F03AE4575D8E819 /* Pods-TensorFlowLite-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.debug.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.debug.xcconfig"; sourceTree = "<group>"; };
 		F794F9AEA5C12F15924BACC9 /* Pods-TensorFlowLite-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.release.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,12 +127,9 @@
 		394E117A24AB4143006F0C19 /* TensorFlowLite-Test */ = {
 			isa = PBXGroup;
 			children = (
-				16AF754224BD47DE00C646E1 /* rental_model_sized_big.tflite */,
-				16B6C71E24C53A87005DFF1B /* barcode_model_30.tflite */,
 				CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */,
-				CB42350024DB8CA900030AA5 /* barcode_model_768_512.tflite */,
-				CB42350224DBF91000030AA5 /* barcode_model_768_512_shallower.tflite */,
 				CB42350B24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite */,
+				CB42350F24E386CD00030AA5 /* lite.tflite */,
 				CB4234FC24DA54C200030AA5 /* labelsMap.txt */,
 				16AF753824BC5C4700C646E1 /* OpenCV */,
 				39D6451624AB428D00E425F5 /* ModelDataHandler */,
@@ -191,6 +185,8 @@
 			children = (
 				CB42350524DD23B300030AA5 /* PreviewView.swift */,
 				CB42350624DD23B300030AA5 /* CameraFeedManager.swift */,
+				CB42351524E3D99A00030AA5 /* KOFinderView.h */,
+				CB42351424E3D99A00030AA5 /* KOFinderView.m */,
 			);
 			path = "Camera Feed";
 			sourceTree = "<group>";
@@ -256,16 +252,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16B6C71F24C53A87005DFF1B /* barcode_model_30.tflite in Resources */,
 				CB42350C24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite in Resources */,
 				394E118824AB4143006F0C19 /* LaunchScreen.storyboard in Resources */,
 				394E118524AB4143006F0C19 /* Assets.xcassets in Resources */,
 				CBD176AF24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite in Resources */,
+				CB42351024E386CD00030AA5 /* lite.tflite in Resources */,
 				CB4234FD24DA54C200030AA5 /* labelsMap.txt in Resources */,
-				CB42350124DB8CA900030AA5 /* barcode_model_768_512.tflite in Resources */,
 				394E118324AB4143006F0C19 /* Main.storyboard in Resources */,
-				16AF754324BD47DF00C646E1 /* rental_model_sized_big.tflite in Resources */,
-				CB42350324DBF91000030AA5 /* barcode_model_768_512_shallower.tflite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +324,7 @@
 				394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */,
 				165D56FA24C586C400A2A66D /* Define.swift in Sources */,
 				CB42350824DD23B300030AA5 /* CameraFeedManager.swift in Sources */,
+				CB42351624E3D99A00030AA5 /* KOFinderView.m in Sources */,
 				16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

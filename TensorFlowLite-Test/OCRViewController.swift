@@ -18,7 +18,7 @@ class OCRViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         guard modelDataHandler != nil else {
           fatalError("Model set up failed")
         }
@@ -50,6 +50,12 @@ class OCRViewController: UIViewController {
 //        let cls = CVViewController()
 //        cls.write(toCsv: result!.dataResult)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
     }
     
 

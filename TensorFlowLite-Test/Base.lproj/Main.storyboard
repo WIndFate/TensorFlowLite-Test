@@ -31,38 +31,121 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SId-Js-Rdg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXm-Oq-Ae7" customClass="PreviewView" customModule="TensorFlowLite_Test" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVZ-UJ-W44">
+                                <rect key="frame" x="30" y="74" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="6oo-ZQ-Pqb"/>
+                                    <constraint firstAttribute="height" constant="44" id="bDa-oa-zTs"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="closeButton"/>
+                                <connections>
+                                    <action selector="closeAction:" destination="WTL-pq-lW4" eventType="touchUpInside" id="4NA-Xm-0KL"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-vF-4N9">
+                                <rect key="frame" x="0.0" y="896" width="414" height="200"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVZ-UJ-W44">
-                                        <rect key="frame" x="40" y="80" width="44" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFJ-dc-wZD">
+                                        <rect key="frame" x="25" y="106" width="364" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="4m9-NZ-LHc"/>
-                                            <constraint firstAttribute="height" constant="44" id="Knb-RW-sSW"/>
+                                            <constraint firstAttribute="height" constant="48" id="ZnZ-5E-1qX"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="closeButton"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="リスキャン"/>
                                         <connections>
-                                            <action selector="closeAction:" destination="WTL-pq-lW4" eventType="touchUpInside" id="4NA-Xm-0KL"/>
+                                            <action selector="rescan:" destination="WTL-pq-lW4" eventType="touchUpInside" id="QDk-IC-RXu"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zc-y9-MUE">
+                                        <rect key="frame" x="25" y="53" width="364" height="48"/>
+                                        <color key="backgroundColor" red="0.36862745098039218" green="0.74901960784313726" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="qBZ-aZ-Of2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="確定">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="confirm:" destination="WTL-pq-lW4" eventType="touchUpInside" id="Ytm-Uh-uJV"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="イメージを確認してください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFN-Rc-DdF">
+                                        <rect key="frame" x="8" y="20" width="398" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="eVZ-UJ-W44" firstAttribute="top" secondItem="HXm-Oq-Ae7" secondAttribute="top" constant="80" id="cHU-RK-zbL"/>
-                                    <constraint firstItem="eVZ-UJ-W44" firstAttribute="leading" secondItem="HXm-Oq-Ae7" secondAttribute="leading" constant="40" id="sZb-LV-8yj"/>
+                                    <constraint firstAttribute="trailing" secondItem="0zc-y9-MUE" secondAttribute="trailing" constant="25" id="5Rv-fa-nvn"/>
+                                    <constraint firstItem="0zc-y9-MUE" firstAttribute="top" secondItem="zFN-Rc-DdF" secondAttribute="bottom" constant="15" id="6Y2-7C-c2o"/>
+                                    <constraint firstItem="zFN-Rc-DdF" firstAttribute="leading" secondItem="eFM-vF-4N9" secondAttribute="leading" constant="8" id="Fjb-En-gpQ"/>
+                                    <constraint firstItem="jFJ-dc-wZD" firstAttribute="leading" secondItem="eFM-vF-4N9" secondAttribute="leading" constant="25" id="RcZ-Jj-784"/>
+                                    <constraint firstItem="zFN-Rc-DdF" firstAttribute="top" secondItem="eFM-vF-4N9" secondAttribute="top" constant="20" id="Vgc-Kv-mkD"/>
+                                    <constraint firstItem="jFJ-dc-wZD" firstAttribute="top" secondItem="0zc-y9-MUE" secondAttribute="bottom" constant="5" id="YvS-Ea-v3e"/>
+                                    <constraint firstAttribute="trailing" secondItem="zFN-Rc-DdF" secondAttribute="trailing" constant="8" id="Yw8-OO-Huv"/>
+                                    <constraint firstAttribute="height" constant="200" id="u9Z-ue-hPf"/>
+                                    <constraint firstAttribute="trailing" secondItem="jFJ-dc-wZD" secondAttribute="trailing" constant="25" id="uca-we-XcM"/>
+                                    <constraint firstItem="0zc-y9-MUE" firstAttribute="leading" secondItem="eFM-vF-4N9" secondAttribute="leading" constant="25" id="uia-CI-eB0"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z53-VZ-xCZ">
+                                <rect key="frame" x="340" y="74" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="iAX-wP-rxZ"/>
+                                    <constraint firstAttribute="width" constant="44" id="sVg-JH-PiI"/>
+                                </constraints>
+                                <state key="normal" image="shoudiantong_guan"/>
+                                <state key="selected" image="shoudiantong_kai"/>
+                                <connections>
+                                    <action selector="lightAction:" destination="WTL-pq-lW4" eventType="touchUpInside" id="ER9-oQ-euz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="eFM-vF-4N9" firstAttribute="leading" secondItem="WGh-8A-J1r" secondAttribute="leading" id="23m-f3-gje"/>
+                            <constraint firstItem="eVZ-UJ-W44" firstAttribute="top" secondItem="WGh-8A-J1r" secondAttribute="top" constant="30" id="3ft-iq-T0v"/>
                             <constraint firstItem="HXm-Oq-Ae7" firstAttribute="top" secondItem="Rk3-Zx-WPx" secondAttribute="top" id="AYP-iY-klo"/>
                             <constraint firstItem="HXm-Oq-Ae7" firstAttribute="leading" secondItem="WGh-8A-J1r" secondAttribute="leading" id="FaZ-WG-dQ4"/>
+                            <constraint firstAttribute="bottom" secondItem="SId-Js-Rdg" secondAttribute="bottom" id="KG8-r8-QJ7"/>
+                            <constraint firstItem="eVZ-UJ-W44" firstAttribute="leading" secondItem="WGh-8A-J1r" secondAttribute="leading" constant="30" id="Phu-ad-DzT"/>
                             <constraint firstItem="HXm-Oq-Ae7" firstAttribute="trailing" secondItem="WGh-8A-J1r" secondAttribute="trailing" id="SWV-aQ-fZM"/>
+                            <constraint firstItem="SId-Js-Rdg" firstAttribute="top" secondItem="Rk3-Zx-WPx" secondAttribute="top" id="VcU-Yh-rph"/>
+                            <constraint firstItem="SId-Js-Rdg" firstAttribute="leading" secondItem="WGh-8A-J1r" secondAttribute="leading" id="Vgy-AK-hCQ"/>
+                            <constraint firstItem="WGh-8A-J1r" firstAttribute="trailing" secondItem="z53-VZ-xCZ" secondAttribute="trailing" constant="30" id="aSd-Kb-qHX"/>
+                            <constraint firstAttribute="bottom" secondItem="eFM-vF-4N9" secondAttribute="bottom" constant="-200" id="chG-7x-jRw"/>
                             <constraint firstAttribute="bottom" secondItem="HXm-Oq-Ae7" secondAttribute="bottom" id="kgL-rI-766"/>
+                            <constraint firstItem="eFM-vF-4N9" firstAttribute="trailing" secondItem="WGh-8A-J1r" secondAttribute="trailing" id="mFc-ZO-vi3"/>
+                            <constraint firstItem="z53-VZ-xCZ" firstAttribute="top" secondItem="WGh-8A-J1r" secondAttribute="top" constant="30" id="nR3-q6-eKI"/>
+                            <constraint firstItem="SId-Js-Rdg" firstAttribute="trailing" secondItem="WGh-8A-J1r" secondAttribute="trailing" id="tfO-mC-iRD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WGh-8A-J1r"/>
                     </view>
                     <connections>
+                        <outlet property="bottomViewY" destination="chG-7x-jRw" id="THX-Qa-L4s"/>
+                        <outlet property="closeBtn" destination="eVZ-UJ-W44" id="o2N-Lh-Zlb"/>
+                        <outlet property="finalImageView" destination="SId-Js-Rdg" id="Fr7-QH-095"/>
+                        <outlet property="lightBtn" destination="z53-VZ-xCZ" id="Hc3-KE-LZV"/>
                         <outlet property="previewView" destination="HXm-Oq-Ae7" id="lq9-A4-BwV"/>
                     </connections>
                 </viewController>
@@ -191,7 +274,7 @@
         <!--View Controller-->
         <scene sceneID="2xz-oQ-59G">
             <objects>
-                <viewController id="H4k-sv-4dR" customClass="OCRViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OCRViewController" id="H4k-sv-4dR" customClass="OCRViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jdf-TA-sfH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -226,6 +309,8 @@
     <resources>
         <image name="barcode_test_1_orig" width="1920" height="1080"/>
         <image name="closeButton" width="44" height="44"/>
+        <image name="shoudiantong_guan" width="32" height="32"/>
+        <image name="shoudiantong_kai" width="32" height="32"/>
         <image name="test_5" width="2482" height="3510"/>
     </resources>
 </document>
