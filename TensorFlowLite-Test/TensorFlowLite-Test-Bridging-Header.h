@@ -5,4 +5,7 @@
 #import "CVViewController.h"
 #import "TZImagePickerController.h"
 #import "KOFinderView.h"
+#import "ZFAVPlayerManager.h"
+#import "ZFPlayerControlView.h"
+#import "ZFUtilities.h"
 

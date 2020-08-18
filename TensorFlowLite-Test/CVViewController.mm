@@ -81,7 +81,7 @@
 
 -(void)writeToCsv:(NSArray *)array {
     
-    NSString *fileNameStr = @"iOS_barcode.csv";
+    NSString *fileNameStr = @"iOS_car.csv";
     NSString *DocPath = [NSString stringWithFormat:@"/Users/shijiachen/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];
@@ -96,6 +96,16 @@
     NSData *data = [csvString dataUsingEncoding:NSUTF8StringEncoding];
     [data writeToFile:DocPath atomically:YES];
 }
+
+- (void)saveImage:(UIImage *)image {
+    
+    BOOL result =[UIImagePNGRepresentation(image)writeToFile:@"/Users/shijiachen/Desktop/test123.png"   atomically:YES]; // 保存成功会返回YES
+    if (result == YES) {
+        NSLog(@"保存成功");
+    }
+}
+
+
 
 //-(void)stretchableImage:(UIImage *)image {
 //

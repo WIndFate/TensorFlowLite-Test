@@ -123,9 +123,9 @@
     std::vector<std::vector<cv::Point>> contours;
     cv::findContours(outputMat, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
     
-    if (contours.size() != 1) {
-        return nil;
-    }
+//    if (contours.size() != 1) {
+//        return nil;
+//    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"tl_x"] != nil) {

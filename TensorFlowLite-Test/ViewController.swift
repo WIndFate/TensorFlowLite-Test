@@ -295,7 +295,7 @@ extension UIImage {
 
     public func imageRotatedByDegrees(degrees: CGFloat) -> UIImage {
         
-        let scaleRate = 66 / self.size.height
+        let scaleRate : CGFloat = 1.0
         
         let rotatedSize: CGSize = CGRect(x: 0, y: 0, width: self.size.height * scaleRate, height: self.size.width * scaleRate).size
 

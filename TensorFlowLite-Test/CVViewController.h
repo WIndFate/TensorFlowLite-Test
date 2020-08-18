@@ -18,6 +18,8 @@
 
 - (void)writeToCsv:(NSArray *)array;
 
+- (void)saveImage:(UIImage *)image;
+
 - (UIImage *)clipImage:(UIImage *)oriImage;
 
 + (NSArray *)findBarCode:(UIImage *)originImage withData:(NSArray *)inputData;

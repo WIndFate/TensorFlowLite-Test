@@ -38,6 +38,8 @@ enum MobileNet {
     static let barCodeModelInfo: FileInfo = (name: "barcode_model_768_512_even_shallower", extension: "tflite")
     static let ocrModelInfo: FileInfo = (name: "ocr_barcode_model_99_accu", extension: "tflite")
     static let labelsInfo: FileInfo = (name: "labelsMap", extension: "txt")
+    static let topNumberModelInfo: FileInfo = (name: "plate_number_top_768_512", extension: "tflite")
+    static let bottomNumberModelInfo: FileInfo = (name: "plate_number_bottom_768_512", extension: "tflite")
 }
 
 /// This class handles all data preprocessing and makes calls to run inference on a given frame
@@ -81,7 +83,7 @@ class ModelDataHandler {
     
     modelFilename = modelFileInfo.name
     
-    if modelFilename == "barcode_model_768_512_even_shallower" {
+    if modelFilename == "barcode_model_768_512_even_shallower" || modelFilename == "plate_number_top_768_512" || modelFilename == "plate_number_bottom_768_512"{
         
         self.batchSize = 1
         self.inputChannels = 3

@@ -8,4 +8,7 @@ target 'TensorFlowLite-Test' do
   # Pods for TensorFlowLite-Test
    pod 'TensorFlowLiteSwift'
    pod 'TZImagePickerController'
+   pod 'ZFPlayer'
+   pod 'ZFPlayer/ControlView'
+   pod 'ZFPlayer/AVPlayer'
 end
