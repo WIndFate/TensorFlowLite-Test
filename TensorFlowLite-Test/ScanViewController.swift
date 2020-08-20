@@ -18,6 +18,8 @@ class ScanViewController: UIViewController {
     
     var timer = Timer()
     var oriImage = UIImage()
+    var allRects : [Any] = []
+    var currentRect : [Any] = []
     let finderViewRect = CGRect(x: 30, y: 150, width: SCREEN_WIDTH - 60, height: 400)
     let scanLineImageViewOriginalFrame = CGRect(x: 30, y: 150, width: SCREEN_WIDTH - 60, height: 10)
     lazy var scanView = KOFinderView(frame: finderViewRect)
@@ -140,15 +142,14 @@ class ScanViewController: UIViewController {
     @IBAction func confirm(_ sender: Any) {
         
         let cls = CVViewController()
-        let image = cls.clipImage(oriImage)
-        clearAllUserDefaultsData()
-        
+        let image = cls.clipImage(oriImage, bgImageSize: "256x32", withCurrentRects: (currentRect.first as! [Any]))
+
         guard let ocrClass = self.storyboard?.instantiateViewController(withIdentifier: String(describing: type(of: OCRViewController()))) as! OCRViewController? else {
-            
+
             return
         }
          ocrClass.image = image
-        
+
         self.navigationController?.pushViewController(ocrClass, animated: true)
     }
     @IBAction func lightAction(_ sender: Any) {
@@ -167,37 +168,50 @@ extension ScanViewController: CameraFeedManagerDelegate {
 
   func didOutput(pixelBuffer: CVPixelBuffer) {
     
+    allRects.removeAll()
     let resizeBuffer = pixelBuffer.resized(to: CGSize(width: 512.0, height: 768.0))
     let result = modelDataHandler!.runModel(withBuffer: resizeBuffer!)
     let image = self.pixelBufferToImage(pixelBuffer: resizeBuffer!)
 //    let cutImage = self.clipWithImageRect(clipFrame: finderViewRect, bgImage: image!).scaledImage(with: CGSize(width: 512.0, height: 768.0))
 //    let result = modelDataHandler!.runModel(withImage: cutImage!)
 
-    DispatchQueue.main.async {
-        guard let imageArr = CVViewController.findBarCode(image!, withData: result!.dataResult) else {
+    guard let rect = CVViewController.findRects(image, withData: result!.dataResult) else {
 
-            print("no result")
-            return;
-        }
+        print("no result")
+        return
+    }
+    
+    if rect.count != 1 {
         
-        if imageArr.count == 0 {
-            
-            print("imageArr count = 0")
-            return;
-        }
-        
-        let cutImage = imageArr.first as! UIImage
-        self.oriImage = imageArr.last as! UIImage
+        print("rect count != 1")
+        return
+    }
+    
+    rect.forEach { allRects.append($0)}
+    
+    guard let finalImageArr = CVViewController.drawBox(image, withRects: allRects) else {
+
+        print("no finalImage")
+        return
+    }
+    
+    let finalImage = finalImageArr.first as! UIImage
+    currentRect = finalImageArr[1] as! [Any]
+    self.oriImage = finalImageArr.last as! UIImage
+    
+    DispatchQueue.main.async {
         
         if self.finalImageView.image != nil {
             return;
         }
-        self.finalImageView.image = cutImage.scaledImage(with: CGSize(width: 1080.0, height: 1920.0))
+        
+        self.finalImageView.image = finalImage.scaledImage(with: CGSize(width: 1080.0, height: 1920.0))
+
         self.lightBtn.isSelected = false
         self.cameraFeedManager.turnOffLight()
         self.cameraFeedManager.stopSession()
-//        self.scanView.removeFromSuperview()
-//        self.backgroundView.removeFromSuperview()
+    //        self.scanView.removeFromSuperview()
+    //        self.backgroundView.removeFromSuperview()
         self.previewView.isHidden = true
         self.scanLineImageView.isHidden = true
         self.timer.invalidate()

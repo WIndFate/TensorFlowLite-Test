@@ -13,7 +13,8 @@
 @interface OpenCVManager : NSObject
 
 + (UIImage *)correctWithUIImage:(UIImage *)image withData:(NSArray *)inputData; // 图像纠偏
-+ (UIImage *)barCodeWithUIImage:(UIImage *)image withData:(NSArray *)inputData;
-+ (UIImage *)perspectiveWithUIImage:(UIImage *)image;
++ (NSArray *)findBarCodeRectWithData:(NSArray *)inputData withImageHeight:(float)height;
++ (UIImage *)drawContours:(UIImage *)image withRects:(NSArray *)rectsArr;
++ (UIImage *)perspectiveWithUIImage:(UIImage *)image withRects:(NSArray *)rects;
 
 @end

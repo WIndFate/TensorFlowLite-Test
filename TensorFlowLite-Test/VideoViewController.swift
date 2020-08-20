@@ -15,6 +15,8 @@ class VideoViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     var player = ZFPlayerController()
     var assetURLs : [URL] = []
+    var allRects : [Any] = []
+    var oriImage : UIImage?
     lazy var controlView : ZFPlayerControlView = {
         
         let controlView = ZFPlayerControlView()
@@ -98,6 +100,27 @@ class VideoViewController: UIViewController {
         return .portrait;
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard segue.identifier == "PlateNumberDetailsViewController" else {
+            return
+        }
+        
+        if oriImage == nil {
+            return
+        }
+        
+        let opencvCls = CVViewController()
+        let cutImage = opencvCls.clipImage(oriImage, bgImageSize: "160x32", withCurrentRects: (allRects.first as! [Any]))
+        
+        let cls = segue.destination as! PlateNumberDetailsViewController
+        
+        cls.image = cutImage
+        
+//        let test = CVViewController()
+//        test.saveImage(cls.image)
+    }
+    
     func clearAllUserDefaultsData() {
         
         let userDefaults = UserDefaults.standard
@@ -109,9 +132,7 @@ class VideoViewController: UIViewController {
         userDefaults.synchronize()
     }
     
-    func getOpencvResultImage(image : UIImage, isTopModel : Bool) -> UIImage? {
-        
-        clearAllUserDefaultsData()
+    func getBoxRectsResult(image : UIImage, isTopModel : Bool) {
         
         let start = CFAbsoluteTimeGetCurrent()
 
@@ -126,21 +147,20 @@ class VideoViewController: UIViewController {
 
         print("barCode time  == \(end - start)")
         
-        guard let imageArr = CVViewController.findBarCode(image, withData: result!.dataResult) else {
+        guard let rect = CVViewController.findRects(image, withData: result!.dataResult) else {
 
             print("no result")
-            return nil;
+            return
         }
         
-        if imageArr.count == 0 {
+        if rect.count == 0 {
             
-            print("imageArr count = 0")
-            return nil;
+            print("rect count = 0")
+            return
         }
         
-        let cutImage = imageArr.first as! UIImage
+        rect.forEach { allRects.append($0)}
         
-        return cutImage
     }
     
     @IBAction func playClick(_ sender: Any) {
@@ -151,29 +171,30 @@ class VideoViewController: UIViewController {
     
     @IBAction func findRectangle(_ sender: Any) {
         
+        allRects.removeAll()
+        imageView.image = nil
+        oriImage = nil
         //是否处理图片时暂停视频
-//        player.isPauseByEvent = true
+        player.isPauseByEvent = true
         player.currentPlayerManager.thumbnailImage?(atCurrentTime: { (image : UIImage) in
             
             DispatchQueue.main.async {
-                
                 //视频一帧原图
                 let showImge = image.imageRotatedByDegrees(degrees: 90.0).scaledImage(with: CGSize(width: 512.0, height: 768.0))!
-                
+                self.oriImage = showImge
                 //top model result
-                guard let topResultImage = self.getOpencvResultImage(image: showImge, isTopModel: true) else {
-
-                    print("top no result")
-                    return
-                }
+                self.getBoxRectsResult(image: showImge, isTopModel: true)
                 
                 //bottom model result
-                guard let bottomResultImage = self.getOpencvResultImage(image: topResultImage, isTopModel: false) else {
+                self.getBoxRectsResult(image: showImge, isTopModel: false)
+                
+                guard let finalImageArr = CVViewController.drawBox(showImge, withRects: self.allRects) else {
 
-                    print("bottom no result")
+                    print("no finalImage")
                     return
                 }
-                self.imageView.image = bottomResultImage
+                
+                self.imageView.image = (finalImageArr.first as! UIImage)
 
             }
         })

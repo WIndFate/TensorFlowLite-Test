@@ -87,12 +87,10 @@
     return [UIImage imageWithCVMat:orig_img];
 }
 
-
-+ (UIImage *)barCodeWithUIImage:(UIImage *)image withData:(NSArray *)inputData {
++ (NSArray *)findBarCodeRectWithData:(NSArray *)inputData withImageHeight:(float)height {
     cv::Mat inputMat;
     cv::Mat outputMat;
     cv::Mat tmp;
-    cv::Mat orig_img;
     cv::Mat box;
     double threshold = 0.8;
     double threshold_level = int(255*threshold);
@@ -108,9 +106,7 @@
     
     inputMat = ProcessOutputWithFloatModel(inputData);
     
-    orig_img = [image cvMatImage];
-    
-    double grid_size = image.size.height / inputMat.rows;
+    double grid_size = height / inputMat.rows;
     
     cv::threshold(inputMat, tmp, threshold_level, 255, CV_THRESH_BINARY);
     outputMat = tmp;
@@ -127,11 +123,6 @@
 //        return nil;
 //    }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"tl_x"] != nil) {
-        return nil;
-    }
-    
     for (int i = 0; i < contours.size(); i++) {
         for (int j = 0; j < contours[i].size(); j++) {
             
@@ -139,6 +130,8 @@
             contours[i][j].y = contours[i][j].y * grid_size;
         }
     }
+    
+    NSMutableArray *boxArray = [NSMutableArray array];
     
     for (int i = 0; i < contours.size(); i++) {
         
@@ -205,37 +198,52 @@
             br_y = right1.y;
         }
         
-        [defaults setFloat:tl_x forKey:@"tl_x"];
-        [defaults setFloat:tl_y forKey:@"tl_y"];
-        [defaults setFloat:bl_x forKey:@"bl_x"];
-        [defaults setFloat:bl_y forKey:@"bl_y"];
-        [defaults setFloat:tr_x forKey:@"tr_x"];
-        [defaults setFloat:tr_y forKey:@"tr_y"];
-        [defaults setFloat:br_x forKey:@"br_x"];
-        [defaults setFloat:br_y forKey:@"br_y"];
-        
         std::cout << box.size() << std::endl;
         std::cout << "boxPts " << std::endl << " " << box << std::endl;
         
-        std::vector<cv::Point> vList;
-        vList.push_back(cv::Point(tl_x, tl_y));// 点0
-        vList.push_back(cv::Point(tr_x, tr_y));// 点1
-        vList.push_back(cv::Point(br_x, br_y));// 点2
-        vList.push_back(cv::Point(bl_x, bl_y));// 点3
+        NSValue *tlValue = [NSValue valueWithCGPoint:CGPointMake(tl_x, tl_y)];
+        NSValue *trValue = [NSValue valueWithCGPoint:CGPointMake(tr_x, tr_y)];
+        NSValue *brValue = [NSValue valueWithCGPoint:CGPointMake(br_x, br_y)];
+        NSValue *blValue = [NSValue valueWithCGPoint:CGPointMake(bl_x, bl_y)];
         
-        cv::polylines(orig_img, vList, true, cv::Scalar(0,0,255), 2);
+        NSArray *pointArray = [NSArray arrayWithObjects:tlValue, trValue, brValue, blValue, nil];
+        [boxArray addObject:pointArray];
     }
     
 //    cv::rectangle(orig_img,cvPoint(cutRect.origin.x,cutRect.origin.y),cvPoint(cutRect.origin.x + cutRect.size.width , cutRect.origin.y + cutRect.size.height),cv::Scalar(0,0,255), 2);
 //    cv::drawContours(orig_img, contours, 0, cv::Scalar(0,0,255), 2);
     
     
-    return [UIImage imageWithCVMat:orig_img];
+    return boxArray;
     
 //    return [self imageRotatedByDegrees:90 withImage:[self tailoringImage:image Area:cutRect]];
 }
 
-+ (UIImage *)perspectiveWithUIImage:(UIImage *)image {
++ (UIImage *)drawContours:(UIImage *)image withRects:(NSArray *)rectsArr {
+    cv::Mat orig_img;
+    
+    orig_img = [image cvMatImage];
+    
+    for (NSArray *box in rectsArr) {
+        
+        CGPoint tl = [box[0] CGPointValue];
+        CGPoint tr = [box[1] CGPointValue];
+        CGPoint br = [box[2] CGPointValue];
+        CGPoint bl = [box[3] CGPointValue];
+        
+        std::vector<cv::Point> vList;
+        vList.push_back(cv::Point(tl.x, tl.y));// 点0
+        vList.push_back(cv::Point(tr.x, tr.y));// 点1
+        vList.push_back(cv::Point(br.x, br.y));// 点2
+        vList.push_back(cv::Point(bl.x, bl.y));// 点3
+        
+        cv::polylines(orig_img, vList, true, cv::Scalar(0,0,255), 2);
+    }
+    
+    return [UIImage imageWithCVMat:orig_img];
+}
+
++ (UIImage *)perspectiveWithUIImage:(UIImage *)image withRects:(NSArray *)rects {
     
     cv::Mat inputMat;
     cv::Mat outputMat;
@@ -243,28 +251,22 @@
     
     inputMat = [image cvMatImage];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    float tl_x = [[defaults objectForKey:@"tl_x"] floatValue];
-    float tl_y = [[defaults objectForKey:@"tl_y"] floatValue];
-    float bl_x = [[defaults objectForKey:@"bl_x"] floatValue];
-    float bl_y = [[defaults objectForKey:@"bl_y"] floatValue];
-    float tr_x = [[defaults objectForKey:@"tr_x"] floatValue];
-    float tr_y = [[defaults objectForKey:@"tr_y"] floatValue];
-    float br_x = [[defaults objectForKey:@"br_x"] floatValue];
-    float br_y = [[defaults objectForKey:@"br_y"] floatValue];
+    CGPoint tl = [rects[0] CGPointValue];
+    CGPoint tr = [rects[1] CGPointValue];
+    CGPoint br = [rects[2] CGPointValue];
+    CGPoint bl = [rects[3] CGPointValue];
     
     cv::Point2f src[4], dst[4];
-    src[0].x = tl_x;
-    src[0].y = tl_y;
-    src[1].x = tr_x;
-    src[1].y = tr_y;
-    src[2].x = br_x;
-    src[2].y = br_y;
-    src[3].x = bl_x;
-    src[3].y = bl_y;
+    src[0].x = tl.x;
+    src[0].y = tl.y;
+    src[1].x = tr.x;
+    src[1].y = tr.y;
+    src[2].x = br.x;
+    src[2].y = br.y;
+    src[3].x = bl.x;
+    src[3].y = bl.y;
 
-    if ((tr_x - tl_x) > (bl_y - tl_y)) {
+    if ((tr.x - tl.x) > (bl.y - tl.y)) {
         
         dst[0].x = 0;
         dst[0].y = 0;

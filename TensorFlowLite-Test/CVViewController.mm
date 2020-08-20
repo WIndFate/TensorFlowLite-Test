@@ -14,17 +14,34 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property(nonatomic, strong) NSMutableArray *allRects;
+
 @end
 
 @implementation CVViewController
+
+-(NSMutableArray *)allRects{
+    
+    if (!_allRects) {
+        
+        _allRects = [NSMutableArray array];
+    }
+    return _allRects;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
     if (BarCodeModel) {
-        self.imageView.image = [OpenCVManager barCodeWithUIImage:self.image withData:self.array];
         
+        NSArray *rects = [OpenCVManager findBarCodeRectWithData:self.array withImageHeight:self.image.size.height];
+        for (NSArray *rect in rects) {
+            [self.allRects addObject:rect];
+        }
+        
+        self.imageView.image = [OpenCVManager drawContours:self.image withRects:self.allRects];
+
     } else {
         self.imageView.image = [OpenCVManager correctWithUIImage:self.image withData:self.array];
     }
@@ -32,12 +49,31 @@
 //    [self writeToCsv];
 }
 
-+ (NSArray *)findBarCode:(UIImage *)originImage withData:(NSArray *)inputData {
+//+ (NSArray *)findBarCode:(UIImage *)originImage withData:(NSArray *)inputData {
+//    
+//    UIImage *newImage = [OpenCVManager barCodeWithUIImage:originImage withData:inputData];
+//    
+//    if (newImage != nil) {
+//        NSArray *arr = [NSArray arrayWithObjects:newImage, originImage, nil];
+//        return arr;
+//    }
+//    
+//    return nil;
+//}
+
++ (NSArray *)findRects:(UIImage *)originImage withData:(NSArray *)inputData {
     
-    UIImage *newImage = [OpenCVManager barCodeWithUIImage:originImage withData:inputData];
+    NSArray *rectArr = [OpenCVManager findBarCodeRectWithData:inputData withImageHeight:originImage.size.height];
     
-    if (newImage != nil) {
-        NSArray *arr = [NSArray arrayWithObjects:newImage, originImage, nil];
+    return rectArr;
+}
+
++ (NSArray *)drawBox:(UIImage *)originImage withRects:(NSArray *)rects {
+    
+    UIImage *finalImage = [OpenCVManager drawContours:originImage withRects:rects];
+    
+    if (finalImage != nil) {
+        NSArray *arr = [NSArray arrayWithObjects:finalImage, rects, originImage, nil];
         return arr;
     }
     
@@ -46,7 +82,7 @@
 
 - (IBAction)cutImageClick:(id)sender {
     
-    UIImage *image = [OpenCVManager perspectiveWithUIImage:self.oriImage];
+    UIImage *image = [OpenCVManager perspectiveWithUIImage:self.oriImage withRects:[self.allRects firstObject]];
     
     UIImage *bgImg = [UIImage imageNamed:@"ocr_bgImg_256x32"];
     UIImage * finalImage = [self AddWaterImage:bgImg waterImage:image loactionRect:CGRectMake((bgImg.size.width - image.size.width) / 2, 0, image.size.width, image.size.height)];
@@ -54,11 +90,11 @@
     
 }
 
-- (UIImage *)clipImage:(UIImage *)oriImage {
+- (UIImage *)clipImage:(UIImage *)oriImage BgImageSize:(NSString *)sizeString withCurrentRects:(NSArray *)rects {
     
-    UIImage *image = [OpenCVManager perspectiveWithUIImage:oriImage];
+    UIImage *image = [OpenCVManager perspectiveWithUIImage:oriImage withRects:rects];
     
-    UIImage *bgImg = [UIImage imageNamed:@"ocr_bgImg_256x32"];
+    UIImage *bgImg = [UIImage imageNamed:[NSString stringWithFormat:@"ocr_bgImg_%@",sizeString]];
     UIImage * finalImage = [self AddWaterImage:bgImg waterImage:image loactionRect:CGRectMake((bgImg.size.width - image.size.width) / 2, 0, image.size.width, image.size.height)];
     
     return [UIImage imageWithCGImage:finalImage.CGImage scale:finalImage.scale orientation:UIImageOrientationLeftMirrored];
@@ -81,13 +117,13 @@
 
 -(void)writeToCsv:(NSArray *)array {
     
-    NSString *fileNameStr = @"iOS_car.csv";
+    NSString *fileNameStr = @"iOS_carOcr.csv";
     NSString *DocPath = [NSString stringWithFormat:@"/Users/shijiachen/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];
     for (int i = 0; i< array.count; i ++) {
         
-        if ((i%128) == 0 && i != 0) {
+        if ((i%15) == 0 && i != 0) {
             [csvString appendString:@"\n"];
         }
         [csvString appendFormat:@"%@,",array[i]];
@@ -99,7 +135,7 @@
 
 - (void)saveImage:(UIImage *)image {
     
-    BOOL result =[UIImagePNGRepresentation(image)writeToFile:@"/Users/shijiachen/Desktop/test123.png"   atomically:YES]; // 保存成功会返回YES
+    BOOL result =[UIImagePNGRepresentation(image)writeToFile:@"/Users/shijiachen/Desktop/ocr_oriImage.png"   atomically:YES]; // 保存成功会返回YES
     if (result == YES) {
         NSLog(@"保存成功");
     }

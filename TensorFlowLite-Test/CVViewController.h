@@ -20,8 +20,12 @@
 
 - (void)saveImage:(UIImage *)image;
 
-- (UIImage *)clipImage:(UIImage *)oriImage;
+- (UIImage *)clipImage:(UIImage *)oriImage BgImageSize:(NSString *)sizeString withCurrentRects:(NSArray *)rects;
 
-+ (NSArray *)findBarCode:(UIImage *)originImage withData:(NSArray *)inputData;
+//+ (NSArray *)findBarCode:(UIImage *)originImage withData:(NSArray *)inputData;
+
++ (NSArray *)findRects:(UIImage *)originImage withData:(NSArray *)inputData;
+
++ (NSArray *)drawBox:(UIImage *)originImage withRects:(NSArray *)rects;
 
 @end

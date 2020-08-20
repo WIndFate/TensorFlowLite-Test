@@ -38,6 +38,8 @@ enum MobileNet {
     static let barCodeModelInfo: FileInfo = (name: "barcode_model_768_512_even_shallower", extension: "tflite")
     static let ocrModelInfo: FileInfo = (name: "ocr_barcode_model_99_accu", extension: "tflite")
     static let labelsInfo: FileInfo = (name: "labelsMap", extension: "txt")
+    static let plateNumberOcrModelInfo: FileInfo = (name: "plate_number_ocr_model_input_sized", extension: "tflite")
+    static let plateNumberLabelsInfo: FileInfo = (name: "plateNumberLabelsMap", extension: "txt")
     static let topNumberModelInfo: FileInfo = (name: "plate_number_top_768_512", extension: "tflite")
     static let bottomNumberModelInfo: FileInfo = (name: "plate_number_bottom_768_512", extension: "tflite")
 }
@@ -61,6 +63,8 @@ class ModelDataHandler {
   var inputChannels : Int
   var inputWidth : Int
   var inputHeight : Int
+    
+  var ocrLabelTotal = 1
 
   // MARK: - Private Properties
 
@@ -98,6 +102,15 @@ class ModelDataHandler {
         self.inputChannels = 3
         self.inputWidth = 32
         self.inputHeight = 256
+        self.ocrLabelTotal = 37
+        
+    }else if modelFilename == "plate_number_ocr_model_input_sized" {
+        
+        self.batchSize = 1
+        self.inputChannels = 3
+        self.inputWidth = 32
+        self.inputHeight = 160
+        self.ocrLabelTotal = 15
         
     }else {
         
@@ -130,7 +143,7 @@ class ModelDataHandler {
       return nil
     }
     
-    if modelFilename == "ocr_barcode_model_99_accu" {
+    if modelFilename == "ocr_barcode_model_99_accu" || modelFilename == "plate_number_ocr_model_input_sized" {
         
         // Load the classes listed in the labels file.
         loadLabels(fileInfo: labelsFileInfo)
@@ -197,7 +210,7 @@ class ModelDataHandler {
         
         // Process the results.
         if isOcrModel {
-            topNInferences = getTopN(results: results)
+            topNInferences = getTopN(results: results, total: ocrLabelTotal)
         }
         
         // Return the inference time and inference results.
@@ -268,7 +281,7 @@ class ModelDataHandler {
 
     // Process the results.
     if isOcrModel {
-        topNInferences = getTopN(results: results)
+        topNInferences = getTopN(results: results, total: ocrLabelTotal)
     }
     
     // Return the inference time and inference results.
@@ -276,7 +289,7 @@ class ModelDataHandler {
   }
 
   /// Returns the top N inference results sorted in descending order.
-  private func getTopN(results: [Float]) -> [Inference] {
+    private func getTopN(results: [Float], total: Int) -> [Inference] {
     
     var confidenceArr = [Inference]()
     var resultArr = [Inference]()
@@ -286,7 +299,7 @@ class ModelDataHandler {
     for (index,_) in results.enumerated() {
         
         tempArr.append(results[index])
-        if (index + 1) % 37 == 0 {
+        if (index + 1) % total == 0 {
             
             let zippedResults = zip(labels.indices, tempArr)
             
