@@ -135,6 +135,12 @@
     
     for (int i = 0; i < contours.size(); i++) {
         
+//        float area = contourArea(contours[i]);
+//        std::cout << area << std::endl;
+//        if (area < 20) {
+//            continue;
+//        }
+        
         cv::RotatedRect rect = cv::minAreaRect(contours[i]);
         
         cv::boxPoints(rect, box);
@@ -201,6 +207,10 @@
         std::cout << box.size() << std::endl;
         std::cout << "boxPts " << std::endl << " " << box << std::endl;
         
+        if ((tr_x - tl_x) < 20) {
+            continue;
+        }
+        
         NSValue *tlValue = [NSValue valueWithCGPoint:CGPointMake(tl_x, tl_y)];
         NSValue *trValue = [NSValue valueWithCGPoint:CGPointMake(tr_x, tr_y)];
         NSValue *brValue = [NSValue valueWithCGPoint:CGPointMake(br_x, br_y)];
@@ -226,6 +236,9 @@
     
     for (NSArray *box in rectsArr) {
         
+        if ([box isKindOfClass:[NSString class]]) {
+            continue;
+        }
         CGPoint tl = [box[0] CGPointValue];
         CGPoint tr = [box[1] CGPointValue];
         CGPoint br = [box[2] CGPointValue];

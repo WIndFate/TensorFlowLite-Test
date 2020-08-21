@@ -117,7 +117,7 @@
 
 -(void)writeToCsv:(NSArray *)array {
     
-    NSString *fileNameStr = @"iOS_carOcr.csv";
+    NSString *fileNameStr = @"iOS_56438.csv";
     NSString *DocPath = [NSString stringWithFormat:@"/Users/shijiachen/Desktop/%@",fileNameStr];
 
     NSMutableString *csvString = [NSMutableString string];

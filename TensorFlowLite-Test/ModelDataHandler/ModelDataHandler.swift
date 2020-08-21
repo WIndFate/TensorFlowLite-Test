@@ -91,8 +91,6 @@ class ModelDataHandler {
         
         self.batchSize = 1
         self.inputChannels = 3
-//        self.inputWidth = 1792
-//        self.inputHeight = 1280
         self.inputWidth = 512
         self.inputHeight = 768
         
@@ -160,12 +158,22 @@ class ModelDataHandler {
         var topNInferences = [Inference]()
         do {
           let inputTensor = try interpreter.input(at: 0)
-
-          // Remove the alpha component from the image buffer to get the RGB data.
-            guard let rgbData = image.scaledData(
-              with: CGSize(width: inputWidth, height: inputHeight),
+            
+            // Remove the alpha component from the image buffer to get the RGB data.
+//            guard let rgbData = image.scaledData(
+//              with: CGSize(width: inputWidth, height: inputHeight),
+//              byteCount: batchSize * inputWidth * inputHeight * inputChannels,
+//              isQuantized: inputTensor.dataType == .uInt8
+//            ) else {
+//              print("Failed to convert the image buffer to RGB data.")
+//              return nil
+//            }
+            
+            let pixelBuffer = CVPixelBuffer.buffer(from: image.scaledImage(with: CGSize(width: inputWidth, height: inputHeight))!)!
+            guard let rgbData = rgbDataFromBuffer(
+              pixelBuffer,
               byteCount: batchSize * inputWidth * inputHeight * inputChannels,
-              isQuantized: inputTensor.dataType == .uInt8
+              isModelQuantized: inputTensor.dataType == .uInt8
             ) else {
               print("Failed to convert the image buffer to RGB data.")
               return nil
@@ -420,8 +428,19 @@ class ModelDataHandler {
     // Not quantized, convert to floats
     let bytes = Array<UInt8>(unsafeData: byteData)!
     var floats = [Float]()
-    for i in 0..<bytes.count {
-        floats.append(Float(bytes[i]) / 1.0)
+//    for i in 0..<bytes.count {
+//        floats.append(Float(bytes[i]) / 1.0)
+//    }
+    if width == 32 {
+        
+        for i in 0..<bytes.count {
+            floats.append(Float(bytes[i]) / 255.0)
+        }
+        
+    }else {
+        for i in 0..<bytes.count {
+            floats.append(Float(bytes[i]) / 1.0)
+        }
     }
     
 //    let cls = CVViewController()

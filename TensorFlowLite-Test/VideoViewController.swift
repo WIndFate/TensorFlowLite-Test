@@ -111,11 +111,26 @@ class VideoViewController: UIViewController {
         }
         
         let opencvCls = CVViewController()
-        let cutImage = opencvCls.clipImage(oriImage, bgImageSize: "160x32", withCurrentRects: (allRects.first as! [Any]))
-        
+        let topRect = allRects.first
+        let bottomRect = allRects.last
         let cls = segue.destination as! PlateNumberDetailsViewController
         
-        cls.image = cutImage
+        var topCutImage : UIImage
+        var bottomCutImage : UIImage
+        
+        if topRect is String {
+            cls.imageArr.append(topRect as Any)
+        }else {
+            topCutImage = opencvCls.clipImage(oriImage, bgImageSize: "160x32", withCurrentRects: (allRects.first as! [Any]))
+            cls.imageArr.append(topCutImage)
+        }
+        
+        if bottomRect is String {
+            cls.imageArr.append(bottomRect as Any)
+        }else {
+            bottomCutImage = opencvCls.clipImage(oriImage, bgImageSize: "160x32", withCurrentRects: (allRects.last as! [Any]))
+            cls.imageArr.append(bottomCutImage)
+        }
         
 //        let test = CVViewController()
 //        test.saveImage(cls.image)
@@ -156,6 +171,7 @@ class VideoViewController: UIViewController {
         if rect.count == 0 {
             
             print("rect count = 0")
+            allRects.append("No Image")
             return
         }
         
@@ -181,6 +197,7 @@ class VideoViewController: UIViewController {
             DispatchQueue.main.async {
                 //视频一帧原图
                 let showImge = image.imageRotatedByDegrees(degrees: 90.0).scaledImage(with: CGSize(width: 512.0, height: 768.0))!
+//                let showImge = UIImage(named: "56438")!.scaledImage(with: CGSize(width: 512.0, height: 768.0))!
                 self.oriImage = showImge
                 //top model result
                 self.getBoxRectsResult(image: showImge, isTopModel: true)

@@ -10,10 +10,11 @@ import UIKit
 
 class PlateNumberDetailsViewController: UIViewController {
 
-    @IBOutlet weak var plateNumber: UILabel!
+    @IBOutlet weak var topNumber: UILabel!
+    @IBOutlet weak var bottomNumber: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-    var image: UIImage!
+    var imageArr = [Any]()
     
     private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNet.plateNumberOcrModelInfo, labelsFileInfo: MobileNet.plateNumberLabelsInfo)
     
@@ -24,33 +25,39 @@ class PlateNumberDetailsViewController: UIViewController {
           fatalError("Model set up failed")
         }
         
-        let start = CFAbsoluteTimeGetCurrent()
-        let result = modelDataHandler!.runModel(withImage: image.scaledImage(with: CGSize(width: 32.0, height: 160.0))!, isOcrModel: true)
-        
-        let cls = CVViewController()
-        cls.write(toCsv: result?.dataResult)
-        
-        let end = CFAbsoluteTimeGetCurrent()
-        
-        guard let inferencesArr = result?.inferences else {
-            print("inferences == nil")
-            return
+        if imageArr.first is String {
+            topNumber.text = "No Result"
+        }else {
+            topNumber.text = ocrStringFromImage(image: imageArr.first as! UIImage)
         }
-        let stringArr = inferencesArr.map({$0.label})
-        plateNumber.text = "NO：\(stringArr.joined())"
         
-        print("OCR time  == \(end - start)")
+        if imageArr.last is String {
+            bottomNumber.text = "No Result"
+        }else {
+            bottomNumber.text = ocrStringFromImage(image: imageArr.last as! UIImage)
+        }
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func ocrStringFromImage(image : UIImage) -> String {
+        
+        let start = CFAbsoluteTimeGetCurrent()
+        let result = modelDataHandler!.runModel(withImage: image.scaledImage(with: CGSize(width: 32.0, height: 160.0))!, isOcrModel: true)
+        
+        let end = CFAbsoluteTimeGetCurrent()
+        
+        print("OCR time  == \(end - start)")
+        
+        guard let inferencesArr = result?.inferences else {
+            print("inferences == nil")
+            return "---Error---"
+        }
+        let stringArr = inferencesArr.map({$0.label})
+        
+        let resultStr = stringArr.joined()
+        
+        return resultStr
     }
-    */
 
 }
