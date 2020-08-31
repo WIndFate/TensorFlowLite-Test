@@ -14,6 +14,7 @@ class PlateNumberDetailsViewController: UIViewController {
     @IBOutlet weak var bottomNumber: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
+    var resultImage = UIImage()
     var imageArr = [Any]()
     
     private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNet.plateNumberOcrModelInfo, labelsFileInfo: MobileNet.plateNumberLabelsInfo)
@@ -24,6 +25,8 @@ class PlateNumberDetailsViewController: UIViewController {
         guard modelDataHandler != nil else {
           fatalError("Model set up failed")
         }
+        
+        imageView.image = resultImage
         
         if imageArr.first is String {
             topNumber.text = "No Result"

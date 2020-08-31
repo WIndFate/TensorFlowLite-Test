@@ -187,6 +187,8 @@ class VideoViewController: UIViewController {
     
     @IBAction func findRectangle(_ sender: Any) {
         
+        SVProgressHUD.show(withStatus: "認識中...")
+        
         allRects.removeAll()
         imageView.image = nil
         oriImage = nil
@@ -212,6 +214,36 @@ class VideoViewController: UIViewController {
                 }
                 
                 self.imageView.image = (finalImageArr.first as! UIImage)
+                
+                let opencvCls = CVViewController()
+                let topRect = self.allRects.first
+                let bottomRect = self.allRects.last
+                guard let cls = self.storyboard?.instantiateViewController(withIdentifier: String(describing: type(of: PlateNumberDetailsViewController()))) as! PlateNumberDetailsViewController? else {
+                    
+                    return
+                }
+                
+                cls.resultImage = self.imageView.image!
+                var topCutImage : UIImage
+                var bottomCutImage : UIImage
+                
+                if topRect is String {
+                    cls.imageArr.append(topRect as Any)
+                }else {
+                    topCutImage = opencvCls.clipImage(self.oriImage, bgImageSize: "160x32", withCurrentRects: (self.allRects.first as! [Any]))
+                    cls.imageArr.append(topCutImage)
+                }
+                
+                if bottomRect is String {
+                    cls.imageArr.append(bottomRect as Any)
+                }else {
+                    bottomCutImage = opencvCls.clipImage(self.oriImage, bgImageSize: "160x32", withCurrentRects: (self.allRects.last as! [Any]))
+                    cls.imageArr.append(bottomCutImage)
+                }
+                
+                SVProgressHUD.dismiss()
+                
+                self.navigationController?.pushViewController(cls, animated: true)
 
             }
         })

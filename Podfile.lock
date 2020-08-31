@@ -1,4 +1,5 @@
 PODS:
+  - SVProgressHUD (2.2.5)
   - TensorFlowLiteC (2.2.0)
   - TensorFlowLiteSwift (2.2.0):
     - TensorFlowLiteC (= 2.2.0)
@@ -12,6 +13,7 @@ PODS:
   - ZFPlayer/Core (4.0.1)
 
 DEPENDENCIES:
+  - SVProgressHUD
   - TensorFlowLiteSwift
   - TZImagePickerController
   - ZFPlayer
@@ -20,17 +22,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - SVProgressHUD
     - TensorFlowLiteC
     - TensorFlowLiteSwift
     - TZImagePickerController
     - ZFPlayer
 
 SPEC CHECKSUMS:
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TensorFlowLiteC: b3ab9e867b0b71052ca102a32a786555b330b02e
   TensorFlowLiteSwift: 2dd5e9c895e1819501f0fba3d8b69a536bda6c65
   TZImagePickerController: 4e7a7b3d314f8a75f11042931dfd9d34c270c7db
   ZFPlayer: f88787c815f7b0801279c42f131a89e2823e669e
 
-PODFILE CHECKSUM: 35cc87b4c9e79db02ee02e7fbecfbe91ed90f3b8
+PODFILE CHECKSUM: 06983c132f8a673228ac3c7db36ea9ef3c0cd48b
 
 COCOAPODS: 1.9.3

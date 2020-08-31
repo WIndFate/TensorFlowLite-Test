@@ -8,4 +8,5 @@
 #import "ZFAVPlayerManager.h"
 #import "ZFPlayerControlView.h"
 #import "ZFUtilities.h"
+#import "SVProgressHUD.h"
 

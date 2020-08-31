@@ -313,7 +313,7 @@
                                     <action selector="playClick:" destination="BF1-0Q-ILQ" eventType="touchUpInside" id="ajn-47-CTR"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gx4-e9-UBO">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gx4-e9-UBO">
                                 <rect key="frame" x="30" y="329" width="315" height="350"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -338,26 +338,8 @@
                                     <action selector="findRectangle:" destination="BF1-0Q-ILQ" eventType="touchUpInside" id="4HP-Ht-QbM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-yc-Idh">
-                                <rect key="frame" x="50" y="751" width="275" height="44"/>
-                                <color key="backgroundColor" red="0.36862745099999999" green="0.74901960779999999" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="enE-FI-jxa"/>
-                                </constraints>
-                                <state key="normal" title="詳細">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="P8y-rp-9py" kind="show" identifier="PlateNumberDetailsViewController" id="QcV-SM-oJw"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MjY-EW-s0U" firstAttribute="leading" secondItem="oCx-Zc-WfM" secondAttribute="leading" constant="50" id="0uL-Zg-OFy"/>
                             <constraint firstItem="Gx4-e9-UBO" firstAttribute="top" secondItem="gU0-Me-y2B" secondAttribute="bottom" constant="30" id="DZe-pR-LyP"/>
@@ -366,10 +348,7 @@
                             <constraint firstItem="oCx-Zc-WfM" firstAttribute="trailing" secondItem="gU0-Me-y2B" secondAttribute="trailing" id="I3R-hh-3nl"/>
                             <constraint firstItem="oCx-Zc-WfM" firstAttribute="trailing" secondItem="Gx4-e9-UBO" secondAttribute="trailing" constant="30" id="I87-hF-aRw"/>
                             <constraint firstItem="Gx4-e9-UBO" firstAttribute="leading" secondItem="oCx-Zc-WfM" secondAttribute="leading" constant="30" id="JtI-P1-JTU"/>
-                            <constraint firstItem="oCx-Zc-WfM" firstAttribute="trailing" secondItem="xFi-yc-Idh" secondAttribute="trailing" constant="50" id="OiY-tg-wNa"/>
                             <constraint firstItem="gU0-Me-y2B" firstAttribute="leading" secondItem="oCx-Zc-WfM" secondAttribute="leading" id="Ujg-jD-YHs"/>
-                            <constraint firstItem="xFi-yc-Idh" firstAttribute="top" secondItem="MjY-EW-s0U" secondAttribute="bottom" constant="8" id="boG-79-gWA"/>
-                            <constraint firstItem="xFi-yc-Idh" firstAttribute="leading" secondItem="oCx-Zc-WfM" secondAttribute="leading" constant="50" id="jwP-wC-Kkj"/>
                             <constraint firstItem="MjY-EW-s0U" firstAttribute="top" secondItem="Gx4-e9-UBO" secondAttribute="bottom" constant="20" id="qbU-Z6-wbf"/>
                             <constraint firstItem="gU0-Me-y2B" firstAttribute="top" secondItem="oCx-Zc-WfM" secondAttribute="top" id="zN6-Fv-Ksg"/>
                             <constraint firstItem="1bC-F7-Vz5" firstAttribute="centerY" secondItem="gU0-Me-y2B" secondAttribute="centerY" id="zzc-CU-d9s"/>
@@ -392,20 +371,20 @@
         <!--レンタル-->
         <scene sceneID="5pn-6E-Urq">
             <objects>
-                <viewController id="P8y-rp-9py" customClass="PlateNumberDetailsViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlateNumberDetailsViewController" id="P8y-rp-9py" customClass="PlateNumberDetailsViewController" customModule="TensorFlowLite_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="faF-Jr-cZo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="56436" translatesAutoresizingMaskIntoConstraints="NO" id="mMM-9m-NGy">
-                                <rect key="frame" x="0.0" y="88" width="375" height="211"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="211"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mMM-9m-NGy" secondAttribute="height" multiplier="16:9" id="mhm-2S-wY4"/>
                                 </constraints>
                             </imageView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="hwx-JW-DKR">
-                                <rect key="frame" x="168" y="255" width="39" height="37"/>
+                                <rect key="frame" x="168" y="211" width="39" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="faU-We-y9S"/>
                                     <constraint firstAttribute="width" constant="39" id="hLm-IC-Pmo"/>
@@ -563,7 +542,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lDK-eT-88V" firstAttribute="leading" secondItem="h6E-o1-9hf" secondAttribute="leading" constant="50" id="Hoy-gi-pLS"/>
                             <constraint firstItem="hwx-JW-DKR" firstAttribute="centerX" secondItem="mMM-9m-NGy" secondAttribute="centerX" id="IcY-3t-a3N"/>
