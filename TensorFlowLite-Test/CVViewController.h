@@ -29,4 +29,6 @@
 
 + (NSArray *)drawBox:(UIImage *)originImage withRects:(NSArray *)rects;
 
++ (unsigned char *)getBGRWithImage:(UIImage *)image;
+
 @end

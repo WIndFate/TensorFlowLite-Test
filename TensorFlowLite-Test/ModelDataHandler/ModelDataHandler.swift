@@ -160,24 +160,24 @@ class ModelDataHandler {
           let inputTensor = try interpreter.input(at: 0)
             
             // Remove the alpha component from the image buffer to get the RGB data.
-//            guard let rgbData = image.scaledData(
-//              with: CGSize(width: inputWidth, height: inputHeight),
-//              byteCount: batchSize * inputWidth * inputHeight * inputChannels,
-//              isQuantized: inputTensor.dataType == .uInt8
-//            ) else {
-//              print("Failed to convert the image buffer to RGB data.")
-//              return nil
-//            }
-            
-            let pixelBuffer = CVPixelBuffer.buffer(from: image.scaledImage(with: CGSize(width: inputWidth, height: inputHeight))!)!
-            guard let rgbData = rgbDataFromBuffer(
-              pixelBuffer,
+            guard let rgbData = image.scaledData(
+              with: CGSize(width: inputWidth, height: inputHeight),
               byteCount: batchSize * inputWidth * inputHeight * inputChannels,
-              isModelQuantized: inputTensor.dataType == .uInt8
+              isQuantized: inputTensor.dataType == .uInt8
             ) else {
               print("Failed to convert the image buffer to RGB data.")
               return nil
             }
+            
+//            let pixelBuffer = CVPixelBuffer.buffer(from: image.scaledImage(with: CGSize(width: inputWidth, height: inputHeight))!)!
+//            guard let rgbData = rgbDataFromBuffer(
+//              pixelBuffer,
+//              byteCount: batchSize * inputWidth * inputHeight * inputChannels,
+//              isModelQuantized: inputTensor.dataType == .uInt8
+//            ) else {
+//              print("Failed to convert the image buffer to RGB data.")
+//              return nil
+//            }
 
           // Copy the RGB data to the input `Tensor`.
           try interpreter.copy(rgbData, toInputAt: 0)

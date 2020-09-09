@@ -29,35 +29,22 @@ extension UIImage {
     /// - Returns: The scaled image as data or `nil` if the image could not be scaled.
     func scaledData(with size: CGSize, byteCount: Int, isQuantized: Bool) -> Data? {
       guard let cgImage = self.cgImage, cgImage.width > 0, cgImage.height > 0 else { return nil }
-      guard let imageData = imageData(from: cgImage, with: size) else { return nil }
-      var scaledBytes = [UInt8](repeating: 0, count: byteCount)
-      var index = 0
-      for component in imageData.enumerated() {
-        let offset = component.offset
-        let isAlphaComponent = (offset % Constant.alphaComponent.baseOffset)
-          == Constant.alphaComponent.moduloRemainder
-        guard !isAlphaComponent else { continue }
-        scaledBytes[index] = component.element
-        index += 1
-      }
-      if isQuantized { return Data(scaledBytes) }
+        guard let imageData = CVViewController.getBGRWith(self) else { return nil }
         
       var scaledFloats = [Float]()
         
         if size.width == 32 {
             
-            for i in 0..<scaledBytes.count {
-                scaledFloats.append(Float(scaledBytes[i]) / 255.0)
+            for i in 0..<byteCount {
+                scaledFloats.append(Float(imageData[i]) / 255.0)
             }
             
         }else {
-            for i in 0..<scaledBytes.count {
-                scaledFloats.append(Float(scaledBytes[i]) / 1.0)
+            for i in 0..<byteCount {
+                scaledFloats.append(Float(imageData[i]) / 1.0)
             }
         }
         
-//        let cls = CVViewController()
-//        cls.write(toCsv: scaledFloats)
       return Data(copyingBufferOf: scaledFloats)
     }
     

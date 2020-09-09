@@ -172,6 +172,50 @@
 //    UIGraphicsEndImageContext();
 //}
 
++ (unsigned char *)getBGRWithImage:(UIImage *)image
+{
+    int RGBA = 4;
+    int RGB  = 3;
+    
+    CGImageRef imageRef = [image CGImage];
+    
+    size_t width = CGImageGetWidth(imageRef);
+    size_t height = CGImageGetHeight(imageRef);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = (unsigned char *) malloc(width * height * sizeof(unsigned char) * RGBA);
+    NSUInteger bytesPerPixel = RGBA;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    
+    unsigned char * tempRawData = (unsigned char *)malloc(width * height * 3 * sizeof(unsigned char));
+    
+    for (int i = 0; i < width * height; i ++) {
+        
+        NSUInteger byteIndex = i * RGBA;
+        NSUInteger newByteIndex = i * RGB;
+        
+        // Get RGB
+        CGFloat red    = rawData[byteIndex + 0];
+        CGFloat green  = rawData[byteIndex + 1];
+        CGFloat blue   = rawData[byteIndex + 2];
+        //CGFloat alpha  = rawData[byteIndex + 3];// 这里Alpha值是没有用的
+        
+        // Set RGB To New RawData
+        tempRawData[newByteIndex + 0] = blue;   // B
+        tempRawData[newByteIndex + 1] = green;  // G
+        tempRawData[newByteIndex + 2] = red;    // R
+    }
+    
+    return tempRawData;
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
