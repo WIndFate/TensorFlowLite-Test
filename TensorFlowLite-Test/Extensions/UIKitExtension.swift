@@ -27,24 +27,50 @@ extension UIImage {
     ///   - isQuantized: Whether the model is quantized (i.e. fixed point values rather than floating
     ///       point values).
     /// - Returns: The scaled image as data or `nil` if the image could not be scaled.
-    func scaledData(with size: CGSize, byteCount: Int, isQuantized: Bool) -> Data? {
+    func scaledRgbData(with size: CGSize, byteCount: Int, isQuantized: Bool) -> Data? {
+          guard let cgImage = self.cgImage, cgImage.width > 0, cgImage.height > 0 else { return nil }
+          guard let imageData = imageData(from: cgImage, with: size) else { return nil }
+          var scaledBytes = [UInt8](repeating: 0, count: byteCount)
+          var index = 0
+          for component in imageData.enumerated() {
+            let offset = component.offset
+            let isAlphaComponent = (offset % Constant.alphaComponent.baseOffset)
+              == Constant.alphaComponent.moduloRemainder
+            guard !isAlphaComponent else { continue }
+            scaledBytes[index] = component.element
+            index += 1
+          }
+          if isQuantized { return Data(scaledBytes) }
+            
+          var scaledFloats = [Float]()
+            
+            if size.width == 32 {
+
+                scaledFloats = scaledBytes.compactMap({ (Float($0) / 255.0)})
+                
+            }else {
+                
+                scaledFloats = scaledBytes.compactMap({ (Float($0) / 1.0)})
+            }
+            
+          return Data(copyingBufferOf: scaledFloats)
+        }
+    
+    func scaledBgrData(with size: CGSize, byteCount: Int, isQuantized: Bool) -> Data? {
       guard let cgImage = self.cgImage, cgImage.width > 0, cgImage.height > 0 else { return nil }
-        guard let imageData = CVViewController.getBGRWith(self) else { return nil }
+      guard let imageData = CVViewController.getBGRWith(self) else { return nil }
         
+        let scaledBytes = Array<UInt8>(unsafeData: imageData)!
       var scaledFloats = [Float]()
         
         if size.width == 32 {
-            
-            for i in 0..<byteCount {
-                scaledFloats.append(Float(imageData[i]) / 255.0)
-            }
+
+            scaledFloats = scaledBytes.compactMap({ (Float($0) / 255.0)})
             
         }else {
-            for i in 0..<byteCount {
-                scaledFloats.append(Float(imageData[i]) / 1.0)
-            }
+            
+            scaledFloats = scaledBytes.compactMap({ (Float($0) / 1.0)})
         }
-        
       return Data(copyingBufferOf: scaledFloats)
     }
     

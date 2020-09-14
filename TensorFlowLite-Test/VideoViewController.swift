@@ -82,7 +82,7 @@ class VideoViewController: UIViewController {
     }
     
     override var prefersStatusBarHidden: Bool {
-        return player.isStatusBarHidden;
+        return true;
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {

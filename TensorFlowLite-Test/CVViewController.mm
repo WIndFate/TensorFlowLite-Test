@@ -172,7 +172,7 @@
 //    UIGraphicsEndImageContext();
 //}
 
-+ (unsigned char *)getBGRWithImage:(UIImage *)image
++ (NSData *)getBGRWithImage:(UIImage *)image
 {
     int RGBA = 4;
     int RGB  = 3;
@@ -213,7 +213,8 @@
         tempRawData[newByteIndex + 2] = red;    // R
     }
     
-    return tempRawData;
+    NSData *data = [NSData dataWithBytes:tempRawData length:(width * height * 3 * sizeof(unsigned char))];
+    return data;
 }
 
 #pragma mark - Navigation
