@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		165D56FA24C586C400A2A66D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D56F924C586C400A2A66D /* Define.swift */; };
 		165D570224C82C2100A2A66D /* OCRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D570124C82C2100A2A66D /* OCRViewController.swift */; };
-		16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AF752324BC344700C646E1 /* UIKitExtension.swift */; };
-		16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF753624BC58F000C646E1 /* CVViewController.mm */; };
 		16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */; };
 		16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AF754724BDCEF200C646E1 /* OpenCVManager.mm */; };
 		394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E117B24AB4143006F0C19 /* AppDelegate.swift */; };
@@ -24,6 +22,8 @@
 		39D6452224ADB94700E425F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452124ADB94700E425F5 /* AVFoundation.framework */; };
 		39D6452424ADB95F00E425F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D6452324ADB95F00E425F5 /* CoreMedia.framework */; };
 		B73CD31E7CE9E554A6116E74 /* libPods-TensorFlowLite-Test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 540731C951F2ADCB1533FC28 /* libPods-TensorFlowLite-Test.a */; };
+		CB20407A2511EF0800C79935 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2040792511EF0800C79935 /* UIKitExtension.swift */; };
+		CB20407C2511EF1900C79935 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB20407B2511EF1900C79935 /* CVViewController.mm */; };
 		CB4234FD24DA54C200030AA5 /* labelsMap.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB4234FC24DA54C200030AA5 /* labelsMap.txt */; };
 		CB42350724DD23B300030AA5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350524DD23B300030AA5 /* PreviewView.swift */; };
 		CB42350824DD23B300030AA5 /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350624DD23B300030AA5 /* CameraFeedManager.swift */; };
@@ -44,9 +44,7 @@
 		165D56F924C586C400A2A66D /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		165D56FC24C58D3B00A2A66D /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		165D570124C82C2100A2A66D /* OCRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRViewController.swift; sourceTree = "<group>"; };
-		16AF752324BC344700C646E1 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		16AF753524BC58F000C646E1 /* CVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVViewController.h; sourceTree = "<group>"; };
-		16AF753624BC58F000C646E1 /* CVViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
 		16AF754424BDCEF200C646E1 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		16AF754524BDCEF200C646E1 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		16AF754624BDCEF200C646E1 /* OpenCVManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVManager.h; sourceTree = "<group>"; };
@@ -65,6 +63,8 @@
 		39D6452124ADB94700E425F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		39D6452324ADB95F00E425F5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		540731C951F2ADCB1533FC28 /* libPods-TensorFlowLite-Test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TensorFlowLite-Test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB2040792511EF0800C79935 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
+		CB20407B2511EF1900C79935 /* CVViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
 		CB4234FC24DA54C200030AA5 /* labelsMap.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labelsMap.txt; sourceTree = "<group>"; };
 		CB42350524DD23B300030AA5 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		CB42350624DD23B300030AA5 /* CameraFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				394E117F24AB4143006F0C19 /* ViewController.swift */,
 				CB42350924DD29C100030AA5 /* ScanViewController.swift */,
 				16AF753524BC58F000C646E1 /* CVViewController.h */,
-				16AF753624BC58F000C646E1 /* CVViewController.mm */,
+				CB20407B2511EF1900C79935 /* CVViewController.mm */,
 				165D570124C82C2100A2A66D /* OCRViewController.swift */,
 				CB8473D224E664CF009D8E47 /* VideoViewController.swift */,
 				CB8473E424ED0198009D8E47 /* PlateNumberDetailsViewController.swift */,
@@ -174,7 +174,7 @@
 		39D6451324AB428600E425F5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				16AF752324BC344700C646E1 /* UIKitExtension.swift */,
+				CB2040792511EF0800C79935 /* UIKitExtension.swift */,
 				39D6451424AB428600E425F5 /* CVPixelBufferExtension.swift */,
 			);
 			path = Extensions;
@@ -335,14 +335,14 @@
 			files = (
 				394E118024AB4143006F0C19 /* ViewController.swift in Sources */,
 				CB42350A24DD29C100030AA5 /* ScanViewController.swift in Sources */,
-				16AF753724BC58F000C646E1 /* CVViewController.mm in Sources */,
+				CB20407C2511EF1900C79935 /* CVViewController.mm in Sources */,
+				CB20407A2511EF0800C79935 /* UIKitExtension.swift in Sources */,
 				39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */,
 				CB8473E524ED0198009D8E47 /* PlateNumberDetailsViewController.swift in Sources */,
 				394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */,
 				16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */,
 				CB42350724DD23B300030AA5 /* PreviewView.swift in Sources */,
 				165D570224C82C2100A2A66D /* OCRViewController.swift in Sources */,
-				16AF752424BC344700C646E1 /* UIKitExtension.swift in Sources */,
 				39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */,
 				CB8473D324E664CF009D8E47 /* VideoViewController.swift in Sources */,
 				394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */,

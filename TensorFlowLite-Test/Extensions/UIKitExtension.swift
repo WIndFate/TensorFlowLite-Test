@@ -58,7 +58,8 @@ extension UIImage {
     
     func scaledBgrData(with size: CGSize, byteCount: Int, isQuantized: Bool) -> Data? {
       guard let cgImage = self.cgImage, cgImage.width > 0, cgImage.height > 0 else { return nil }
-      guard let imageData = CVViewController.getBGRWith(self) else { return nil }
+        guard let imageData = CVViewController.getBGRWith(self) else { return nil }
+//      guard let imageData = getBGRWithImage(image: self) else { return nil }
         
         let scaledBytes = Array<UInt8>(unsafeData: imageData)!
       var scaledFloats = [Float]()
@@ -73,6 +74,53 @@ extension UIImage {
         }
       return Data(copyingBufferOf: scaledFloats)
     }
+    
+    func getBGRWithImage(image : UIImage) -> Data? {
+        
+        let RGBA = 4;
+        let RGB  = 3;
+        
+        let imageRef = image.cgImage!
+        
+        let width = imageRef.width;
+        let height = imageRef.height;
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        
+        let rawData = malloc(width * height * MemoryLayout<CUnsignedChar>.size * RGBA)!.assumingMemoryBound(to: UInt8.self)
+        let bytesPerPixel = RGBA;
+        let bytesPerRow = bytesPerPixel * width;
+        let bitsPerComponent = 8;
+        let bitmapInfo = CGBitmapInfo(
+          rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
+        )
+        let context = CGContext.init(data: rawData, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
+        context?.draw(imageRef, in: CGRect(x: 0, y: 0, width: width, height: height))
+        
+        let tempRawData = malloc(width * height * 3 * MemoryLayout<CUnsignedChar>.size)!.assumingMemoryBound(to: UInt8.self)
+        
+        for i in 0..<width * height {
+            
+            let byteIndex = i * RGBA;
+            let newByteIndex = i * RGB;
+            
+            // Get RGB
+            let red    = rawData[byteIndex + 0];
+            let green  = rawData[byteIndex + 1];
+            let blue   = rawData[byteIndex + 2];
+            //CGFloat alpha  = rawData[byteIndex + 3];// 这里Alpha值是没有用的
+            
+            // Set RGB To New RawData
+            tempRawData[newByteIndex + 0] = blue;   // B
+            tempRawData[newByteIndex + 1] = green;  // G
+            tempRawData[newByteIndex + 2] = red;    // R
+        }
+        
+        let data = Data(bytes: tempRawData, count: (width * height * 3 * MemoryLayout<CUnsignedChar>.size))
+        
+        return data
+    }
+    
     
   /// Helper function to center-crop image.
   /// - Returns: Center-cropped copy of this image
