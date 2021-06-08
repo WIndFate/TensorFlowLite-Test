@@ -19,6 +19,11 @@ import AVFoundation
 protocol CameraFeedManagerDelegate: class {
 
   /**
+   This method delivers the Photo of the current frame seen by the device's camera.
+  */
+  func didOutputPhotoCapture(image: UIImage)
+    
+  /**
    This method delivers the pixel buffer of the current frame seen by the device's camera.
    */
   func didOutput(pixelBuffer: CVPixelBuffer)
@@ -60,6 +65,13 @@ enum CameraConfiguration {
   case permissionDenied
 }
 
+enum CameraMode {
+
+  case video
+  case photo
+  case photo2x
+}
+
 /**
  This class manages all camera related functionality
  */
@@ -67,17 +79,19 @@ class CameraFeedManager: NSObject {
 
   // MARK: Camera Related Instance Variables
   private let session: AVCaptureSession = AVCaptureSession()
-  private let previewView: PreviewView
+  private let previewView: AITeamPreviewView
   private let sessionQueue = DispatchQueue(label: "sessionQueue")
   private var cameraConfiguration: CameraConfiguration = .failed
+  var cameraMode: CameraMode = .video
   private lazy var videoDataOutput = AVCaptureVideoDataOutput()
+  private lazy var photoOutput = AVCapturePhotoOutput()
   private var isSessionRunning = false
 
   // MARK: CameraFeedManagerDelegate
   weak var delegate: CameraFeedManagerDelegate?
 
   // MARK: Initializer
-  init(previewView: PreviewView) {
+  init(previewView: AITeamPreviewView) {
     self.previewView = previewView
     super.init()
 
@@ -147,6 +161,16 @@ class CameraFeedManager: NSObject {
     self.session.startRunning()
     self.isSessionRunning = self.session.isRunning
   }
+    
+    func getPhotoCapture() {
+      
+        var photoSetting : AVCapturePhotoSettings?
+        photoSetting = AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecType.jpeg])
+        if let setting = photoSetting{
+            
+            photoOutput.capturePhoto(with: setting, delegate: self)
+        }
+    }
 
   func turnOnLight() {
     
@@ -233,12 +257,28 @@ class CameraFeedManager: NSObject {
       return
     }
 
-    // Tries to add an AVCaptureVideoDataOutput.
-    guard addVideoDataOutput() else {
-      self.session.commitConfiguration()
-      self.cameraConfiguration = .failed
-      return
+    switch cameraMode {
+    case .video: do {
+        
+        guard addVideoDataOutput() else {
+          self.session.commitConfiguration()
+          self.cameraConfiguration = .failed
+          return
+        }
+        
+        }
+    case .photo,.photo2x: do {
+        
+        guard addCapturePhotoOutput() else {
+          self.session.commitConfiguration()
+          self.cameraConfiguration = .failed
+          return
+        }
+        
+        }
     }
+    // Tries to add an AVCaptureVideoDataOutput.
+    
 
     session.commitConfiguration()
     self.cameraConfiguration = .success
@@ -259,6 +299,19 @@ class CameraFeedManager: NSObject {
       let videoDeviceInput = try AVCaptureDeviceInput(device: camera)
       if session.canAddInput(videoDeviceInput) {
         session.addInput(videoDeviceInput)
+        
+        if cameraMode == .photo2x {
+            
+            do {
+                try videoDeviceInput.device.lockForConfiguration()
+                defer { videoDeviceInput.device.unlockForConfiguration() }
+                videoDeviceInput.device.videoZoomFactor = 2.0
+                
+                } catch {
+                    debugPrint(error)
+                }
+        }
+        
         return true
       }
       else {
@@ -287,6 +340,17 @@ class CameraFeedManager: NSObject {
     }
     return false
   }
+    
+    private func addCapturePhotoOutput() -> Bool {
+
+        if session.canAddOutput(photoOutput as AVCaptureOutput)==true{
+            
+            session.addOutput(photoOutput as AVCaptureOutput)
+            photoOutput.connection(with: .video)?.videoOrientation = .portrait
+            return true
+        }
+      return false
+    }
 
   // MARK: Notification Observer Handling
   private func addObservers() {
@@ -371,4 +435,35 @@ extension CameraFeedManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     delegate?.didOutput(pixelBuffer: imagePixelBuffer)
   }
 
+}
+
+extension CameraFeedManager: AVCapturePhotoCaptureDelegate {
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
+        
+        if let soundURL = Bundle.main.url(forResource: "photoShutter2", withExtension: "caf") {
+            var mySound: SystemSoundID = 0
+            AudioServicesCreateSystemSoundID(soundURL as CFURL, &mySound)
+            AudioServicesPlaySystemSound(mySound);
+        }
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?){
+
+        let imageData = photo.fileDataRepresentation()
+
+        guard let image = UIImage(data:  imageData!) else {
+          return
+        }
+
+        // Delegates the pixel buffer to the ViewController.
+        delegate?.didOutputPhotoCapture(image: image)
+
+    }
+    
+//    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+//
+//        print(photoSampleBuffer as Any)
+//    }
+    
 }

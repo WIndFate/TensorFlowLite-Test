@@ -18,7 +18,7 @@ import AVFoundation
 /**
  The camera frame is displayed on this view.
  */
-class PreviewView: UIView {
+class AITeamPreviewView: UIView {
 
   var previewLayer: AVCaptureVideoPreviewLayer {
     guard let layer = layer as? AVCaptureVideoPreviewLayer else {

@@ -25,12 +25,9 @@
 		CB20407A2511EF0800C79935 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2040792511EF0800C79935 /* UIKitExtension.swift */; };
 		CB20407C2511EF1900C79935 /* CVViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB20407B2511EF1900C79935 /* CVViewController.mm */; };
 		CB4234FD24DA54C200030AA5 /* labelsMap.txt in Resources */ = {isa = PBXBuildFile; fileRef = CB4234FC24DA54C200030AA5 /* labelsMap.txt */; };
-		CB42350724DD23B300030AA5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350524DD23B300030AA5 /* PreviewView.swift */; };
-		CB42350824DD23B300030AA5 /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350624DD23B300030AA5 /* CameraFeedManager.swift */; };
 		CB42350A24DD29C100030AA5 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42350924DD29C100030AA5 /* ScanViewController.swift */; };
 		CB42350C24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB42350B24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite */; };
 		CB42351024E386CD00030AA5 /* lite.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB42350F24E386CD00030AA5 /* lite.tflite */; };
-		CB42351624E3D99A00030AA5 /* KOFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB42351424E3D99A00030AA5 /* KOFinderView.m */; };
 		CB8473D324E664CF009D8E47 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8473D224E664CF009D8E47 /* VideoViewController.swift */; };
 		CB8473D824EB935B009D8E47 /* plate_number_top_768_512.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB8473D624EB935A009D8E47 /* plate_number_top_768_512.tflite */; };
 		CB8473DF24ECC1DA009D8E47 /* plate_number_bottom_768_512.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB8473DE24ECC1DA009D8E47 /* plate_number_bottom_768_512.tflite */; };
@@ -38,6 +35,9 @@
 		CB8473E324ECFD6C009D8E47 /* plate_number_ocr_model_input_sized.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CB8473E224ECFD6B009D8E47 /* plate_number_ocr_model_input_sized.tflite */; };
 		CB8473E524ED0198009D8E47 /* PlateNumberDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8473E424ED0198009D8E47 /* PlateNumberDetailsViewController.swift */; };
 		CBD176AF24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite in Resources */ = {isa = PBXBuildFile; fileRef = CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */; };
+		CBF25A7D266F30F800CC376F /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF25A7A266F30F800CC376F /* CameraFeedManager.swift */; };
+		CBF25A7E266F30F800CC376F /* AITeamScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF25A7B266F30F800CC376F /* AITeamScanView.swift */; };
+		CBF25A7F266F30F800CC376F /* AITeamPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF25A7C266F30F800CC376F /* AITeamPreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,13 +66,9 @@
 		CB2040792511EF0800C79935 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		CB20407B2511EF1900C79935 /* CVViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVViewController.mm; sourceTree = "<group>"; };
 		CB4234FC24DA54C200030AA5 /* labelsMap.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labelsMap.txt; sourceTree = "<group>"; };
-		CB42350524DD23B300030AA5 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		CB42350624DD23B300030AA5 /* CameraFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
 		CB42350924DD29C100030AA5 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		CB42350B24DD470700030AA5 /* barcode_model_768_512_even_shallower.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = barcode_model_768_512_even_shallower.tflite; sourceTree = "<group>"; };
 		CB42350F24E386CD00030AA5 /* lite.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = lite.tflite; sourceTree = "<group>"; };
-		CB42351424E3D99A00030AA5 /* KOFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOFinderView.m; sourceTree = "<group>"; };
-		CB42351524E3D99A00030AA5 /* KOFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOFinderView.h; sourceTree = "<group>"; };
 		CB8473D224E664CF009D8E47 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		CB8473D624EB935A009D8E47 /* plate_number_top_768_512.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = plate_number_top_768_512.tflite; sourceTree = "<group>"; };
 		CB8473DE24ECC1DA009D8E47 /* plate_number_bottom_768_512.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = plate_number_bottom_768_512.tflite; sourceTree = "<group>"; };
@@ -80,6 +76,9 @@
 		CB8473E224ECFD6B009D8E47 /* plate_number_ocr_model_input_sized.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = plate_number_ocr_model_input_sized.tflite; sourceTree = "<group>"; };
 		CB8473E424ED0198009D8E47 /* PlateNumberDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateNumberDetailsViewController.swift; sourceTree = "<group>"; };
 		CBD176AE24D95F2700FC439C /* ocr_barcode_model_99_accu.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocr_barcode_model_99_accu.tflite; sourceTree = "<group>"; };
+		CBF25A7A266F30F800CC376F /* CameraFeedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
+		CBF25A7B266F30F800CC376F /* AITeamScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AITeamScanView.swift; sourceTree = "<group>"; };
+		CBF25A7C266F30F800CC376F /* AITeamPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AITeamPreviewView.swift; sourceTree = "<group>"; };
 		E917A2DB3F03AE4575D8E819 /* Pods-TensorFlowLite-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.debug.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.debug.xcconfig"; sourceTree = "<group>"; };
 		F794F9AEA5C12F15924BACC9 /* Pods-TensorFlowLite-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TensorFlowLite-Test.release.xcconfig"; path = "Target Support Files/Pods-TensorFlowLite-Test/Pods-TensorFlowLite-Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,7 +148,7 @@
 				CB8473DE24ECC1DA009D8E47 /* plate_number_bottom_768_512.tflite */,
 				16AF753824BC5C4700C646E1 /* OpenCV */,
 				39D6451624AB428D00E425F5 /* ModelDataHandler */,
-				CB42350424DD23B300030AA5 /* Camera Feed */,
+				CBF25A79266F30F800CC376F /* Camera Feed */,
 				39D6451324AB428600E425F5 /* Extensions */,
 				394E117B24AB4143006F0C19 /* AppDelegate.swift */,
 				394E117D24AB4143006F0C19 /* SceneDelegate.swift */,
@@ -198,13 +197,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CB42350424DD23B300030AA5 /* Camera Feed */ = {
+		CBF25A79266F30F800CC376F /* Camera Feed */ = {
 			isa = PBXGroup;
 			children = (
-				CB42350524DD23B300030AA5 /* PreviewView.swift */,
-				CB42350624DD23B300030AA5 /* CameraFeedManager.swift */,
-				CB42351524E3D99A00030AA5 /* KOFinderView.h */,
-				CB42351424E3D99A00030AA5 /* KOFinderView.m */,
+				CBF25A7A266F30F800CC376F /* CameraFeedManager.swift */,
+				CBF25A7B266F30F800CC376F /* AITeamScanView.swift */,
+				CBF25A7C266F30F800CC376F /* AITeamPreviewView.swift */,
 			);
 			path = "Camera Feed";
 			sourceTree = "<group>";
@@ -333,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBF25A7E266F30F800CC376F /* AITeamScanView.swift in Sources */,
 				394E118024AB4143006F0C19 /* ViewController.swift in Sources */,
 				CB42350A24DD29C100030AA5 /* ScanViewController.swift in Sources */,
 				CB20407C2511EF1900C79935 /* CVViewController.mm in Sources */,
@@ -340,15 +339,14 @@
 				39D6451524AB428600E425F5 /* CVPixelBufferExtension.swift in Sources */,
 				CB8473E524ED0198009D8E47 /* PlateNumberDetailsViewController.swift in Sources */,
 				394E117C24AB4143006F0C19 /* AppDelegate.swift in Sources */,
+				CBF25A7D266F30F800CC376F /* CameraFeedManager.swift in Sources */,
 				16AF754924BDCEF200C646E1 /* OpenCVManager.mm in Sources */,
-				CB42350724DD23B300030AA5 /* PreviewView.swift in Sources */,
 				165D570224C82C2100A2A66D /* OCRViewController.swift in Sources */,
 				39D6451824AB428D00E425F5 /* ModelDataHandler.swift in Sources */,
 				CB8473D324E664CF009D8E47 /* VideoViewController.swift in Sources */,
 				394E117E24AB4143006F0C19 /* SceneDelegate.swift in Sources */,
 				165D56FA24C586C400A2A66D /* Define.swift in Sources */,
-				CB42350824DD23B300030AA5 /* CameraFeedManager.swift in Sources */,
-				CB42351624E3D99A00030AA5 /* KOFinderView.m in Sources */,
+				CBF25A7F266F30F800CC376F /* AITeamPreviewView.swift in Sources */,
 				16AF754824BDCEF200C646E1 /* UIImage+OpenCV.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
